@@ -1,0 +1,83 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeTarget = D2AAC0620554660B00DB518D /* TLD_device */;
+		codeSenseManager = B7C1E6260E3F9B340055F68C /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					446,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 289344148;
+			PBXWorkspaceStateSaveDate = 289344148;
+		};
+		perUserProjectItems = {
+			B78D9D77113C3AFB00CA9FAB /* PBXTextBookmark */ = B78D9D77113C3AFB00CA9FAB /* PBXTextBookmark */;
+			B7FF8376113F0A9800E4C1F5 /* PBXTextBookmark */ = B7FF8376113F0A9800E4C1F5 /* PBXTextBookmark */;
+		};
+		sourceControlManager = B7C1E6250E3F9B340055F68C /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	B78D9D77113C3AFB00CA9FAB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B7F49D750E3E5E3800305394 /* TLD_device.cpp */;
+		name = "TLD_device.cpp: 73";
+		rLen = 4;
+		rLoc = 2321;
+		rType = 0;
+		vrLen = 1378;
+		vrLoc = 6433;
+	};
+	B7C1E6250E3F9B340055F68C /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = "Midland GLEAN";
+		};
+	};
+	B7C1E6260E3F9B340055F68C /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	B7F49D750E3E5E3800305394 /* TLD_device.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {810, 3066}}";
+			sepNavSelRange = "{2321, 4}";
+			sepNavVisRange = "{6433, 1378}";
+		};
+	};
+	B7FF8376113F0A9800E4C1F5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B7F49D750E3E5E3800305394 /* TLD_device.cpp */;
+		name = "TLD_device.cpp: 73";
+		rLen = 4;
+		rLoc = 2321;
+		rType = 0;
+		vrLen = 1378;
+		vrLoc = 6433;
+	};
+	D2AAC0620554660B00DB518D /* TLD_device */ = {
+		activeExec = 0;
+	};
+}

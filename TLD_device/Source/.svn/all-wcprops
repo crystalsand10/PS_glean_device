@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/GLEAN/!svn/ver/16/trunk/Models/TLD_model/TLD_device/Source
+END
+TLD_device.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/GLEAN/!svn/ver/16/trunk/Models/TLD_model/TLD_device/Source/TLD_device.cpp
+END
+create_TLD_device.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/GLEAN/!svn/ver/16/trunk/Models/TLD_model/TLD_device/Source/create_TLD_device.cpp
+END
+TLD_device.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/GLEAN/!svn/ver/16/trunk/Models/TLD_model/TLD_device/Source/TLD_device.h
+END
