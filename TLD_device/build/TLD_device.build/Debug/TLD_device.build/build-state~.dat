@@ -1,0 +1,274 @@
+TTLD_device
+v7
+r0
+t388469451.362310
+cCheck dependencies
+cCompileC build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.gcc.4_2
+cCompileC build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.gcc.4_2
+cLd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib" normal i386
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004E0AE8D000000000000000EE
+t1309337808
+s238
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp
+c00000000488E9E820000000000001E83
+t1217306242
+s7811
+i"TLD_device.h"
+i"GLEANKernel/Device_exception.h"
+i"GLEANKernel/Glean_standard_symbols.h"
+i"GLEANKernel/Output_tee_globals.h"
+i"GLEANKernel/Utility_templates.h"
+i"GLEANKernel/Numeric_utilities.h"
+i"GLEANKernel/Symbol_utilities.h"
+i<iostream>
+i<iomanip>
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.h
+c000000004FA0CBFA00000000000005AD
+t1335938042
+s1453
+i"GLEANKernel/Device_base.h"
+i"GLEANKernel/Smart_Pointer.h"
+i"GLEANKernel/Widgets.h"
+i<map>
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp
+c00000000488E9E820000000000000195
+t1217306242
+s405
+i"GLEANKernel/Output_tee_globals.h"
+i"TLD_device.h"
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib
+t2
+s0
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.LinkFileList
+c0000000051775B49000000000000015D
+t1366776649
+s349
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o
+t1366776650
+s389792
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o
+t1366776650
+s124200
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/GLEANKernel
+c00000000515FBBD5000000000027C30C
+t1365228501
+s2605836
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Assert_throw.h
+c00000000515FBBD500000000000002B9
+t1365228501
+s697
+i<exception>
+i<string>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Device_base.h
+c00000000515FBBD50000000000001DBB
+t1365228501
+s7611
+i"Symbol.h"
+i"Geometry.h"
+i"Output_tee.h"
+i<string>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Device_exception.h
+c00000000515FBBD5000000000000024A
+t1365228501
+s586
+i"Glean_exceptions.h"
+i"Device_base.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Exception.h
+c00000000515FBBD500000000000002D8
+t1365228501
+s728
+i<exception>
+i<string>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Geometry.h
+c00000000515FBBD50000000000003607
+t1365228501
+s13831
+i"Point.h"
+i"Assert_throw.h"
+i<iosfwd>
+i<vector>
+i<cmath>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Glean_exceptions.h
+c00000000515FBBD5000000000000054F
+t1365228501
+s1359
+i"Exception.h"
+i<string>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Glean_standard_symbols.h
+c00000000515FBBD50000000000000657
+t1365228501
+s1623
+i"Symbol.h"
+i"Standard_Symbols.h"
+i"Standard_utility_symbols.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Numeric_utilities.h
+c00000000515FBBD5000000000000052B
+t1365228501
+s1323
+i<string>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Output_tee.h
+c00000000515FBBD50000000000001AEA
+t1365228501
+s6890
+i"View_base.h"
+i"Assert_throw.h"
+i<iostream>
+i<sstream>
+i<list>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Output_tee_globals.h
+c00000000515FBBD500000000000000EE
+t1365228501
+s238
+i"Output_tee.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Point.h
+c00000000515FBBD50000000000000339
+t1365228501
+s825
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Smart_Pointer.h
+c00000000515FBBD50000000000000CFE
+t1365228501
+s3326
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Standard_Symbols.h
+c00000000515FBBD50000000000001E9F
+t1365228501
+s7839
+i"Symbol.h"
+i"Standard_utility_symbols.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Standard_utility_symbols.h
+c00000000515FBBD500000000000002D1
+t1365228501
+s721
+i"Symbol.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Symbol.h
+c00000000515FBBD5000000000000207C
+t1365228501
+s8316
+i"Point.h"
+i"Exception.h"
+i"Symbol_memory.h"
+i<iosfwd>
+i<string>
+i<vector>
+i<list>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Symbol_memory.h
+c00000000515FBBD50000000000000D43
+t1365228501
+s3395
+i"Point.h"
+i<vector>
+i<cstring>
+i<set>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Symbol_utilities.h
+c00000000515FBBD50000000000000614
+t1365228501
+s1556
+i"Symbol.h"
+i<iosfwd>
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Utility_templates.h
+c00000000515FBBD500000000000001AC
+t1365228501
+s428
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/View_base.h
+c00000000515FBBD50000000000000BF9
+t1365228501
+s3065
+i<list>
+i<string>
+i"Geometry.h"
+
+N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/Headers/Widgets.h
+c00000000515FBBD500000000000031BC
+t1365228501
+s12732
+i"Symbol.h"
+i"Geometry.h"
+i"Smart_Pointer.h"
+i"Standard_symbols.h"
+i<map>
+i<string>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies388469449#388469449#0(0"0(0#1#0"17197841152#0"0#
+
+CCompileC build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.gcc.4_2
+s388469449.588422
+e388469450.796925
+r1
+xCompileC
+xbuild/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@121"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp388469449#388469450#0(0"0(0#0#113"/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp4317974528#1595"    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -fno-asm -Wno-trigraphs -O0 -Wreturn-type -Wparentheses -Wswitch -Wunused-variable -pedantic -Wnewline-eof -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility-inlines-hidden -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.6 -gdwarf-2 "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/../../../../../Library/Frameworks" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/include" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/DerivedSources" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o"0#
+
+CCompileC build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.gcc.4_2
+s388469449.542885
+e388469450.583405
+r1
+xCompileC
+xbuild/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@128"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp388469449#388469450#0(0"0(0#0#120"/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp17194224128#1609"    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c++ -arch i386 -fmessage-length=0 -pipe -fno-asm -Wno-trigraphs -O0 -Wreturn-type -Wparentheses -Wswitch -Wunused-variable -pedantic -Wnewline-eof -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility-inlines-hidden -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.6 -gdwarf-2 "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/../../../../../Library/Frameworks" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/include" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/DerivedSources" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o"0#
+
+CLd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib" normal i386
+s388469450.797113
+e388469451.362205
+r0
+xLd
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib
+xnormal
+xi386
+oUndefined symbols:
+o  "Device_base::handle_HLGet_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&, Symbol const&)", referenced from:
+o      vtable for TLD_devicein TLD_device.o
+o  "operator<<(std::basic_ostream<char, std::char_traits<char> >&, Symbol const&)", referenced from:
+o      Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o
+o      Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o
+o  "Device_base::handle_HLPut_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&)", referenced from:
+o      vtable for TLD_devicein TLD_device.o
+o  "Device_base::Device_base(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)", referenced from:
+o      TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o
+o      TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o
+o  "Geometry_Utilities::operator<<(std::basic_ostream<char, std::char_traits<char> >&, Geometry_Utilities::Point const&)", referenced from:
+o      Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.o
+o      Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.o
+old: symbol(s) not found
+ocollect2: ld returned 1 exit status
+lSLF07#2@128"Link /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib388469450#388469451#0(1538"Undefined symbols:  "Device_base::handle_HLGet_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&, Symbol const&)", referenced from:      vtable for TLD_devicein TLD_device.o  "operator<<(std::basic_ostream<char, std::char_traits<char> >&, Symbol const&)", referenced from:      Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o      Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o  "Device_base::handle_HLPut_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&)", referenced from:      vtable for TLD_devicein TLD_device.o  "Device_base::Device_base(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)", referenced from:      TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o      TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o  "Geometry_Utilities::operator<<(std::basic_ostream<char, std::char_traits<char> >&, Geometry_Utilities::Point const&)", referenced from:      Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.o      Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.old: symbol(s) not foundcollect2: ld returned 1 exit status15(4@168""Device_base::handle_HLGet_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&, Symbol const&)", referenced from:388469451#19#171#0(6@0"388469451#0#0#0#0#0"0(13@36"Vtable for TLD_devicein TLD_device.o388469451#190#43#0(6@0"388469451#0#0#0#0#0"0(4@97""operator<<(std::basic_ostream<char, std::char_traits<char> >&, Symbol const&)", referenced from:388469451#233#100#0(6@0"388469451#0#0#0#0#0"0(13@73"Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o388469451#333#80#0(6@0"388469451#0#0#0#0#0"0(13@73"Output_tee& Output_tee::operator<< <Symbol>(Symbol const&)in TLD_device.o388469451#413#80#0(6@0"388469451#0#0#0#0#0"0(4@153""Device_base::handle_HLPut_event(std::list<Symbol, std::allocator<Symbol> > const&, std::list<Symbol, std::allocator<Symbol> > const&)", referenced from:388469451#493#156#0(6@0"388469451#0#0#0#0#0"0(13@36"Vtable for TLD_devicein TLD_device.o388469451#649#43#0(6@0"388469451#0#0#0#0#0"0(4@136""Device_base::Device_base(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)", referenced from:388469451#692#139#0(6@0"388469451#0#0#0#0#0"0(13@129"TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o388469451#831#136#0(6@0"388469451#0#0#0#0#0"0(13@129"TLD_device::TLD_device(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, Output_tee&)in TLD_device.o388469451#967#136#0(6@0"388469451#0#0#0#0#0"0(4@136""Geometry_Utilities::operator<<(std::basic_ostream<char, std::char_traits<char> >&, Geometry_Utilities::Point const&)", referenced from:388469451#1103#139#0(6@0"388469451#0#0#0#0#0"0(13@111"Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.o388469451#1242#118#0(6@0"388469451#0#0#0#0#0"0(13@111"Output_tee& Output_tee::operator<< <Geometry_Utilities::Point>(Geometry_Utilities::Point const&)in TLD_device.o388469451#1360#118#0(6@0"388469451#0#0#0#0#0"0(13@19"Symbol(s) not found388469451#1478#24#0(6@0"388469451#0#0#0#0#0"0(13@35"Collect2: ld returned 1 exit status388469451#1502#36#0(6@0"388469451#0#0#0#0#0"0(0#0#0"4317974528#1072"    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/g++-4.2 -arch i386 -dynamiclib -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/../../../../../Library/Frameworks" -filelist "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.LinkFileList" -install_name /usr/local/lib/libTLD_device.dylib -mmacosx-version-min=10.6 -framework GLEANKernel -prebind -single_module -compatibility_version 1 -current_version 1 -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/build/Debug/libTLD_device.dylib"1#
+

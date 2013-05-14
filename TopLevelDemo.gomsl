@@ -1,6 +1,6 @@
 
 Define_model: "Top Level Examples with TLD_device (Top Level Demo)"
-Starting_goal is Process Buttons2.	// change this to invoke each example method
+Starting_goal is Process Buttons3.	// change this to invoke each example method
 
 /* 
 The TLD_device creates a set of buttons in a vertical row; some are red. 

@@ -1,0 +1,122 @@
+/** 
+
+Created: 2013 April 30
+Last modified: 2013 April 30 
+
+# UML diagram for the code dependencies of GLEAN 
+
+# Red nodes are the starting nodes. (They are the base, and do not inherit from anything else.)
+# Coloured nodes are representative of the actual device. 
+
+# Bold edges are interdependencies. 
+# Non-dashed lines are what the device inherits. 
+# Dashed lines are interdependencies within the GLEAN class library. 
+
+## Non-essential colouring
+Blue nodes have been used to highlight the ones inherited by the device. 
+## 
+
+**/ 
+
+
+digraph glean_uml{ 
+
+	Assert_throw [color=red]; 
+
+
+	Symbol -> Device_base [style="dashed"]; 
+	Geometry -> Device_base [style="dashed"]; 
+	Output_tee -> Device_base [style="dashed"];
+
+	Glean_exceptions -> Device_exception [style="dashed"]; 
+	Device_base -> Device_exception [style="dashed"]; 
+
+	Exception [color=red]; 
+
+
+	Point -> Geometry [style="dashed"]; 
+	Assert_throw -> Geometry [style="dashed"]; 
+
+	Exception -> Glean_exceptions [style="dashed"]; 
+
+	Symbol -> Glean_standard_symbols [style="dashed"]; 
+	Standard_Symbols -> Glean_standard_symbols [style="dashed"]; 
+	Standard_utility_symbols -> Glean_standard_symbols [style="dashed"]; 
+
+	Model [color=red]; 
+
+	Numeric_utilities [color=red]; 
+
+	Symbol -> OPV_Containers [style="dashed"]; 
+	
+	Output_tee -> Output_tee_globals [style="dashed"]; 
+
+	View_base -> Output_tee [style="dashed"]; 
+	Assert_throw -> Output_tee [style="dashed"]; 
+
+
+	Point [color=red]; 
+	
+	Smart_Pointer [color=red]; 
+
+	Symbol -> Standard_Symbols [style="dashed"]; 
+	Standard_utility_symbols -> Standard_Symbols [style="dashed"]; 
+
+	Symbol -> Standard_utility_symbols [style="dashed"]; 
+
+	Syllable_counter [color=red]; 
+
+	Symbol -> Symbol_Geometry_utilities [style="dashed"]; 
+	Geometry -> Symbol_Geometry_utilities [style="dashed"]; 
+
+	Point -> Symbol_memory [style="dashed"]; 
+
+	Symbol -> Symbol_utilities [style="dashed"];
+
+
+	Point -> Symbol [style="dashed"];
+	Exception -> Symbol [style="dashed"];
+	Symbol_memory -> Symbol [style="dashed"]; 
+
+
+	Utility_templates [color=red]; 
+
+
+
+	Geometry -> View_base [style="dashed"]; 
+
+	Symbol -> Widgets [style="dashed"]; 
+	Geometry -> Widgets [style="dashed"]; 
+	Smart_Pointer -> Widgets [style="dashed"]; 
+	Standard_Symbols -> Widgets [style="dashed"]; 
+
+
+	Output_tee_globals [color=blue];
+	Device_base [color = blue]; 
+	Widgets [color=blue]; 
+	Device_exception [color=blue]; 
+	Symbol_utilities [color=blue]; 
+	Glean_standard_symbols [color=blue]; 
+
+// Definitions of the of the example code TLD_device.h and cpp 
+	a[color = "#FFA07A", style = filled, label="TLD_device.h"];
+	b[color = "#8FBC8F", style = filled, label="TLD_device.cpp"]; 
+	c[color = "#F0E68C", style = filled, label="create_TLD_device.cpp"];
+
+
+	Device_base -> a; 
+	Smart_Pointer -> a; 
+	Widgets -> a;  
+
+	Device_exception -> b; 
+	Glean_standard_symbols -> b; 
+	Output_tee_globals -> b; 
+	Utility_templates -> b; 
+	Numeric_utilities -> b; 
+	Symbol_utilities -> b; 
+
+	Output_tee_globals -> c; 
+	a -> c [style="bold"];
+	a -> b [style="bold"];  
+
+}
