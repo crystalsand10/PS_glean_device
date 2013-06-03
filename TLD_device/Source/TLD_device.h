@@ -21,6 +21,8 @@ public:
 	virtual void handle_Click_event(const Symbol& button_name);
 	virtual void handle_Delay_event(const Symbol& type, const Symbol& datum, 
 		const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);
+    virtual void handle_Type_In_event(const Symbol& target_name);
+    
 private:
 	Smart_Pointer<Screen_widget> screen_ptr;
 	// a container of pointers to buttons

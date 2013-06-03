@@ -11,10 +11,6 @@
 		B7F49D770E3E5E3800305394 /* create_TLD_device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7F49D740E3E5E3800305394 /* create_TLD_device.cpp */; };
 		B7F49D780E3E5E3800305394 /* TLD_device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7F49D750E3E5E3800305394 /* TLD_device.cpp */; };
 		B7F49D790E3E5E3800305394 /* TLD_device.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F49D760E3E5E3800305394 /* TLD_device.h */; };
-		BA6E64A21739F489001F4D1C /* trial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6E64A01739F489001F4D1C /* trial.cpp */; };
-		BA6E64A31739F489001F4D1C /* trial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA6E64A01739F489001F4D1C /* trial.cpp */; };
-		BA6E64A41739F489001F4D1C /* trial.h in Headers */ = {isa = PBXBuildFile; fileRef = BA6E64A11739F489001F4D1C /* trial.h */; };
-		BA6E64A51739F489001F4D1C /* trial.h in Headers */ = {isa = PBXBuildFile; fileRef = BA6E64A11739F489001F4D1C /* trial.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,20 +18,10 @@
 		B7F49D740E3E5E3800305394 /* create_TLD_device.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = create_TLD_device.cpp; sourceTree = "<group>"; };
 		B7F49D750E3E5E3800305394 /* TLD_device.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TLD_device.cpp; sourceTree = "<group>"; };
 		B7F49D760E3E5E3800305394 /* TLD_device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLD_device.h; sourceTree = "<group>"; };
-		BA6E64A01739F489001F4D1C /* trial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trial.cpp; sourceTree = "<group>"; };
-		BA6E64A11739F489001F4D1C /* trial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trial.h; sourceTree = "<group>"; };
-		BADCB34A172F94A6004D531E /* MedHatrix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = MedHatrix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2AAC0630554660B00DB518D /* libTLD_device.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libTLD_device.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BADCB347172F94A6004D531E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D289988505E68E00004EDB86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,7 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC0630554660B00DB518D /* libTLD_device.dylib */,
-				BADCB34A172F94A6004D531E /* MedHatrix.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,8 +57,6 @@
 				B7F49D740E3E5E3800305394 /* create_TLD_device.cpp */,
 				B7F49D750E3E5E3800305394 /* TLD_device.cpp */,
 				B7F49D760E3E5E3800305394 /* TLD_device.h */,
-				BA6E64A01739F489001F4D1C /* trial.cpp */,
-				BA6E64A11739F489001F4D1C /* trial.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -89,43 +72,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BADCB348172F94A6004D531E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA6E64A51739F489001F4D1C /* trial.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D2AAC0600554660B00DB518D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B7F49D790E3E5E3800305394 /* TLD_device.h in Headers */,
-				BA6E64A41739F489001F4D1C /* trial.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BADCB349172F94A6004D531E /* MedHatrix */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BADCB354172F94A6004D531E /* Build configuration list for PBXNativeTarget "MedHatrix" */;
-			buildPhases = (
-				BADCB346172F94A6004D531E /* Sources */,
-				BADCB347172F94A6004D531E /* Frameworks */,
-				BADCB348172F94A6004D531E /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MedHatrix;
-			productName = MedHatrix;
-			productReference = BADCB34A172F94A6004D531E /* MedHatrix.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 		D2AAC0620554660B00DB518D /* TLD_device */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB914A08733D8E0010E9CD /* Build configuration list for PBXNativeTarget "TLD_device" */;
@@ -163,27 +120,17 @@
 			projectRoot = "";
 			targets = (
 				D2AAC0620554660B00DB518D /* TLD_device */,
-				BADCB349172F94A6004D531E /* MedHatrix */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BADCB346172F94A6004D531E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA6E64A31739F489001F4D1C /* trial.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D2AAC0610554660B00DB518D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B7F49D770E3E5E3800305394 /* create_TLD_device.cpp in Sources */,
 				B7F49D780E3E5E3800305394 /* TLD_device.cpp in Sources */,
-				BA6E64A21739F489001F4D1C /* trial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,62 +231,6 @@
 			};
 			name = Release;
 		};
-		BADCB355172F94A6004D531E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		BADCB356172F94A6004D531E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -357,15 +248,6 @@
 			buildConfigurations = (
 				1DEB914F08733D8E0010E9CD /* Debug */,
 				1DEB915008733D8E0010E9CD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BADCB354172F94A6004D531E /* Build configuration list for PBXNativeTarget "MedHatrix" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BADCB355172F94A6004D531E /* Debug */,
-				BADCB356172F94A6004D531E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
