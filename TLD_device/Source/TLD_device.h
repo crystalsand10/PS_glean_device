@@ -1,47 +1,68 @@
-#ifndef TLD_DEVICE_H
-#define TLD_DEVICE_H
+//
+//  trial.h
+//  TLD_device
+//
+//  Created by Sandeep Kaur on 2013, May 8.
+//
+//  Last revised: 2013, May 14
+//
 
+#ifndef __TLD_device__trial__
+#define __TLD_device__trial__
+
+#include <iostream>
+#include <string>
 #include "GLEANKernel/Device_base.h"
+#include "GLEANKernel/Symbol.h"
+#include "GLEANKernel/Output_tee.h"
 #include "GLEANKernel/Smart_Pointer.h"
 #include "GLEANKernel/Widgets.h"
 #include <map>
 
-class TLD_device;
-// a simple device that puts Button widgets on the simulated display
-// the color can be read and changed, whereupon the display changes.
 
-
-class TLD_device : public Device_base {
+class TLD_device: public Device_base{
 public:
-	TLD_device(const std::string& id, Output_tee& ot);
-
-	virtual void initialize();
-	virtual void handle_Start_event();
-	virtual void handle_Point_event(const Symbol& target_name);
-	virtual void handle_Click_event(const Symbol& button_name);
-	virtual void handle_Delay_event(const Symbol& type, const Symbol& datum, 
-		const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);
-    virtual void handle_Type_In_event(const Symbol& target_name);
+    TLD_device(const std::string& id, Output_tee& ot);     // constructor requires processor name and output destination
+    
+    virtual void initiliaze();
+    virtual void display() const;
+    
+    // over-riding input handlers
+    
+    virtual void handle_Delay_event(const Symbol& type, const Symbol& datum, const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);
+    
+    
+    virtual void handle_Type_In_event(const Symbol& type_in_string);
+    
+    virtual void handle_Point_event(const Symbol& target_name);
+    
+    virtual void handle_Click_event(const Symbol& button_name);
+    
+    
     
 private:
-	Smart_Pointer<Screen_widget> screen_ptr;
-	// a container of pointers to buttons
-	typedef std::map<Symbol, Smart_Pointer<Button_widget> > buttons_t;
-	buttons_t buttons;
-	Smart_Pointer<Cursor_widget> cursor_ptr;
-	
-	
-	Smart_Pointer<Object_widget> blip_ptr;	// at most one Blip can exist at a time
-	int blip_counter;	// counts the number of time a blip was clicked on		
-
-	Symbol current_pointed_to_object_name;	// holds name of current button pointed to
-
-	void create_initial_display();
-	void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state);
-	
-	void clear_display();
-	void output_display() const;
-
+    bool submit_button_clicked;
+    Symbol keyboard_focus_field; // target for keyboard input; multiple targets might be required for a form which has lots of things.
+    Symbol current_pointed_to_object_name;
+    Smart_Pointer<Screen_widget> screen_ptr;
+    Smart_Pointer<Cursor_widget> cursor_ptr;
+    
+    
+    Smart_Pointer<Button_widget> submit_ptr;
+    
+    typedef std::map<Symbol, Smart_Pointer<Field_widget> > formElements_t;
+	formElements_t formElements;
+    
+    
+    
+    
+    // Added things not in Guide's .h file.
+    
+    void clear_display();
+    void create_initial_display();
+    void create_button(TLD_device * device_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state);
+    void create_field(TLD_device * device_ptr, const Symbol& name, GU::Point location, const Symbol& label);
+    void output_display() const;
 };
 
-#endif
+#endif /* defined(__TLD_device__trial__) */
