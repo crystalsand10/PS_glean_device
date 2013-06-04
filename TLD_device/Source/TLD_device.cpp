@@ -19,8 +19,8 @@
 
 using namespace std;
 
-const Symbol SubmitButton_c("SubmitButton");
-const Symbol TextField_c("EnterAllergy");
+const Symbol Button_c("SubmitButton");
+const Symbol Field_c("EnterAllergy");
 
 
 const GU::Size default_button_size(50, 20);
@@ -28,7 +28,7 @@ const GU::Size default_textField_size(100, 20);
 
 // constructor
 TLD_device::TLD_device(const std::string& id, Output_tee& ot) : Device_base(id, ot), submit_button_clicked(false) {
-    Widget::set_add_widget_type_property(true);
+    Widget::set_add_widget_type_property(true); // Now "Type Button" and "Type Field" are properties of objects.
 }
 
 void TLD_device::initiliaze(){
@@ -36,6 +36,7 @@ void TLD_device::initiliaze(){
     clear_display();
     
     current_pointed_to_object_name = Nil_c;
+    keyboard_focus_field = Nil_c;
     create_initial_display();
     
 }
@@ -54,8 +55,12 @@ void TLD_device::create_initial_display(){
     screen_ptr = new Screen_widget(this, Symbol("Screen"), GU::Point(0, 0), Widget::get_screen_pixel_size());
     screen_ptr->add_widget(cursor_ptr = new Cursor_widget(this, GU::Point(250, 250), GU::Size(20, 20)));
     
-    create_field(this, TextField_c, GU::Point(500, 200), "Enter_allergy");
-    create_button(this, SubmitButton_c, GU::Point(500, 300), "Submit_allergy", false);
+    create_field(this, Field_c, GU::Point(500, 200), "Enter_allergy"); // Labelled as Enter_allergy
+    create_button(this, Button_c, GU::Point(500, 300), "Submit_allergy", false); // Labelled as Submit_allergy
+    
+    
+    // formElements[Field_c]->set_property(Position_c, Top_c);
+    
     
 }
 
@@ -71,11 +76,10 @@ void TLD_device::create_field(TLD_device * device_ptr, const Symbol& name, GU::P
 
 
 void TLD_device::create_button(TLD_device * device_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state){
-    Smart_Pointer<Button_widget> ptr = new Button_widget(device_ptr, name, location, default_button_size, label, Red_c, Green_c, state);
-    //  form[name] = ptr;
-    screen_ptr->add_widget(ptr);
-    submit_ptr = ptr;
-    
+    submit_ptr = new Button_widget(device_ptr, name, location, default_button_size, label, Red_c, Green_c, state);
+     // formElements[name] = ptr;
+    screen_ptr->add_widget(submit_ptr);
+    submit_ptr->present(); 
 }
 
 
@@ -122,30 +126,51 @@ void TLD_device::handle_Point_event(const Symbol& target_name){
 
 // handle click event separately for button and text fields.
 
-void TLD_device::handle_Click_event(const Symbol& button_name){
+void TLD_device::handle_Click_event(const Symbol& clicked_name){
     if(Trace_out && get_trace())
-        Trace_out << processor_info() << " Click: " << button_name << " on " << current_pointed_to_object_name << endl;
+        Trace_out << processor_info() << " Click: " << clicked_name << " on " << current_pointed_to_object_name << endl;
     
     
     if(current_pointed_to_object_name == submit_ptr->get_name() && submit_ptr->get_state() == false){
         // End simulation
+        stop_simulation();
+        return; 
     }
+    else{
+        formElements_t::iterator it = formElements.find(current_pointed_to_object_name);
+        if(it == formElements.end())
+            throw Device_exception(this, "Click-on unrecognised object");
+        
+        Smart_Pointer<Field_widget> current_field_pointer = it->second;
+        
+        keyboard_focus_field = current_pointed_to_object_name;
+        
+        
+    }
+    
+    
     
     output_display();
     
 }
-
-void TLD_device::handle_Delay_event(const Symbol& type, const Symbol& datum, const Symbol&object_name, const Symbol& property_name, const Symbol& property_value){
-    
-    if(Trace_out && get_trace())
-        Trace_out << processor_info() << " Delay event: " << type << ' ' << datum << ' ' << object_name << ' ' << property_name << ' ' << property_value << endl;
-    
-    if(type == "Submit_button clicked"){
-        
+void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
+    // get the keyboard field and set its property that we have just typed in.
+    if(keyboard_focus_field == Nil_c){
+         throw Device_exception(this, "keyboard_focus_field not set");
     }
+    
+    formElements_t::iterator it = formElements.find(keyboard_focus_field);
+    (it->second)->set_string(type_in_string);
+    
     
 }
 
-// virtual void handle_Type_In_event(const Symbol& type_in_string);
+
+
+void TLD_device::handle_Delay_event(const Symbol& type, const Symbol& datum, const Symbol&object_name, const Symbol& property_name, const Symbol& property_value){
+    
+}
+
+
 
 

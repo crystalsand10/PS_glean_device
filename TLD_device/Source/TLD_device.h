@@ -43,13 +43,19 @@ public:
 private:
     bool submit_button_clicked;
     Symbol keyboard_focus_field; // target for keyboard input; multiple targets might be required for a form which has lots of things.
+    
     Symbol current_pointed_to_object_name;
+    
     Smart_Pointer<Screen_widget> screen_ptr;
     Smart_Pointer<Cursor_widget> cursor_ptr;
+
     
     
-    Smart_Pointer<Button_widget> submit_ptr;
+    Smart_Pointer<Button_widget> submit_ptr; // Is this required? (aims to be a substitute for blip pointer).
     
+    
+    
+    // Defining a location to store the form elements (all fields and buttons)
     typedef std::map<Symbol, Smart_Pointer<Field_widget> > formElements_t;
 	formElements_t formElements;
     
