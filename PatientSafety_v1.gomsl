@@ -1,0 +1,25 @@
+Define_model: "Model for a user prescribing tasks"
+Starting_goal is Add Allergy. 
+
+Method_for_goal: Add Allergy
+      
+Step 1. Look_for_object_whose Name is Add and_store_under <current_button>.         
+Step 2. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 3. Look_for_object_whose Name is "LabeledField1_value" and_store_under <current_field>. 
+Step 4. Accomplish_goal: Fill_in Allergy using <current_field>, and "Pencillin".   
+
+Step 5. Return_with_goal_accomplished. 
+
+Method_for_goal: Click_on Button using <button_obj> 
+Step 1. Point_to <button_obj>. 
+Step 2. Click B1. 
+Step 4. Log "processed: ", <button_obj>.
+Step 5. Delete <button_obj>; Return_with_goal_accomplished. 
+
+
+Method_for_goal: Fill_in Allergy using <current_field>, and <the_allergy> 
+Step 1. Point_to <current_field>. 
+Step 2. Click B1. 
+Step 3. Type_in <the_allergy>. 
+Step 4. Return_with_goal_accomplished. 

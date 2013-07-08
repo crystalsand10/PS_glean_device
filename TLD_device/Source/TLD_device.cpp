@@ -13,7 +13,7 @@ using namespace std;
 /*const Symbol Button1_c("Button1");
 const Symbol Button2_c("Button2");
 const Symbol Button3_c("Button3");*/ 
-const Symbol Button4_c("Button4");
+const Symbol ButtonAllergy_c("ButtonAllergy");
 const Symbol Field1_c("Field1");
 const Symbol LabeledField1_c("LabeledField1");
 const Symbol Blip_c("Blip");
@@ -78,6 +78,7 @@ void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget
 
 void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& contents){
     Smart_Pointer<Field_widget> ptr = new Field_widget(dev_ptr, widget_name, location, size, contents);
+    ptr->set_add_widget_type_property(true);
     fields[widget_name] = ptr;
     screen_ptr->add_widget(ptr);
     
@@ -92,9 +93,9 @@ void TLD_device::create_initial_display()
 	create_button(this, Button2_c, GU::Point(500, 300), "Beta ", true);
 	create_button(this, Button3_c, GU::Point(500, 400), "Gamma", true); */
     
-	create_button(this, Button4_c, GU::Point(500, 500), "Submit", false);
+	create_button(this, ButtonAllergy_c, GU::Point(20, 300), "Add", true);
 //	create_Field(this, Field1_c, GU::Point(400, 300), GU::Size(100, 20), "Allergy");
-    create_labeledField(this, LabeledField1_c, GU::Point(500, 200), GU::Size(80, 30), GU::Size(100, 30), "Allergy");
+    create_labeledField(this, LabeledField1_c, GU::Point(20, 200), GU::Size(80, 30), GU::Size(100, 80), "Allergy");
     
 /*	buttons[Button1_c]->set_property(Position_c, Top_c);
 	buttons[Button1_c]->set_property(Above_c, Button2_c);
@@ -108,8 +109,8 @@ void TLD_device::create_initial_display()
 	buttons[Button3_c]->set_property(Above_c, Button4_c);
 	buttons[Button3_c]->set_property(Below_c, Button2_c); */ 
     
-	buttons[Button4_c]->set_property(Position_c, Bottom_c);
-	buttons[Button4_c]->set_property(Above_c, Nil_c);
+	buttons[ButtonAllergy_c]->set_property("Name", "Add");
+//	buttons[ButtonAllergy_c]->set_property(Above_c, Nil_c);
 //	buttons[Button4_c]->set_property(Below_c, Button3_c);
 }
 
@@ -129,6 +130,16 @@ void TLD_device::handle_Start_event()
 }
 
 
+
+void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
+    for(labeledFields_t::const_iterator it = labeledFields.begin(); it != labeledFields.end(); ++it) {
+        (it->second)->set_string(type_in_string);
+		
+    }
+    output_display(); 
+}
+
+
 // Output the state of the buttons and the cursor as a text display
 void TLD_device::output_display() const
 {
@@ -140,7 +151,7 @@ void TLD_device::output_display() const
     
     for(labeledFields_t::const_iterator it = labeledFields.begin(); it != labeledFields.end(); ++it) {
 		device_out << (it->second)->get_name()
-		<< ' ' << (it->second)->get_location() << ' ' <<  (it->second)->get_string() << endl;
+		<< ' ' << (it->second)->get_location() << ' ' <<  (it->second)->get_add_type() << "---"  << endl;
     }
     
     
@@ -189,20 +200,35 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
     }
 	else {
 		buttons_t::iterator it = buttons.find(current_pointed_to_object_name);
+        
+    
 		if(it == buttons.end())
 			throw Device_exception(this, "Click-on unrecognized object");
 		Smart_Pointer<Button_widget> current_button_ptr = it->second;
 		if(!(current_button_ptr->get_state()))
 			throw Device_exception(this, "Click-on button that is off");
+        
+        if(current_pointed_to_object_name == "ButtonAllergy"){
+           
+            handle_Allergen_entry();
+            
+        }
 		current_button_ptr->set_state(false);
     }
 	output_display();
 }
 
 
+void TLD_device::handle_Allergen_entry(){
+    Trace_out << processor_info() << " Now new screen for entering allergy information " << endl;
+    
+    
+    return; 
+}
+
 // the device delay event is either to make a blip appear, or disappear and either
 // schedule a new appearance or stop the simulation
-void TLD_device::handle_Delay_event(const Symbol& type, const Symbol& datum,
+/* void TLD_device::handle_Delay_event(const Symbol& type, const Symbol& datum,
                                     const Symbol& object_name, const Symbol& property_name, const Symbol& property_value)
 {
 	if(Trace_out && get_trace())
@@ -243,5 +269,5 @@ void TLD_device::handle_Delay_event(const Symbol& type, const Symbol& datum,
     }
 	
 	output_display();
-}
+}*/ 
 

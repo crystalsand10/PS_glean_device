@@ -19,8 +19,11 @@ public:
 	virtual void handle_Start_event();
 	virtual void handle_Point_event(const Symbol& target_name);
 	virtual void handle_Click_event(const Symbol& button_name);
-	virtual void handle_Delay_event(const Symbol& type, const Symbol& datum,
-                                    const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);
+    
+	virtual void handle_Type_In_event(const Symbol& type_in_string);
+    
+/*	virtual void handle_Delay_event(const Symbol& type, const Symbol& datum,
+                                    const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);*/ 
 private:
 	Smart_Pointer<Screen_widget> screen_ptr;
 	// a container of pointers to buttons
@@ -32,6 +35,13 @@ private:
 	
     typedef std::map<Symbol, Smart_Pointer<Labeled_field_widget> > labeledFields_t;
 	labeledFields_t labeledFields;
+    
+    
+    
+    
+    
+    
+    
     
     Smart_Pointer<Cursor_widget> cursor_ptr;
 	
@@ -51,6 +61,9 @@ private:
     
 	void clear_display();
 	void output_display() const;
+    
+    
+    void handle_Allergen_entry();
     
 };
 
