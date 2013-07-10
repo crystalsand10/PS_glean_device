@@ -18,7 +18,6 @@ const Symbol Field1_c("Field1");
 const Symbol LabeledField1_c("LabeledField1");
 const Symbol Blip_c("Blip");
 
-
 /*
  This device is used to demonstrate some simple Top-Level Loop structures.
  
@@ -44,10 +43,10 @@ Device_base(id, ot), blip_ptr(0), blip_counter(0)
 void TLD_device::clear_display()
 {
 	buttons.clear();
-    fields.clear();
     labeledFields.clear(); 
 	screen_ptr = 0;
 	blip_ptr = 0;
+    cursor_ptr = 0;
 }
 
 void TLD_device::initialize()
@@ -63,39 +62,43 @@ void TLD_device::initialize()
 	create_initial_display();
 }
 
-void TLD_device::create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state)
+void TLD_device::create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state,  Smart_Pointer<Screen_widget> screenName )
 {
 	Smart_Pointer<Button_widget> ptr = new Button_widget(dev_ptr, name, location, default_button_size, label, Red_c, Green_c, state);
 	buttons[name] = ptr;
-	screen_ptr->add_widget(ptr);
+	screenName->add_widget(ptr);
 }
 
-void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label){
+void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label,  Smart_Pointer<Screen_widget> screenName){
     Smart_Pointer<Labeled_field_widget> ptr = new Labeled_field_widget(dev_ptr, widget_name, location, label_size, field_size, label);
     labeledFields[widget_name] = ptr;
-    screen_ptr->add_widget(ptr); 
+    screen_ptr->add_widget(ptr);
+    ptr->present();
+    Trace_out << processor_info() << " Point_to:  *** " << ptr->get_name() << endl;
 }
 
-void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& contents){
+/*
+void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& contents,  Smart_Pointer<Screen_widget> screenName){
     Smart_Pointer<Field_widget> ptr = new Field_widget(dev_ptr, widget_name, location, size, contents);
     ptr->set_add_widget_type_property(true);
     fields[widget_name] = ptr;
     screen_ptr->add_widget(ptr);
     
-    
 }
+*/
 
 void TLD_device::create_initial_display()
 {
 	screen_ptr = new Screen_widget(this, Symbol("Screen"), GU::Point(0, 0), Widget::get_screen_pixel_size());
+   //  cursor_ptr = new Cursor_widget(this, GU::Point(250, 250), GU::Size(20, 20));
 	screen_ptr->add_widget(cursor_ptr = new Cursor_widget(this, GU::Point(250, 250), GU::Size(20, 20)));
 /*	create_button(this, Button1_c, GU::Point(500, 200), "Alpha", false);
 	create_button(this, Button2_c, GU::Point(500, 300), "Beta ", true);
 	create_button(this, Button3_c, GU::Point(500, 400), "Gamma", true); */
     
-	create_button(this, ButtonAllergy_c, GU::Point(20, 300), "Add", true);
+	create_button(this, ButtonAllergy_c, GU::Point(20, 300), "Add", true, screen_ptr);
 //	create_Field(this, Field1_c, GU::Point(400, 300), GU::Size(100, 20), "Allergy");
-    create_labeledField(this, LabeledField1_c, GU::Point(20, 200), GU::Size(80, 30), GU::Size(100, 80), "Allergy");
+//    create_labeledField(this, LabeledField1_c, GU::Point(20, 200), GU::Size(80, 30), GU::Size(100, 80), "Allergy");
     
 /*	buttons[Button1_c]->set_property(Position_c, Top_c);
 	buttons[Button1_c]->set_property(Above_c, Button2_c);
@@ -123,8 +126,8 @@ void TLD_device::handle_Start_event()
     //	int delay = 2000 + random_int(3000);
 	// schedule the first blip appearance sometime between 6 sec and 9 secs from now
 	// give the button pressing time to get done
-	int delay = 6000 + random_int(3000);
-	schedule_delay_event(delay, "Blip_appear", "");
+	// int delay = 6000 + random_int(3000);
+	// schedule_delay_event(delay, "Blip_appear", "");
     
 	output_display();
 }
@@ -174,9 +177,23 @@ void TLD_device::handle_Point_event(const Symbol& target_name)
 		Normal_out << processor_info() << " Point_to non-existent object: " << target_name << endl;
 	current_pointed_to_object_name = target_name;
 	Smart_Pointer<Widget> ptr = screen_ptr->get_widget_ptr(current_pointed_to_object_name);
+    
+    Trace_out << " Does it come here ? ............................................       "<< current_pointed_to_object_name <<  endl;
+    
+    if(!ptr){
+               ptr = screen_ptr->get_widget_ptr(LabeledField1_c);
+
+           Trace_out << " Does it come here ? ............................................       "<< current_pointed_to_object_name.str() << " ........ "  <<  endl;
+        
+    }
+        
 	if(ptr) {
 		GU::Point new_loc = ptr->get_location();
 		cursor_ptr->set_location(new_loc);
+        
+        
+        Trace_out << " Does it come here ? ............................................       "<< current_pointed_to_object_name <<  endl;
+        
     }
 	
 	set_visual_object_property(Cursor_name_c, Pointing_to_c, target_name);
@@ -199,32 +216,35 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
 		return;
     }
 	else {
-		buttons_t::iterator it = buttons.find(current_pointed_to_object_name);
-        
+		buttons_t::iterator it_buttons = buttons.find(current_pointed_to_object_name);
+        //labeledFields_t::iterator it_labeledFields = labeledFields.find(current_pointed_to_object_name);
     
-		if(it == buttons.end())
+		if(it_buttons == buttons.end())
 			throw Device_exception(this, "Click-on unrecognized object");
-		Smart_Pointer<Button_widget> current_button_ptr = it->second;
+		Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
 		if(!(current_button_ptr->get_state()))
 			throw Device_exception(this, "Click-on button that is off");
         
+        current_button_ptr->set_state(false);
+        
+        
         if(current_pointed_to_object_name == "ButtonAllergy"){
-           
-            handle_Allergen_entry();
+            Trace_out << processor_info() << " Now new screen for entering allergy information " << endl;
             
+            
+            screen_ptr->remove_widget(current_button_ptr);
+
+            buttons.clear();
+            set_visual_object_property(Cursor_name_c, Pointing_to_c, Nil_c);
+            create_labeledField(this, LabeledField1_c, GU::Point(20, 200), GU::Size(80, 30), GU::Size(100, 80), "Allergy", screen_ptr);
+                        
         }
-		current_button_ptr->set_state(false);
+        
     }
 	output_display();
 }
 
 
-void TLD_device::handle_Allergen_entry(){
-    Trace_out << processor_info() << " Now new screen for entering allergy information " << endl;
-    
-    
-    return; 
-}
 
 // the device delay event is either to make a blip appear, or disappear and either
 // schedule a new appearance or stop the simulation
