@@ -30,35 +30,39 @@ private:
 	typedef std::map<Symbol, Smart_Pointer<Button_widget> > buttons_t;
 	buttons_t buttons;
     
-  //  typedef std::map<Symbol, Smart_Pointer<Field_widget> > fields_t;
-//	fields_t fields;
+    typedef std::map<Symbol, Smart_Pointer<Field_widget> > fields_t;
+	fields_t fields;
 	
     typedef std::map<Symbol, Smart_Pointer<Labeled_field_widget> > labeledFields_t;
 	labeledFields_t labeledFields;
     
-    
+    typedef std::map<Symbol, Smart_Pointer<Label_widget> > labels_t;
+    labels_t labels; 
   
     Smart_Pointer<Cursor_widget> cursor_ptr;
 	
 	
-	Smart_Pointer<Object_widget> blip_ptr;	// at most one Blip can exist at a time
-	int blip_counter;	// counts the number of time a blip was clicked on
+	// Smart_Pointer<Object_widget> blip_ptr;	// at most one Blip can exist at a time
+	// int blip_counter;	// counts the number of time a blip was clicked on
     
 	Symbol current_pointed_to_object_name;	// holds name of current button pointed to
     
 	void create_initial_display();
-	void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName );
-	void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& contents,  Smart_Pointer<Screen_widget> screenName);
+	void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName );
+	void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size);
     
     
     void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label,  Smart_Pointer<Screen_widget> screenName);
     
+    void create_polygon(Device_base * dev_ptr, const Symbol& widget_name, const GU::Polygon& polygon, const Symbol& color);
+    
+    
+    void create_label(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& label, const Symbol& color);
     
 	void clear_display();
 	void output_display() const;
     
     
-    void handle_Allergen_entry();
     
 };
 

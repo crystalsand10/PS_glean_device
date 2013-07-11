@@ -25,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "TLD_device::create_button(TLD_device * dev_ptr, const Symbol&amp; name, GU::Point location, const Symbol&amp; label, bool state, Smart_Pointer&lt;Screen_widget&gt; screenName )"
-         landmarkType = "5">
+         endingLineNumber = "71">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -41,6 +39,19 @@
          endingLineNumber = "291"
          landmarkName = "class Container_widget"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Source/TLD_device.cpp"
+         timestampString = "395207807.972684"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
+         landmarkName = "TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol&amp; widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol&amp; label, Smart_Pointer&lt;Screen_widget&gt; screenName)"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
