@@ -38,7 +38,9 @@ private:
     
     typedef std::map<Symbol, Smart_Pointer<Object_widget> > objects_t;
     objects_t objects;
-    
+ 
+    typedef std::map<Symbol, Smart_Pointer<Label_widget> > labels_t;
+    labels_t labels;
   
     Smart_Pointer<Cursor_widget> cursor_ptr;
 	
@@ -49,8 +51,10 @@ private:
 	Symbol current_pointed_to_object_name;	// holds name of current button pointed to
     
 	void create_initial_display();
-	void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName , bool should_present);
-	void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, bool should_present);
+	
+    void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName , bool should_present);
+	
+    void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, Symbol new_string, Symbol color, bool should_present);
     
     
     void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label,  Smart_Pointer<Screen_widget> screenName, bool should_present);

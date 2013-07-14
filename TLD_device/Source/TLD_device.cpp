@@ -104,8 +104,8 @@ void TLD_device::create_polygon(Device_base * dev_ptr, const Symbol& widget_name
     }
 }
 
-void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size , bool should_present){
-    Smart_Pointer<Field_widget> ptr = new Field_widget(dev_ptr, widget_name, location, size);
+void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size , Symbol new_string, Symbol color, bool should_present){
+    Smart_Pointer<Field_widget> ptr = new Field_widget(dev_ptr, widget_name, location, size, new_string, color);
    // ptr->set_add_widget_type_property(true);
    // ptr->set_string("blah");
     fields[widget_name] = ptr;
@@ -121,6 +121,7 @@ void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, 
 void TLD_device::create_label(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, const Symbol& label, const Symbol& color, bool should_present){
     Smart_Pointer<Label_widget> ptr = new Label_widget(dev_ptr, widget_name, location, label, Red_c);
   //  ptr->set_add_widget_type_property(true);
+    labels[widget_name] = ptr;
     screen_ptr->add_widget(ptr);
     
     if(should_present == true){
@@ -231,10 +232,29 @@ void TLD_device::create_homeScreen_display(bool is_first_display){
 
 
 void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
+    
+    // can set current clicked on object name, and make sure it and current pointed to object name are the same
+    fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
+    (it_fields->second)->set_string(type_in_string);
+    
+    
+    if(current_pointed_to_object_name == Field_AllergySubstance_c) {
+        
+        
+        it_fields = fields.find(Field_AllergyComments_c);
+        (it_fields->second)->set_string(" ");
+        
+        
+        // change color or next fields here;  maybe update it in the screen_ptr
+    }
+    
+    /* 
     for(fields_t::const_iterator it = fields.begin(); it != fields.end(); ++it) {
         (it->second)->set_string(type_in_string);
     }
-    output_display(); 
+    */
+    
+    output_display();
 }
 
 
@@ -318,36 +338,50 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
     
 		if(it_buttons == buttons.end() && it_fields == fields.end())
 			throw Device_exception(this, "Click-on unrecognized object");
-		Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
-		if(!(current_button_ptr->get_state()))
-			throw Device_exception(this, "Click-on button that is off");
+    
+    if(it_buttons != buttons.end()){
+        Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
+        
+        if(!(current_button_ptr->get_state()))
+            throw Device_exception(this, "Click-on button that is off");
         
         current_button_ptr->set_state(false);
-    
-    
+        
+        
         
         if(current_pointed_to_object_name == "Button_allergy"){
             Trace_out << processor_info() << " Now new screen for entering allergy information " << endl;
             
             clear_objects_on_screen();
-
+            
             
             create_allergies_display(false);
         }
-    if(current_pointed_to_object_name == "Allergy_option6"){
-        
-         
-        Trace_out << processor_info() << " Now new screen for entering allergy information 2 " << endl;
-        
-   
-        create_allergies_display(true);
+        if(current_pointed_to_object_name == "Allergy_option6"){
             
-    }
-    
-    if(current_pointed_to_object_name == "Allergy_continue"){
+            
+            Trace_out << processor_info() << " Now new screen for entering allergy information 2 " << endl;
+            
+            
+            create_allergies_display(true);
+            
+        }
         
-    
+        if(current_pointed_to_object_name == "Allergy_continue"){
+            clear_objects_on_screen();
+            create_homeScreen_display(true); 
+            
+        }
     }
+    else if(it_fields != fields.end()){
+        if(current_pointed_to_object_name == Field_AllergySubstance_c){
+           // Trace_out << " blah blah blah blah blah blah blah blah blah blah blabh blah blah " << endl;
+            
+        }
+        
+    }
+	
+
 //    }
 	output_display();
 }
@@ -367,28 +401,36 @@ void TLD_device::clear_objects_on_screen(){
         screen_ptr->remove_widget((it->second)); 
     }
     
+    
     for(fields_t::const_iterator it = fields.begin(); it != fields.end(); ++it) {
         (it->second)->depresent();
          screen_ptr->remove_widget((it->second));
     }
     
+    
     for(polygons_t::const_iterator it = polygons.begin(); it != polygons.end(); ++it) {
         (it->second)->depresent();
          screen_ptr->remove_widget((it->second));
-        
     }
+    
     
     for(objects_t::const_iterator it = objects.begin(); it != objects.end(); ++it) {
         (it->second)->depresent();
-         screen_ptr->remove_widget((it->second)); 
-
+         screen_ptr->remove_widget((it->second));
+    }
+    
+    
+    for(labels_t::const_iterator it = labels.begin(); it != labels.end(); ++it) {
+        (it->second)->depresent();
+        screen_ptr->remove_widget((it->second));
+        
     }
     
     buttons.clear();
     fields.clear();
     polygons.clear();
     objects.clear();
-
+    labels.clear(); 
 }
 
 
@@ -401,6 +443,8 @@ void TLD_device::create_allergies_display(bool second_screen){
         create_polygon(this, Symbol("Allergy_polygon1"), in_vertices2, Red_c, true);
     
         create_button(this, "Allergy_continue", GU::Point(20, 20), GU::Size(50, 10), "Continue", true, screen_ptr, true);
+        buttons[Symbol("Allergy_continue")]->set_property("Name", "Continue");
+        
         create_button(this, "Allergy_cancel", GU::Point(40, 20), GU::Size(20, 20), "Cancel", false, screen_ptr, true);
         
         create_button(this, "Allergy_option1", GU::Point(20, 100), GU::Size(10, 10), "Patients Allergy Status", false, screen_ptr, true);
@@ -417,8 +461,8 @@ void TLD_device::create_allergies_display(bool second_screen){
         
         create_label(this, "Allergy_label_Substance", GU::Point(400, 400), GU::Size(100, 20), "Substance", Red_c, true);
         create_label(this, "Allergy_label_Comments", GU::Point(500, 400), GU::Size(100, 20), "Comments", Green_c, true);
-        create_Field(this, Field_AllergySubstance_c, GU::Point(300, 300), GU::Size(100, 20), true);
-        create_Field(this, Field_AllergyComments_c, GU::Point(300, 500), GU::Size(100, 20), true);
+        create_Field(this, Field_AllergySubstance_c, GU::Point(300, 300),  GU::Size(100, 20)," ", Black_c, true);
+        create_Field(this, Field_AllergyComments_c, GU::Point(300, 500), GU::Size(100, 20), "", Black_c, true);
 
         
     }
