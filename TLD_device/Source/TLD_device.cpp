@@ -10,21 +10,21 @@
 
 using namespace std;
 
+
+/* All the buttons in the display */
 const Symbol ButtonAllergy_c("Button_allergy");
-GU::Point ButtonAllergy_loc =  GU::Point(500, 200);
-
 const Symbol ButtonMedications_c("Button_medications");
-GU::Point ButtonMedications_loc = GU::Point(10, 200);
-
-// const Symbol
 
 
+/* All the Fields in the display */
 const Symbol Field_AllergySubstance_c("AllergySubstance");
 const Symbol Field_AllergyComments_c("AllergyComments");
 
 
-// const Symbol LabeledField1_c("LabeledField1");
-// const Symbol Blip_c("Blip");
+
+std::stringstream Main_screen_string1;
+
+
 
 /*
  This device is used to demonstrate some simple Top-Level Loop structures.
@@ -36,7 +36,6 @@ const Symbol Field_AllergyComments_c("AllergyComments");
  at another random time for a total of three times, and then stop the simulation.
  ??? these may be out date!
  */
-
 
 const GU::Size default_button_size(50, 20);
 
@@ -51,11 +50,13 @@ Device_base(id, ot)
 void TLD_device::clear_display()
 {
 	buttons.clear();
-//    labeledFields.clear();
     fields.clear();
 	screen_ptr = 0;
-//	blip_ptr = 0;
     cursor_ptr = 0;
+    labels.clear();
+    objects.clear();
+    polygons.clear();
+    
 }
 
 void TLD_device::initialize()
@@ -154,7 +155,7 @@ void TLD_device::create_initial_display()
     
 
 
-    create_homeScreen_display(false);
+    create_homeScreen_display(false, false);
     
     
     
@@ -180,52 +181,60 @@ void TLD_device::handle_Start_event()
 
 
 
-void TLD_device::create_homeScreen_display(bool is_first_display){
+void TLD_device::create_homeScreen_display(bool first_display, bool allergy_string_display){
     
     
-    create_button(this, ButtonAllergy_c, ButtonAllergy_loc, GU::Size(35, 20),  "Add", true, screen_ptr, is_first_display);
+    create_button(this, ButtonAllergy_c, GU::Point(500, 200), GU::Size(35, 20),  "Add", true, screen_ptr, first_display);
     buttons[ButtonAllergy_c]->set_property("Name", "Add");
     
     
-    create_button(this, Symbol("button2"),  GU::Point(10, 230), GU::Size(200, 20), "Medications on admission", false, screen_ptr , is_first_display);
+    create_button(this, Symbol("button2"),  GU::Point(10, 230), GU::Size(200, 20), "Medications on admission", false, screen_ptr , first_display);
     
-    create_button(this, Symbol("button3"),  GU::Point(10, 270), GU::Size(120, 20), "Chart history", false, screen_ptr , is_first_display);
+    create_button(this, Symbol("button3"),  GU::Point(10, 270), GU::Size(120, 20), "Chart history", false, screen_ptr , first_display);
     
-    create_button(this, Symbol("button4"),  GU::Point(10, 300), GU::Size(120, 20), "Script history", false, screen_ptr , is_first_display);
+    create_button(this, Symbol("button4"),  GU::Point(10, 300), GU::Size(120, 20), "Script history", false, screen_ptr , first_display);
     
-    create_button(this, Symbol("button5"),  GU::Point(10, 330), GU::Size(140, 20), "Patient history", false, screen_ptr , is_first_display);
+    create_button(this, Symbol("button5"),  GU::Point(10, 330), GU::Size(140, 20), "Patient history", false, screen_ptr , first_display);
     
     
-    create_button(this, ButtonMedications_c, ButtonMedications_loc,GU::Size(100, 20),  "Medications", true, screen_ptr, is_first_display);
+    create_button(this, ButtonMedications_c, GU::Point(10, 200), GU::Size(100, 20),  "Medications", true, screen_ptr, first_display);
     buttons[ButtonMedications_c]->set_property("Name", "Medications");
     
     
     
  
     
-    create_Object(this, "Object1", GU::Point(255, 200), GU::Size(240, 20), RoyalBlue_c, Filled_Rectangle_c, "Allergies and Intolerances", is_first_display);
+    create_Object(this, "Object1", GU::Point(255, 200), GU::Size(240, 20), RoyalBlue_c, Filled_Rectangle_c, "Allergies and Intolerances", first_display);
     // screen_ptr->get_size().v ;
     
     std::vector<GU::Point> in_vertices1 {GU::Point(1, 190), GU::Point(650 , 190)}; // horizontal line
-    create_polygon(this, Symbol("Polygon1"), in_vertices1, DarkGray_c, is_first_display);
+    create_polygon(this, Symbol("Polygon1"), in_vertices1, DarkGray_c, first_display);
     
     
     std::vector<GU::Point> in_vertices2 {GU::Point(250, 190), GU::Point( 250, 550)}; // vertical line
-    create_polygon(this, Symbol("Polygon2"), in_vertices2, DarkGray_c, is_first_display);
+    create_polygon(this, Symbol("Polygon2"), in_vertices2, DarkGray_c, first_display);
     
     std::vector<GU::Point> in_vertices3 {GU::Point(1, 260), GU::Point( 250, 260)};
-    create_polygon(this, Symbol("Polygon3"), in_vertices3, DarkGray_c, is_first_display);
+    create_polygon(this, Symbol("Polygon3"), in_vertices3, DarkGray_c, first_display);
     
     std::vector<GU::Point> in_vertices4 {GU::Point(250, 300), GU::Point(  650, 300)};
-    create_polygon(this, Symbol("Polygon4"), in_vertices4, DarkGray_c, is_first_display);
+    create_polygon(this, Symbol("Polygon4"), in_vertices4, DarkGray_c, first_display);
     
     std::vector<GU::Point> in_vertices5 {GU::Point(542, 190), GU::Point(  542, 300)};
-    create_polygon(this, Symbol("Polygon5"), in_vertices5, DarkGray_c, is_first_display);
+    create_polygon(this, Symbol("Polygon5"), in_vertices5, DarkGray_c, first_display);
     
     
-    create_Object(this, "Object2", GU::Point(255, 310), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Medications on Admission Status", is_first_display);
+    create_Object(this, "Object2", GU::Point(255, 310), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Medications on Admission Status", first_display);
     
-    create_Object(this, "Object3", GU::Point(255, 360), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Inpatient Medications", is_first_display);
+    create_Object(this, "Object3", GU::Point(255, 360), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Inpatient Medications", first_display);
+    
+    
+    if(allergy_string_display == true) {
+            // create a label perhaps and display Main_screen_string1
+        
+         create_label(this, "Allergy_information string", GU::Point(500, 400), GU::Size(100, 20), Main_screen_string1.str(), Green_c, true);
+    }
+    
     
 }
 
@@ -236,6 +245,8 @@ void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
     // can set current clicked on object name, and make sure it and current pointed to object name are the same
     fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
     (it_fields->second)->set_string(type_in_string);
+    
+    Main_screen_string1 << " " << type_in_string << " ";
     
     
     if(current_pointed_to_object_name == Field_AllergySubstance_c) {
@@ -369,7 +380,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         if(current_pointed_to_object_name == "Allergy_continue"){
             clear_objects_on_screen();
-            create_homeScreen_display(true); 
+            create_homeScreen_display(true, true);
             
         }
     }

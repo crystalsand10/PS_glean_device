@@ -72,7 +72,7 @@ private:
     
     
     
-    void create_homeScreen_display(bool is_first_display);
+    void create_homeScreen_display(bool first_display, bool allergy_string_display);
     void clear_objects_on_screen();
     void create_allergies_display(bool second_screen);
     
