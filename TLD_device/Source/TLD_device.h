@@ -52,7 +52,7 @@ private:
     
 	void create_initial_display();
 	
-    void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName , bool should_present);
+    void create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state, Smart_Pointer<Screen_widget> screenName , bool should_present, const Symbol& color_on, const Symbol& color_off);
 	
     void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, Symbol new_string, Symbol color, bool should_present);
     
@@ -74,8 +74,7 @@ private:
     
     void create_homeScreen_display(bool first_display, bool allergy_string_display);
     void clear_objects_on_screen();
-    void create_allergies_display(bool second_screen);
-    
+    void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
 };
 
 #endif

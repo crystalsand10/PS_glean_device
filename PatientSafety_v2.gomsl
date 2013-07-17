@@ -5,11 +5,11 @@ Method_for_goal: Add Allergy
 Step 1. Look_for_object_whose Name is Add and_store_under <current_button>.         
 Step 2. Accomplish_goal: Click_on Button using <current_button>.         
 
-Step 3. Look_for_object_whose Name is Allergy and_store_under <current_button>.   
+Step 3. Look_for_object_whose Name is NonDrug and_store_under <current_button>.   
 Step 4. Accomplish_goal: Click_on Button using <current_button>.   
 
 Step 5. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>.  
-Step 6. Accomplish_goal: Fill_in Allergy using <current_field>, and "Pencillin".  
+Step 6. Accomplish_goal: Fill_in Allergy using <current_field>, and "bee sting".  
 
 Step 7. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>. 
 Step 8. Accomplish_goal: Fill_in Allergy using <current_field>, and "rash".  
