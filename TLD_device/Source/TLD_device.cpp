@@ -284,7 +284,7 @@ void TLD_device::create_homeScreen_display(bool first_display, bool allergy_stri
 
 
 /* Creates the display when user clicks on Add. Second screen appears when the user clicks on a selection, in this case - non-drug allergy */ 
-void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption6, bool isOption3){
+void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bool isOption6){
 
     
     Trace_out << processor_info() << " Now new screen for entering allergy information 2.2 " << endl;
@@ -314,9 +314,21 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption6, bo
         create_button(this, "Allergy_option6", GU::Point(10, 300), GU::Size(10, 10), "  Non drug allergy", true, screen_ptr, true, LightGray_c, Black_c);
         
         buttons[Symbol("Allergy_option3")]->set_property("Name", "ClassAllergy");
+        buttons[Symbol("Allergy_option4")]->set_property("Name", "DrugAllergy");
         buttons[Symbol("Allergy_option6")]->set_property("Name", "NonDrug");
     }
 
+    if( isOption6 == true && isOption3 == true) {
+    
+        create_label(this, "Allergy_label_Comments", GU::Point(350, 400), GU::Size(100, 20), "Comments", Green_c, true);
+        
+        create_Field(this, Field_AllergyComments_c, GU::Point(420, 400), GU::Size(100, 50), " ", Black_c, true);
+        
+        
+        return; 
+    }
+    
+    
     if( isOption6 == true){
         
         Trace_out << processor_info() << " Now new screen for entering allergy information 2.1 " << endl;
@@ -325,7 +337,6 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption6, bo
         create_label(this, "Allergy_label_Comments", GU::Point(350, 400), GU::Size(100, 20), "Comments", Green_c, true);
         create_Field(this, Field_AllergySubstance_c, GU::Point(420, 230),  GU::Size(100, 20)," ", Black_c, true);
         create_Field(this, Field_AllergyComments_c, GU::Point(420, 400), GU::Size(100, 50), "", Black_c, true);
-
         
     }
     
@@ -336,8 +347,9 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption6, bo
         Trace_out << processor_info() << " Now new screen for entering allergy information 2.2 " << endl;
         
         create_label(this, "Allergy_class_name", GU::Point(10, 320), GU::Size(30, 30), "Class name", Black_c, true);
-        create_Field(this, "Allergy_class_name_field", GU::Point(10,340), GU::Size(20,20), " ", Black_c, true);
-        create_button(this, "Allergy_search", GU::Point(80, 340), GU::Size(20,20), Symbol("Search"), true, screen_ptr, true, Blue_c, Red_c);
+        create_Field(this, "Allergy_class_name_field", GU::Point(10,340), GU::Size(100,20), " ", Black_c, true);
+        create_button(this, "Allergy_search", GU::Point(120, 340), GU::Size(50,20), Symbol("Search"), true, screen_ptr, true, Gray_c, LightGray_c);
+        buttons[Symbol("Allergy_search")]->set_property("Name", "Search");
         
     }
 
@@ -429,12 +441,14 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         }
         if( current_pointed_to_object_name == "Allergy_option3") {
             Trace_out << processor_info() << " ...........LLLL ......  .. " << endl;
-            create_allergies_display(false, false, true);
+            Main_screen_string1 << "Class allergy to"; 
+            create_allergies_display(false, true, false);
         } 
 
         if( current_pointed_to_object_name == "Allergy_option4") {
             Trace_out << processor_info() << " ...........LLLL ......  .. " << endl;
-            create_allergies_display(false, false, true);
+            Main_screen_string1 << "Drug allergy to"; 
+            create_allergies_display(false, true, false);
         }
         
         
@@ -444,7 +458,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
             Main_screen_string1 << "Non-drug allergy to"; 
             
-            create_allergies_display(false, true, false);
+            create_allergies_display(false, false, true);
             
         }
         
@@ -453,6 +467,13 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_homeScreen_display(true, true);
             
         }
+        
+        if(current_pointed_to_object_name == "Allergy_search"){
+            create_allergies_display(false, true, true);
+            
+        }
+        
+        
     }
     else if(it_fields != fields.end()){
         if(current_pointed_to_object_name == Field_AllergySubstance_c){
