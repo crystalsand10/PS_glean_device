@@ -2,23 +2,25 @@ Define_model: "Model for a user prescribing tasks"
 Starting_goal is Add Allergy. 
 
 Method_for_goal: Add Allergy
-Step 1. Look_for_object_whose Name is Add and_store_under <current_button>.         
+Step 1. Look_for_object_whose Name is Medications and_store_under <current_button>.         
 Step 2. Accomplish_goal: Click_on Button using <current_button>.         
 
-Step 3. Look_for_object_whose Name is DrugAllergy and_store_under <current_button>.   
-Step 4. Accomplish_goal: Click_on Button using <current_button>.   
+
+Step 3. Look_for_object_whose Name is Prescribe and_store_under <current_button>. 
+Step 4. Accomplish_goal: Click_on Button using <current_button>.         
 
 Step 5. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>.  
-Step 6. Accomplish_goal: Fill_in Allergy using <current_field>, and "bee sting".  
+Step 6. Accomplish_goal: Fill_in Allergy using <current_field>, and "paracetamol".  
 
-Step 7. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>. 
-Step 8. Accomplish_goal: Fill_in Allergy using <current_field>, and "rash".  
+Step 7. Look_for_object_whose Name is Search and_store_under <current_button>. 
+Step 8. Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 9. Look_for_object_whose Name is Continue and_store_under <current_button>.
-Step 10. Accomplish_goal: Click_on Button using <current_button>.         
+Step 9. Look_for_object_whose Name is "paracetamol" and_store_under <current_button>. 
+Step 10. Accomplish_goal: Click_on Button using <current_button>.
 
-Step 11. Look_for_object_whose Name is Medications and_store_under <current_button>. 
-Step 11. Return_with_goal_accomplished. 
+Step 11. Look_for_object_whose Type is Button and_store_under <current_button>.
+
+Step 30. Return_with_goal_accomplished. 
 
 Method_for_goal: Click_on Button using <button_obj> 
 Step 101. Point_to <button_obj>. 

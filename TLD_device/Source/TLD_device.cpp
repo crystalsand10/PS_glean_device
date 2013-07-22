@@ -20,9 +20,8 @@ const Symbol ButtonMedications_c("Button_medications");
 const Symbol Field_AllergySubstance_c("AllergySubstance");
 const Symbol Field_AllergyComments_c("AllergyComments");
 
-
+/* Strings to print out, this one is for allergy // change name */ 
 std::stringstream Main_screen_string1;
-
 
 
 
@@ -360,6 +359,58 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
 
 
 
+void TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection){
+    
+    
+    Trace_out << " Does it come here ? ............................................   mmm    "<< current_pointed_to_object_name <<  endl;
+
+    if(first_screen == true) {
+        
+        create_button(this, "Medications_prescribe", GU::Point(100, 100), GU::Size(50, 20), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        buttons[Symbol("Medications_prescribe")]->set_property("Name", "Prescribe");
+        
+        create_label(this, "Medications_label_scheduled", GU::Point(100, 200), GU::Size
+                     (50, 20), "Scheduled", Black_c, true);
+        create_label(this, "Medications_label_PRN", GU::Point(200, 200), GU::Size(50, 20), "PRN", Black_c, true);
+        
+        
+    }
+    
+    if ( second_screen == true) {
+    
+        create_label(this, "Medications_label_name", GU::Point(10, 200), GU::Size(50, 20), "Name", Black_c, true);
+        
+        create_Field(this, "Medications_searchDrug", GU::Point(100, 200), GU::Size(50, 20), " ", Black_c, true);
+        
+        create_button(this, "Medications_searchButton", GU::Point(200, 200), GU::Size(50, 20), "Search", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        buttons[Symbol("Medications_searchButton")]->set_property("Name", "Search");
+        
+    }
+    
+    if (second_screen_searchResults == true) {
+        Trace_out << " This is the place that it comes down to " << endl; 
+        
+        fields_t::iterator it_fields = fields.find(Symbol("Medications_searchDrug"));
+      
+      //  Trace_out << (it_fields->first) << " is the search result" << endl;
+        
+        Symbol screenName = (it_fields->second)->get_string();
+        
+       // Trace_out << screenName << " is the screen name " << endl;
+        create_button(this, "Medications_searchResults", GU::Point(100, 300), GU::Size(50, 20), screenName, true, screen_ptr, true, Blue_c, Red_c);
+        
+        buttons[Symbol("Medications_searchResults")]->set_property("Name", screenName);
+        //scheduledMedications[screenName] = "";
+    }
+    
+    if (second_screen_formSelection == true) {
+        Trace_out << " Hello world! " << endl;
+    }
+    
+    
+}
+
+
 
 
 
@@ -388,8 +439,7 @@ void TLD_device::handle_Point_event(const Symbol& target_name)
 		GU::Point new_loc = ptr->get_location();
 		cursor_ptr->set_location(new_loc);
         
-        
-        Trace_out << " Does it come here ? ............................................       "<< current_pointed_to_object_name <<  endl;
+
         
     }
 	
@@ -397,7 +447,10 @@ void TLD_device::handle_Point_event(const Symbol& target_name)
 	output_display();
 }
 
-// If it was a button, or the blip, that was clicked on, and it was red, change it to green.
+
+
+
+
 void TLD_device::handle_Click_event(const Symbol& button_name)
 {
 	if(Trace_out && get_trace())
@@ -417,6 +470,8 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
     //labeledFields_t::iterator it_labeledFields = labeledFields.find(current_pointed_to_object_name);
     
     fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
+    
+  //  scheduledMedications_t::iterator it_scheduledMedications = scheduledMedications.find(current_pointed_to_object_name);
     
     if(it_buttons == buttons.end() && it_fields == fields.end())
         throw Device_exception(this, "Click-on unrecognized object");
@@ -472,6 +527,33 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_allergies_display(false, true, true);
             
         }
+        
+        if(current_pointed_to_object_name == ButtonMedications_c){
+            clear_objects_on_screen();
+            create_medications_display(true, false, false, false);
+        }
+        
+        if(current_pointed_to_object_name == "Medications_prescribe"){
+            clear_objects_on_screen(); 
+            create_medications_display(false, true, false, false);
+            
+        }
+        
+        if(current_pointed_to_object_name == "Medications_searchButton") {
+            
+            create_medications_display(false, false, true, false);
+            
+        
+        }
+        
+        if(current_pointed_to_object_name == "Medications_searchResults"){
+            Trace_out << " Time to create scheduled medications entery form !!! " << endl;
+            
+            create_medications_display(false, false, false, true);
+            
+        }
+        
+        
         
         
     }

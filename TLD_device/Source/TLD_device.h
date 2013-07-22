@@ -42,6 +42,13 @@ private:
     typedef std::map<Symbol, Smart_Pointer<Label_widget> > labels_t;
     labels_t labels;
   
+    typedef std::map<Symbol, Symbol> scheduledMedications_t;
+    scheduledMedications_t scheduledMedications;
+    
+    typedef std::map<Symbol, Symbol> prnMedications_t;
+    prnMedications_t prnMedications;
+    
+    
     Smart_Pointer<Cursor_widget> cursor_ptr;
 	
 	
@@ -49,6 +56,10 @@ private:
 	// int blip_counter;	// counts the number of time a blip was clicked on
     
 	Symbol current_pointed_to_object_name;	// holds name of current button pointed to
+    Symbol current_searched_medication; // holds name of current medication searched for, will be used for creating button later;
+    
+    
+    
     
 	void create_initial_display();
 	
@@ -75,6 +86,8 @@ private:
     void create_homeScreen_display(bool first_display, bool allergy_string_display);
     void clear_objects_on_screen();
     void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
+    void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection);
+    
 };
 
 #endif
