@@ -22,6 +22,8 @@ public:
     
 	virtual void handle_Type_In_event(const Symbol& type_in_string);
     
+    virtual void handle_Keystroke_event(const Symbol& key_name);
+    
 /*	virtual void handle_Delay_event(const Symbol& type, const Symbol& datum,
                                     const Symbol& object_name, const Symbol& property_name, const Symbol& property_value);*/ 
 private:
@@ -83,10 +85,14 @@ private:
     
     
     
-    void create_homeScreen_display(bool first_display, bool allergy_string_display);
+    void create_homeScreen_display(bool first_display);
     void clear_objects_on_screen();
     void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
-    void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection);
+    void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen);
+    void display_medications_FormStrength(std::string medication);
+    bool iequals(const std::string& a, const std::string& b);
+    void display_prescribedMedications();
+
     
 };
 

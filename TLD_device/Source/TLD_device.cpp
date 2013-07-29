@@ -22,8 +22,10 @@ const Symbol Field_AllergyComments_c("AllergyComments");
 
 /* Strings to print out, this one is for allergy // change name */ 
 std::stringstream Main_screen_string1;
+// std::stringstream Main_screen_string2;
 
 
+int initial_prescribed_medication_location;
 
 TLD_device::TLD_device(const std::string& id, Output_tee& ot) :
 Device_base(id, ot)
@@ -45,7 +47,8 @@ void TLD_device::initialize()
 //	blip_ptr = 0;
 //	blip_counter = 0;
 	// set up the initial display
-	create_initial_display();
+    create_initial_display();
+    
 }
 
 /* Creates the initial display when the simulation starts */
@@ -53,7 +56,7 @@ void TLD_device::create_initial_display()
 {
 	screen_ptr = new Screen_widget(this, Symbol("Screen"), GU::Point(0, 0), Widget::get_screen_pixel_size());
 	screen_ptr->add_widget(cursor_ptr = new Cursor_widget(this, GU::Point(250, 250), GU::Size(20, 20)));
-    create_homeScreen_display(false, false);
+    create_homeScreen_display(false);
 }
 
 
@@ -85,6 +88,7 @@ void TLD_device::create_button(TLD_device * dev_ptr, const Symbol& name, GU::Poi
 	Smart_Pointer<Button_widget> ptr = new Button_widget(dev_ptr, name, location, size, label, color_on, color_off, state);
 	buttons[name] = ptr;
 	screenName->add_widget(ptr);
+    
     
     if(should_present == true){
         ptr->present();
@@ -146,6 +150,8 @@ void TLD_device::create_Object(Device_base * dev_ptr, const Symbol& widget_name,
 
 
 
+
+
 // Output the state of the buttons and the cursor as a text display
 void TLD_device::output_display() const
 {
@@ -177,7 +183,6 @@ void TLD_device::clear_display()
 
 
 
-
 /* For each of the various objects on the screen, 
  * depresents them on the screen; 
  * removes them from the screen_ptr; 
@@ -186,9 +191,10 @@ void TLD_device::clear_display()
  */
 void TLD_device::clear_objects_on_screen(){
     
+    
     for(buttons_t::const_iterator it = buttons.begin(); it != buttons.end(); ++it) {
-        (it->second)->depresent();
-        screen_ptr->remove_widget((it->second)); 
+            (it->second)->depresent();
+            screen_ptr->remove_widget((it->second));
     }
     
     
@@ -226,8 +232,40 @@ void TLD_device::clear_objects_on_screen(){
 
 
 
+
+
 /* Creates the home screen from which the user can click on various options to add allergies, medication etc. */
-void TLD_device::create_homeScreen_display(bool first_display, bool allergy_string_display){
+void TLD_device::create_homeScreen_display(bool first_display){
+  /*  Smart_Pointer<Object_widget> ptr = new Object_widget(this, "test", GU::Point(50, 50), GU::Size(40, 40));
+    ptr->set_property(Type_c, Menu_c);
+    ptr->set_property(Shape_c, Rectangle_c);
+    ptr->set_property(Text_c, "  ");
+    ptr->set_property("totalMenuItems", 3);
+    ptr->set_property("Menu_item1", "Morning");
+    ptr->set_property("Menu_item2", "Afternoon");
+    ptr->set_property("Menu_item3", "Evening");
+    ptr->set_property(Color_c, White_c);
+    ptr->set_property(Position_c, )
+    
+    */ 
+    /* Smart_Pointer<Container_widget> ptr = new Window_widget(this, "Test_container", GU::Point(50, 50), GU::Size(40, 40), "Test_window");
+    
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, "Test_button", GU::Point(50, 50), GU::Size(40, 10), "Test", Gray_c, LightBlue_c, true);
+    
+	//buttons["Test_button"] = button_ptr;
+	screen_ptr->add_widget(button_ptr);
+    
+ //   ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(ptr);
+    
+    
+    */
+
+    
+ //   ptr->set_property(Menu_item_c, "item1");
+ //   ptr->set_property(Menu_item_c, "item2");
+    
+
     
     
     create_button(this, ButtonAllergy_c, GU::Point(500, 200), GU::Size(35, 20),  "Add", true, screen_ptr, first_display, Gray_c, LightGray_c);
@@ -271,22 +309,80 @@ void TLD_device::create_homeScreen_display(bool first_display, bool allergy_stri
     create_Object(this, "Object3", GU::Point(255, 360), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Inpatient Medications", first_display);
     
     
-    if(allergy_string_display == true) {
+    if(Main_screen_string1.rdbuf()->in_avail() != 0) {
         // create a label perhaps and display Main_screen_string1
         
         create_label(this, "Allergy_information string", GU::Point(258, 230), GU::Size(100, 20), Main_screen_string1.str(), Red_c, true);
     }
     
+    display_prescribedMedications();
+    
     
 }
 
 
+void TLD_device::display_prescribedMedications(){
+    
+    initial_prescribed_medication_location = 400;
+    
+    bool flag_hasScheduled = false;
+    bool flag_hasPRN = false; 
+    
+    for(scheduledMedications_t::const_iterator it = scheduledMedications.begin(); it != scheduledMedications.end(); ++it) {
+        if(flag_hasScheduled == false) {
+            
+            initial_prescribed_medication_location = initial_prescribed_medication_location + 10;
+            
+            create_label(this, "Subheader_scheduled", GU::Point(258, initial_prescribed_medication_location), GU::Size(200, 10), "Scheduled Medications", Black_c, true);
+            
+            initial_prescribed_medication_location = initial_prescribed_medication_location + 20; 
+            
+            flag_hasScheduled= true;
+        } 
+        const std::string widget_name = std::string("Medications_") + (it->first).str();
+        
+        std::string medication_display = (it->first).str() + (it->second).str();
+        
+        create_Object(this, widget_name, GU::Point(258, initial_prescribed_medication_location), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+        Trace_out << "Scheduled medications names : " << (it->first) << endl;
+        
+        initial_prescribed_medication_location = initial_prescribed_medication_location + 20;
+        
+    }
+    
+    for(prnMedications_t::const_iterator it = prnMedications.begin(); it != prnMedications.end(); ++it){
+        if(flag_hasPRN == false) {
+            
+            initial_prescribed_medication_location = initial_prescribed_medication_location + 10;
+            
+            
+            create_label(this, "Subheader_PRN", GU::Point(258, initial_prescribed_medication_location), GU::Size(200, 10), "PRN Medications", Black_c, true);
+            
+            flag_hasPRN = true;
+            initial_prescribed_medication_location = initial_prescribed_medication_location + 20;
+            
+        }
+        
+        
+        const std::string widget_name = std::string("Medications_") + (it->first).str();
+        
+        std::string medication_display = (it->first).str() + (it->second).str();
+        
+        create_Object(this, widget_name, GU::Point(258, initial_prescribed_medication_location), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+        
+        
+        
+        Trace_out << "PRN medications names : " << (it->first) << endl;
+        
+        initial_prescribed_medication_location = initial_prescribed_medication_location + 20; 
+        
+    }
+}
 
-/* Creates the display when user clicks on Add. Second screen appears when the user clicks on a selection, in this case - non-drug allergy */ 
+
+/* Creates the display when user clicks on Add. Second screen appears when the user clicks on a selection, in this case - non-drug allergy */
 void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bool isOption6){
 
-    
-    Trace_out << processor_info() << " Now new screen for entering allergy information 2.2 " << endl;
     
     if( isFirstScreen == true) {
 
@@ -340,11 +436,9 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
     }
     
     if( isOption3 == true){
-        // label, field, button
-        // clicks on search, choses, enters comments rash.
-        
-        Trace_out << processor_info() << " Now new screen for entering allergy information 2.2 " << endl;
-        
+        /* label, field, button
+            clicks on search, choses, enters comments rash.
+        */
         create_label(this, "Allergy_class_name", GU::Point(10, 320), GU::Size(30, 30), "Class name", Black_c, true);
         create_Field(this, "Allergy_class_name_field", GU::Point(10,340), GU::Size(100,20), " ", Black_c, true);
         create_button(this, "Allergy_search", GU::Point(120, 340), GU::Size(50,20), Symbol("Search"), true, screen_ptr, true, Gray_c, LightGray_c);
@@ -359,7 +453,7 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
 
 
 
-void TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection){
+void TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen){
     
     
     Trace_out << " Does it come here ? ............................................   mmm    "<< current_pointed_to_object_name <<  endl;
@@ -373,6 +467,11 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
                      (50, 20), "Scheduled", Black_c, true);
         create_label(this, "Medications_label_PRN", GU::Point(200, 200), GU::Size(50, 20), "PRN", Black_c, true);
         
+        create_button(this, "Medications_update", GU::Point(30, 100), GU::Size(50, 20), "Update", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        buttons[Symbol("Medications_update")]->set_property("Name", "Update");
+        
+        create_button(this, "Medications_close", GU::Point(30, 60), GU::Size(50, 20), "Close", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        buttons[Symbol("Medications_close")]->set_property("Name", "Close");
         
     }
     
@@ -390,29 +489,146 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
     if (second_screen_searchResults == true) {
         Trace_out << " This is the place that it comes down to " << endl; 
         
-        fields_t::iterator it_fields = fields.find(Symbol("Medications_searchDrug"));
-      
-      //  Trace_out << (it_fields->first) << " is the search result" << endl;
+           create_button(this, "Medications_searchResults", GU::Point(100, 300), GU::Size(50, 20), current_searched_medication, true, screen_ptr, true, Blue_c, Red_c);
         
-        Symbol screenName = (it_fields->second)->get_string();
+        buttons[Symbol("Medications_searchResults")]->set_property("Name", current_searched_medication);
         
-       // Trace_out << screenName << " is the screen name " << endl;
-        create_button(this, "Medications_searchResults", GU::Point(100, 300), GU::Size(50, 20), screenName, true, screen_ptr, true, Blue_c, Red_c);
+        scheduledMedications[current_searched_medication] = "";
         
-        buttons[Symbol("Medications_searchResults")]->set_property("Name", screenName);
-        //scheduledMedications[screenName] = "";
     }
     
     if (second_screen_formSelection == true) {
-        Trace_out << " Hello world! " << endl;
+        display_medications_FormStrength(current_searched_medication.str());
     }
+    
+    if (third_screen == true) {
+        clear_objects_on_screen();
+        
+        create_label(this, "Medications_third_frequency", GU::Point(200, 400), GU::Size(50, 10), "Frequency", Black_c, true);
+        
+        create_button(this, "Medications_third_scheduled", GU::Point(300, 400), GU::Size(10, 10), "  Scheduled", true, screen_ptr, true, Black_c, Gray_c);
+       // buttons["medications_third_scheduled"]->set_property("Name", "Scheduled");
+        
+        
+        
+       //  create_label(this, "Medication_third_routeLabel", GU::Point location, GU::Size(50, 10), "Route", Black_c, true);
+
+        /*
+        create_label(this, "Medication_third_formLabel", <#GU::Point location#>, <#GU::Size size#>, <#const Symbol &label#>, <#const Symbol &color#>, <#bool should_present#>)
+        create_Field(<#Device_base *dev_ptr#>, "Medication_third_formField", <#GU::Point location#>, <#GU::Size size#>, <#Symbol new_string#>, <#Symbol color#>, <#bool should_present#>)
+        
+        
+        create_label(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#const Symbol &label#>, <#const Symbol &color#>, <#bool should_present#>)
+        create_Field(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#Symbol new_string#>, <#Symbol color#>, <#bool should_present#>)
+        
+        */
+        
+        
+        create_button(this, "Medications_third_PRN", GU::Point(400, 400), GU::Size(10, 10), "  PRN", true, screen_ptr, true, Gray_c, Black_c);
+        buttons["Medications_third_PRN"]->set_property("Name", "PRN");
+        
+        create_button(this, "medications_third_stat", GU::Point(500, 400), GU::Size(10, 10), "Stat", true, screen_ptr, true, Gray_c, Gray_c);
+        
+        
+        create_label(this, "Medications_third_dose", GU::Point(200, 200), GU::Size(50, 10), "Dose", Black_c, true);
+        create_Field(this, "Medications_third_doseField", GU::Point(300, 200), GU::Size(50, 10), "500", Black_c, true);
+        
+        
+        create_button(this, "Medications_continue", GU::Point(20, 130), GU::Size(50, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
+        buttons[Symbol("Medications_continue")]->set_property("Name", "Continue");
+        
+        
+        
+    }
+    
+    if( third_screen_PRN == true) {
+        create_label(this, "Medications_third_minInterval", GU::Point(200, 500), GU::Size(50, 10), "Minimum Dosage Interval", Black_c, true);
+        create_Field(this, "Medications_third_minIntervalValue", GU::Point(300, 500), GU::Size(50, 10), " ", Black_c, true);
+        
+        create_label(this, "Medications_third_max", GU::Point(200, 530), GU::Size(50, 10), "Maximum of ", Black_c, true);
+        create_Field(this, "Medications_third_maxValue", GU::Point(300, 530), GU::Size(50, 10), "", Black_c, true);
+    }
+    
+    if(fourth_screen == true) {
+        
+        
+        for(scheduledMedications_t::const_iterator it = scheduledMedications.begin(); it != scheduledMedications.end(); ++it) {
+            const std::string widget_name = std::string("Medications_") + (it->first).str();
+            
+            create_Object(this, widget_name, GU::Point(100, 400), GU::Size(200, 10), White_c, Rectangle_c, (it->first), true);
+            Trace_out << "Scheduled medications names : " << (it->first) << endl;
+        }
+        
+        for(prnMedications_t::const_iterator it = prnMedications.begin(); it != prnMedications.end(); ++it){
+            const std::string widget_name = std::string("Medications_") + (it->first).str();
+            
+            
+           create_Object(this, widget_name, GU::Point(100, 400), GU::Size(200, 10), White_c, Rectangle_c, (it->first), true);
+            
+            
+            
+            Trace_out << "PRN medications names : " << (it->first) << endl;
+            
+        }
+    }
+}
+
+
+void TLD_device::display_medications_FormStrength(std::string medication){
+    
+    int label_pointX, label_pointY;
+    int button_pointX, button_pointY;
+
+    Symbol label_label;
+    Symbol button_label;
+    
+    if(iequals(medication, "Paracetamol")){
+        
+        label_pointX = 200; label_pointY = 500;
+        button_pointX = 300; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "500mg";
+        
+        scheduledMedications[medication] = " (500 mg) Tablet";
+        
+    }
+    
+    if(iequals(medication, "Cephazolin")){
+        label_pointX = 200; label_pointY = 250;
+        button_pointX = 300; button_pointY = 250;
+        
+        label_label = "Injection";
+        button_label = "1g";
+        
+        scheduledMedications[medication] = " (1g) Injection";
+        
+        
+    }
+    
+    
+    create_label(this, "Medications_form", GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
+    create_button(this, "Medications_strength", GU::Point(button_pointX, button_pointY), GU::Size(30, 10), button_label, true, screen_ptr, true, White_c, White_c);
+    
+    buttons["Medications_strength"]->set_property("Name", button_label);
+    
+    
+    
     
     
 }
 
 
-
-
+bool TLD_device::iequals(const std::string& a, const std::string& b)
+{
+    unsigned int sz = a.size();
+    if (b.size() != sz)
+        return false;
+    for (unsigned int i = 0; i < sz; ++i)
+        if (std::tolower(a[i]) != std::tolower(b[i]))
+            return false;
+    return true;
+}
 
 
 // If the user points to an object, remember what was pointed-to,
@@ -425,6 +641,7 @@ void TLD_device::handle_Point_event(const Symbol& target_name)
 		Normal_out << processor_info() << " Point_to non-existent object: " << target_name << endl;
 	current_pointed_to_object_name = target_name;
 	Smart_Pointer<Widget> ptr = screen_ptr->get_widget_ptr(current_pointed_to_object_name);
+    
     
     // Trace_out << " Does it come here ? ............................................       "<< current_pointed_to_object_name <<  endl;
     
@@ -487,7 +704,6 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         
         if(current_pointed_to_object_name == "Button_allergy"){
-            Trace_out << processor_info() << " Now new screen for entering allergy information " << endl;
             
             clear_objects_on_screen();
             
@@ -495,21 +711,17 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_allergies_display(true, false, false);
         }
         if( current_pointed_to_object_name == "Allergy_option3") {
-            Trace_out << processor_info() << " ...........LLLL ......  .. " << endl;
-            Main_screen_string1 << "Class allergy to"; 
+            Main_screen_string1 << "Class allergy to";
             create_allergies_display(false, true, false);
         } 
 
         if( current_pointed_to_object_name == "Allergy_option4") {
-            Trace_out << processor_info() << " ...........LLLL ......  .. " << endl;
-            Main_screen_string1 << "Drug allergy to"; 
+            Main_screen_string1 << "Drug allergy to";
             create_allergies_display(false, true, false);
         }
         
         
         if(current_pointed_to_object_name == "Allergy_option6"){
-            
-            Trace_out << processor_info() << " Now new screen for entering allergy information 2 " << endl;
             
             Main_screen_string1 << "Non-drug allergy to"; 
             
@@ -519,7 +731,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         if(current_pointed_to_object_name == "Allergy_continue"){
             clear_objects_on_screen();
-            create_homeScreen_display(true, true);
+            create_homeScreen_display(true);
             
         }
         
@@ -530,18 +742,18 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         if(current_pointed_to_object_name == ButtonMedications_c){
             clear_objects_on_screen();
-            create_medications_display(true, false, false, false);
+            create_medications_display(true, false, false, false, false, false, false);
         }
         
         if(current_pointed_to_object_name == "Medications_prescribe"){
-            clear_objects_on_screen(); 
-            create_medications_display(false, true, false, false);
+            clear_objects_on_screen();
+            create_medications_display(false, true, false, false, false, false, false);
             
         }
         
         if(current_pointed_to_object_name == "Medications_searchButton") {
             
-            create_medications_display(false, false, true, false);
+            create_medications_display(false, false, true, false, false, false, false);
             
         
         }
@@ -549,13 +761,59 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         if(current_pointed_to_object_name == "Medications_searchResults"){
             Trace_out << " Time to create scheduled medications entery form !!! " << endl;
             
-            create_medications_display(false, false, false, true);
+            create_medications_display(false, false, false, true, false, false, false);
+            
+            
             
         }
         
         
+        if( current_pointed_to_object_name == "Medications_strength"){
+            
+            create_medications_display(false, false, false, false, true, false, false);
+            
+            
+        }
+        
+        if( current_pointed_to_object_name == "Medications_third_PRN" ) {
+            // TODO::Change part of the display
+            // Change medication from scheduled to PRN 
+            
+            buttons_t::iterator it2_buttons = buttons.find("Medications_third_scheduled");
+            if(it2_buttons != buttons.end()){
+                (it2_buttons->second)->set_state(false);
+            }
+            
+            // scheduledMedications->delete;
+            
+            prnMedications[current_searched_medication] = scheduledMedications[current_searched_medication];
+            scheduledMedications.erase(current_searched_medication);
+            
+            
+            create_medications_display(false, false, false, false, false, true, false);
+        }
+        
+        if( current_pointed_to_object_name == "Medications_continue") {
+            clear_objects_on_screen();
+            create_medications_display(true, false, false, false, false, false, true);
+        }
         
         
+        if( current_pointed_to_object_name == "Medications_update" ){
+            //clear_objects_on_screen();
+            //create_medications_display(true, false, false, false, false, false, true);
+            // create_homeScreen_display(true);
+            //create_medications_homeDisplay();
+            //clear_objects_on_screen(true);
+            //create_medications_homeDisplay();
+            
+        }
+        
+        if( current_pointed_to_object_name == "Medications_close" ) {
+            clear_objects_on_screen();
+            create_homeScreen_display(true);
+            
+        } 
     }
     else if(it_fields != fields.end()){
         if(current_pointed_to_object_name == Field_AllergySubstance_c){
@@ -573,6 +831,15 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
 
 
 
+void TLD_device::handle_Keystroke_event(const Symbol& key_name){
+
+    if(key_name == "DELETE") {
+        Trace_out << " delete the selected text - " << endl; 
+    }
+    
+}
+
+
 
 
 
@@ -582,11 +849,10 @@ void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
     fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
     (it_fields->second)->set_string(type_in_string);
     
-    Main_screen_string1 << " " << type_in_string;
     
     
     if(current_pointed_to_object_name == Field_AllergySubstance_c) {
-        
+        Main_screen_string1 << " " << type_in_string;
         
         it_fields = fields.find(Field_AllergyComments_c);
         (it_fields->second)->set_string(" ");
@@ -595,6 +861,15 @@ void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
         // change color or next fields here;  maybe update it in the screen_ptr
     }
     
+    if ( current_pointed_to_object_name == Field_AllergyComments_c){
+        Main_screen_string1 << " " << type_in_string;
+
+    }
+    
+    if( current_pointed_to_object_name == "Medications_searchDrug"){
+        current_searched_medication = type_in_string;
+        // Trace_out << " ... test ... " << Current_medication << " ... test ... " << endl;
+    }
     output_display();
 }
 
