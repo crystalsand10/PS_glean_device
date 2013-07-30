@@ -222,6 +222,12 @@ void TLD_device::clear_objects_on_screen(){
         
     }
     
+    for(windows_t::const_iterator it = windows.begin(); it != windows.end(); ++it) {
+        (it->second)->depresent();
+        screen_ptr->remove_widget((it->second));
+    }
+    
+
     buttons.clear();
     fields.clear();
     polygons.clear();
@@ -236,7 +242,7 @@ void TLD_device::clear_objects_on_screen(){
 
 /* Creates the home screen from which the user can click on various options to add allergies, medication etc. */
 void TLD_device::create_homeScreen_display(bool first_display){
-  /*  Smart_Pointer<Object_widget> ptr = new Object_widget(this, "test", GU::Point(50, 50), GU::Size(40, 40));
+ /*   Smart_Pointer<Object_widget> ptr = new Object_widget(this, "test", GU::Point(50, 50), GU::Size(40, 40));
     ptr->set_property(Type_c, Menu_c);
     ptr->set_property(Shape_c, Rectangle_c);
     ptr->set_property(Text_c, "  ");
@@ -245,10 +251,13 @@ void TLD_device::create_homeScreen_display(bool first_display){
     ptr->set_property("Menu_item2", "Afternoon");
     ptr->set_property("Menu_item3", "Evening");
     ptr->set_property(Color_c, White_c);
-    ptr->set_property(Position_c, )
     
-    */ 
-    /* Smart_Pointer<Container_widget> ptr = new Window_widget(this, "Test_container", GU::Point(50, 50), GU::Size(40, 40), "Test_window");
+    screen_ptr->add_widget(ptr);
+    */
+  //  ptr->set_property(Position_c, )
+    
+/*
+     Smart_Pointer<Container_widget> ptr = new Window_widget(this, "Test_container", GU::Point(50, 50), GU::Size(40, 40), "Test_window");
     
     Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, "Test_button", GU::Point(50, 50), GU::Size(40, 10), "Test", Gray_c, LightBlue_c, true);
     
@@ -258,9 +267,7 @@ void TLD_device::create_homeScreen_display(bool first_display){
  //   ptr->add_widget(button_ptr);
     screen_ptr->add_widget(ptr);
     
-    
-    */
-
+    */ 
     
  //   ptr->set_property(Menu_item_c, "item1");
  //   ptr->set_property(Menu_item_c, "item2");
@@ -463,9 +470,13 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         create_button(this, "Medications_prescribe", GU::Point(100, 100), GU::Size(50, 20), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Symbol("Medications_prescribe")]->set_property("Name", "Prescribe");
         
-        create_label(this, "Medications_label_scheduled", GU::Point(100, 200), GU::Size
+        
+        create_label(this, "Medications_label_ChartUpdates", GU::Point(30, 140), GU::Size(50, 20), "Chart Updates", Black_c, true);
+        
+        create_label(this, "Medications_label_scheduled", GU::Point(150, 140), GU::Size
                      (50, 20), "Scheduled", Black_c, true);
-        create_label(this, "Medications_label_PRN", GU::Point(200, 200), GU::Size(50, 20), "PRN", Black_c, true);
+        create_label(this, "Medications_label_PRN", GU::Point(240, 140), GU::Size(50, 20), "PRN", Black_c, true);
+       
         
         create_button(this, "Medications_update", GU::Point(30, 100), GU::Size(50, 20), "Update", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Symbol("Medications_update")]->set_property("Name", "Update");
@@ -534,7 +545,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         create_Field(this, "Medications_third_doseField", GU::Point(300, 200), GU::Size(50, 10), "500", Black_c, true);
         
         
-        create_button(this, "Medications_continue", GU::Point(20, 130), GU::Size(50, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
+        create_button(this, "Medications_continue", GU::Point(20, 130), GU::Size(80, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
         buttons[Symbol("Medications_continue")]->set_property("Name", "Continue");
         
         
@@ -542,34 +553,76 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
     }
     
     if( third_screen_PRN == true) {
-        create_label(this, "Medications_third_minInterval", GU::Point(200, 500), GU::Size(50, 10), "Minimum Dosage Interval", Black_c, true);
+        create_label(this, "Medications_third_minInterval", GU::Point(88, 500), GU::Size(50, 10), "Minimum Dosage Interval", Black_c, true);
         create_Field(this, "Medications_third_minIntervalValue", GU::Point(300, 500), GU::Size(50, 10), " ", Black_c, true);
+        create_button(this, "Medications_third_minInterval_options", GU::Point(360, 500), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
+        buttons[Symbol("Medications_third_minInterval_options")]->set_property("Name", "MinIntervalOptions");
         
-        create_label(this, "Medications_third_max", GU::Point(200, 530), GU::Size(50, 10), "Maximum of ", Black_c, true);
-        create_Field(this, "Medications_third_maxValue", GU::Point(300, 530), GU::Size(50, 10), "", Black_c, true);
+        
+        create_label(this, "Medications_third_maxOf", GU::Point(195, 530), GU::Size(50, 10), "Maximum of ", Black_c, true);
+        create_Field(this, "Medications_third_maxOfValue", GU::Point(300, 530), GU::Size(50, 10), "", Black_c, true);
+        create_button(this, "Medications_third_maxOf_options", GU::Point(360, 530), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
+        create_label(this, "Medications_third_maxOf_per", GU::Point(410, 530), GU::Size(50, 10), "per", Black_c, true);
+        create_Field(this, "Medications_third_maxOfTime", GU::Point(450, 530), GU::Size(50, 10), "", Black_c, true);
+        create_button(this, "Medications_third_maxOf_TimeOptions", GU::Point(500, 530), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
+        
+        
     }
     
     if(fourth_screen == true) {
-        
-        
+
         for(scheduledMedications_t::const_iterator it = scheduledMedications.begin(); it != scheduledMedications.end(); ++it) {
-            const std::string widget_name = std::string("Medications_") + (it->first).str();
             
-            create_Object(this, widget_name, GU::Point(100, 400), GU::Size(200, 10), White_c, Rectangle_c, (it->first), true);
-            Trace_out << "Scheduled medications names : " << (it->first) << endl;
+            if((it->first) == current_searched_medication){
+                const std::string widget_name = std::string("Medications_") + (it->first).str();
+                
+                std::string medication_display = (it->first).str() + (it->second).str();
+                
+                create_Object(this, widget_name, GU::Point(55, 180), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+                
+                
+                
+                Trace_out << "Scheduled medication to be updated : " << (it->first) << endl;
+            }
+
+            
+            
+            
+         //   std::string medication_display = (it->first).str() + (it->second).str();
+            
         }
         
         for(prnMedications_t::const_iterator it = prnMedications.begin(); it != prnMedications.end(); ++it){
-            const std::string widget_name = std::string("Medications_") + (it->first).str();
+            
+            if((it->first)== current_searched_medication){
+                const std::string widget_name = std::string("Medications_") + (it->first).str();
+                
+                std::string medication_display = (it->first).str() + (it->second).str();
+                
+                create_Object(this, widget_name, GU::Point(55, 180), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+                
+                
+                
+                
+                Trace_out << "PRN medication to be updated : " << (it->first) << endl;
+                
+            }
+            
+
             
             
-           create_Object(this, widget_name, GU::Point(100, 400), GU::Size(200, 10), White_c, Rectangle_c, (it->first), true);
             
             
+          //  std::string medication_display = (it->first).str() + (it->second).str();
             
-            Trace_out << "PRN medications names : " << (it->first) << endl;
             
         }
+        
+        
+        
+        
+        
+
     }
 }
 
@@ -582,6 +635,7 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     Symbol label_label;
     Symbol button_label;
     
+    // PRN medication chart 1 
     if(iequals(medication, "Paracetamol")){
         
         label_pointX = 200; label_pointY = 500;
@@ -594,6 +648,30 @@ void TLD_device::display_medications_FormStrength(std::string medication){
         
     }
     
+    // PRN medication chart 4
+    if(iequals(medication, "panadeine")){
+        label_pointX = 200; label_pointY = 500;
+        button_pointX = 300; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "30mg + 500mg";
+        
+        scheduledMedications[medication] = " (30mg, 500mg) Tablet";
+    }
+    
+    // PRN medication chart 5 
+    if(iequals(medication, "Oxycodone")){
+        label_pointX = 200; label_pointY = 500;
+        button_pointX = 300; button_pointY = 500;
+        
+        label_label = "Capsule";
+        button_label = "5mg";
+        
+        scheduledMedications[medication] = " (5 mg) Capsule";
+    }
+    
+    
+    // Scheduled medication chart 1
     if(iequals(medication, "Cephazolin")){
         label_pointX = 200; label_pointY = 250;
         button_pointX = 300; button_pointY = 250;
@@ -688,9 +766,34 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
     
     fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
     
+    buttons_t::iterator it_menuItems = menuItems.find(current_pointed_to_object_name);
+    
   //  scheduledMedications_t::iterator it_scheduledMedications = scheduledMedications.find(current_pointed_to_object_name);
     
-    if(it_buttons == buttons.end() && it_fields == fields.end())
+    if(it_menuItems != menuItems.end()){
+        Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
+        
+        Symbol label = "";
+        if(current_pointed_to_object_name == "Medications_minInterval_options_1") {
+            deleteMenuItems();
+            label = "minute(s)";
+            
+        }
+        if(current_pointed_to_object_name == "Medications_minInterval_options_2") {
+            deleteMenuItems();
+            label = "hour(s)"; 
+        }
+        if(current_pointed_to_object_name == "Medications_minInterval_options_3") {
+            deleteMenuItems();
+            label = "day(s)"; 
+        }
+        
+        
+        create_button(this, "Medications_third_minInterval_options", GU::Point(360, 500), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
+    }
+    
+    
+    if(it_buttons == buttons.end() && it_fields == fields.end() && it_menuItems == menuItems.end())
         throw Device_exception(this, "Click-on unrecognized object");
     
     if(it_buttons != buttons.end()){
@@ -813,7 +916,26 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             clear_objects_on_screen();
             create_homeScreen_display(true);
             
-        } 
+        }
+        
+        if( current_pointed_to_object_name == "Medications_third_minInterval_options") {
+                // create new window, with buttons, where the user can click.
+                // Clicking on one of those will remove the window and those buttons but which change the values in the original window.
+            
+            
+            createMenuItems();
+            
+            buttons[current_pointed_to_object_name]->depresent();
+            screen_ptr->remove_widget(buttons[current_pointed_to_object_name]);
+            buttons.erase(current_pointed_to_object_name);
+            
+            
+            
+        }
+        
+
+        
+        
     }
     else if(it_fields != fields.end()){
         if(current_pointed_to_object_name == Field_AllergySubstance_c){
@@ -827,14 +949,79 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
 	output_display();
 }
 
+void TLD_device::deleteMenuItems(){
+    
+    for(buttons_t::const_iterator it = menuItems.begin(); it != menuItems.end(); ++it) {
+        (it->second)->depresent();
+        screen_ptr->remove_widget((it->second));
+    }
+    
+    
+    menuItems.clear();
+    
+    for(windows_t::const_iterator it = windows.begin(); it != windows.end(); ++it) {
+        (it->second)->depresent();
+        screen_ptr->remove_widget((it->second));
+    }
+    
+    windows.clear();
+    
+    
+}
 
 
+void TLD_device::createMenuItems(){
+    
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(360, 500), GU::Size(65, 60), "  ");
+    
+    
+     windows["Menu"] = ptr;
+    
+    // menuItems["Test_container"] = ptr;
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, "Medications_minInterval_options_1", GU::Point(360, 520), GU::Size(50, 10), "minute", Gray_c, LightBlue_c, true);
+    
+    menuItems["Medications_minInterval_options_1"] = button_ptr;
+    
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, "Medications_minInterval_options_2", GU::Point(360, 535), GU::Size(50, 10), "hour", Gray_c, LightBlue_c, true);
+    
+    menuItems["Medications_minInterval_options_2"] = button_ptr2;
+    //   buttons["Medications_minInterval_options_2"]->set_property("Name", "MedHour");
+    
+    
+    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, "Medications_minInterval_options_3", GU::Point(360, 550), GU::Size(50, 10), "day", Gray_c, LightBlue_c, true);
+    
+    menuItems["Medications_minInterval_options_3"] = button_ptr3;
+    
+    
+    //   buttons["Medications_minInterval_options_3"]->set_property("Name", "MedDay");
+    
+    
+    button_ptr->present_object();
+    button_ptr2->present_object();
+    button_ptr3->present_object();
+    ptr->present_object();
+    
+    //buttons["Test_button"] = button_ptr;
+    screen_ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(button_ptr2);
+    screen_ptr->add_widget(button_ptr3);
+    
+    
+    button_ptr->set_property("Name", "minute(s)");
+    button_ptr2->set_property("Name", "hour(s)");
+    button_ptr3->set_property("Name", "day(s)");
+    
+    
+    //   ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(ptr);
+
+}
 
 
 void TLD_device::handle_Keystroke_event(const Symbol& key_name){
 
     if(key_name == "DELETE") {
-        Trace_out << " delete the selected text - " << endl; 
+        Trace_out << " delete the selected text - " << endl;
     }
     
 }

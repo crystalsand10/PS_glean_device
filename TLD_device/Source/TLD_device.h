@@ -31,6 +31,7 @@ private:
 	// a container of pointers to buttons
 	typedef std::map<Symbol, Smart_Pointer<Button_widget> > buttons_t;
 	buttons_t buttons;
+    buttons_t menuItems;
     
     typedef std::map<Symbol, Smart_Pointer<Field_widget> > fields_t;
 	fields_t fields;
@@ -44,6 +45,10 @@ private:
     typedef std::map<Symbol, Smart_Pointer<Label_widget> > labels_t;
     labels_t labels;
   
+    typedef std::map<Symbol, Smart_Pointer<Window_widget> > windows_t;
+    windows_t windows;
+  
+    
     typedef std::map<Symbol, Symbol> scheduledMedications_t;
     scheduledMedications_t scheduledMedications;
     
@@ -84,7 +89,8 @@ private:
     
     
     
-    
+    void createMenuItems();
+    void deleteMenuItems(); 
     void create_homeScreen_display(bool first_display);
     void clear_objects_on_screen();
     void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
