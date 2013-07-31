@@ -790,6 +790,9 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         
         create_button(this, "Medications_third_minInterval_options", GU::Point(360, 500), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
+        
+        fields["Medications_third_maxOfValue"]->set_string(" ");
+        
     }
     
     
@@ -978,17 +981,17 @@ void TLD_device::createMenuItems(){
      windows["Menu"] = ptr;
     
     // menuItems["Test_container"] = ptr;
-    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, "Medications_minInterval_options_1", GU::Point(360, 520), GU::Size(50, 10), "minute", Gray_c, LightBlue_c, true);
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, "Medications_minInterval_options_1", GU::Point(360, 520), GU::Size(50, 10), "minute(s)", Gray_c, LightBlue_c, true);
     
     menuItems["Medications_minInterval_options_1"] = button_ptr;
     
-    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, "Medications_minInterval_options_2", GU::Point(360, 535), GU::Size(50, 10), "hour", Gray_c, LightBlue_c, true);
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, "Medications_minInterval_options_2", GU::Point(360, 540), GU::Size(50, 10), "hour(s)", Gray_c, LightBlue_c, true);
     
     menuItems["Medications_minInterval_options_2"] = button_ptr2;
     //   buttons["Medications_minInterval_options_2"]->set_property("Name", "MedHour");
     
     
-    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, "Medications_minInterval_options_3", GU::Point(360, 550), GU::Size(50, 10), "day", Gray_c, LightBlue_c, true);
+    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, "Medications_minInterval_options_3", GU::Point(360, 560), GU::Size(50, 10), "day(s)", Gray_c, LightBlue_c, true);
     
     menuItems["Medications_minInterval_options_3"] = button_ptr3;
     
@@ -1056,6 +1059,12 @@ void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
     if( current_pointed_to_object_name == "Medications_searchDrug"){
         current_searched_medication = type_in_string;
         // Trace_out << " ... test ... " << Current_medication << " ... test ... " << endl;
+    }
+    
+    if( current_pointed_to_object_name == "Medications_third_maxOfValue") {
+        
+        fields["Medications_third_maxOfTime"]->set_string(" ");
+        
     }
     output_display();
 }

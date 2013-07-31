@@ -25,17 +25,24 @@ Step 12. Accomplish_goal: Click_on Button using <current_button>.
 Step 13. Look_for_object_whose Name is PRN and_store_under <current_button>. 
 Step 14. Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 23. Look_for_object_whose Name is MinIntervalOptions and_store_under <current_button>. 
-Step 24. Accomplish_goal: Click_on Button using <current_button>. 
-
-Step 23. Look_for_object_whose Name is "day(s)" and_store_under <current_button>. 
-Step 24. Accomplish_goal: Click_on Button using <current_button>. 
-
 Step 21. Look_for_object_whose Type is Field, and Text is "500" and_store_under <current_field>. 
 Step 22. Accomplish_goal: Fill_in Allergy using <current_field>, and "1000". 
 
+Step 25. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>. 
+Step 26. Accomplish_goal: Fill_in Allergy using <current_field>, and "5". 
+
+Step 23. Look_for_object_whose Name is MinIntervalOptions and_store_under <current_button>. 
+Step 24. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 23. Look_for_object_whose Name is "hour(s)" and_store_under <current_button>. 
+Step 24. Accomplish_goal: Click_on Button using <current_button>. 
 
 
+Step 27. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>. 
+Step 28. Accomplish_goal: Fill_in Allergy using <current_field>, and "4000". 
+
+Step 27. Look_for_object_whose Type is Field, and Text is " " and_store_under <current_field>. 
+Step 28. Accomplish_goal: Fill_in Allergy using <current_field>, and "1". 
 
 
 
