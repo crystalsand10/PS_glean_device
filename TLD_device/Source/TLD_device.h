@@ -33,6 +33,9 @@ private:
 	buttons_t buttons;
     buttons_t menuItems;
     
+    typedef std::map<Symbol, Smart_Pointer<Labeled_field_widget> >labeledFields_t;
+    labeledFields_t labeledFields; 
+    
     typedef std::map<Symbol, Smart_Pointer<Field_widget> > fields_t;
 	fields_t fields;
 	
@@ -75,7 +78,7 @@ private:
     void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, Symbol new_string, Symbol color, bool should_present);
     
     
-    void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label,  Smart_Pointer<Screen_widget> screenName, bool should_present);
+    void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label, bool should_present);
     
     void create_polygon(Device_base * dev_ptr, const Symbol& widget_name, const GU::Polygon& polygon, const Symbol& color, bool should_present);
     

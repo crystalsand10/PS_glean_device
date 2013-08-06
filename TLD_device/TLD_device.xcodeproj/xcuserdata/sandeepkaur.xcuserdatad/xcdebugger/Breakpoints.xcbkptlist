@@ -77,9 +77,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "408"
-         endingLineNumber = "408"
-         landmarkName = "TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bool isOption6)"
-         landmarkType = "5">
+         endingLineNumber = "408">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -117,6 +115,19 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "765"
          endingLineNumber = "765"
+         landmarkName = "TLD_device::handle_Point_event(const Symbol&amp; target_name)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Source/TLD_device.cpp"
+         timestampString = "397444020.027707"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "835"
+         endingLineNumber = "835"
          landmarkName = "TLD_device::handle_Click_event(const Symbol&amp; button_name)"
          landmarkType = "5">
       </FileBreakpoint>

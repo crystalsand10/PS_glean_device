@@ -7,8 +7,7 @@ Model of the deivce and user of a GP system in order to study its usablity.
 * PatientSafety_v4.gomsl - model for testing of multiple Medications (models prescribe PRN medication for chart 1 perfectly)
 * PatientSafety_v5.gomsl - model for bringing previous sub-models together. Aims to model scenario1 of the patient charts. 
 * PatientSafety_v6.gomsl - model for testing various object shapes.
-* PatientSafety_v7.gomsl - model for testing of a single PRN specific medications
-
+* PatientSafety_v7.gomsl - model for testing of medications, but where fields are labeled. 
 
 
 
