@@ -147,12 +147,10 @@ void TLD_device::create_polygon(Device_base * dev_ptr, const Symbol& widget_name
 
 void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size , Symbol new_string, Symbol color, bool should_present){
     Smart_Pointer<Field_widget> ptr = new Field_widget(dev_ptr, widget_name, location, size, new_string, color);
-   // ptr->set_add_widget_type_property(true);
-   // ptr->set_string("blah");
+
     fields[widget_name] = ptr;
     screen_ptr->add_widget(ptr);
-  //  screen_ptr->present_property("Name", "Substances");
- //   Trace_out << " name is .......... " << ptr->get_name() << " .......... " << endl;
+
     if(should_present == true){
         ptr->present();
     }
@@ -826,7 +824,6 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
      } */
     //	else {
     buttons_t::iterator it_buttons = buttons.find(current_pointed_to_object_name);
-    //labeledFields_t::iterator it_labeledFields = labeledFields.find(current_pointed_to_object_name);
     
     fields_t::iterator it_fields = fields.find(current_pointed_to_object_name);
     
@@ -835,8 +832,6 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
     labeledFields_t::iterator it_labeledFields = labeledFields.find(current_pointed_to_object_name);
 
     
-    
-  //  scheduledMedications_t::iterator it_scheduledMedications = scheduledMedications.find(current_pointed_to_object_name);
     
     if(it_menuItems != menuItems.end()){
         Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
@@ -859,7 +854,6 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         create_button(this, Medications_third_minInterval_options_b, GU::Point(360, 500), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
         
-       // fields["Medications_third_maxOfValue"]->set_string(" ");
         
     }
     
@@ -951,7 +945,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         if( current_pointed_to_object_name == Medications_third_PRN_b ) {
             // TODO::Change part of the display
-            // Change medication from scheduled to PRN 
+            // Change medication from scheduled to PRN
             
             buttons_t::iterator it2_buttons = buttons.find(Medications_third_scheduled_b);
             if(it2_buttons != buttons.end()){
