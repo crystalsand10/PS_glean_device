@@ -55,6 +55,13 @@ const Symbol Medications_third_dose_lF("Medications_third_dose");
 const Symbol Medications_third_minInterval_lF("Medications_third_minInterval");
 const Symbol Medications_third_maxOf_lF("Medications_third_maxOf");
 const Symbol Medications_third_maxOf_per_lF("Medications_third_maxOf_per"); 
+const Symbol Medications_form_b("Medications_form");
+
+
+/* Medication Names */
+const Symbol PRN_paracetamol("Paracetamol");
+const Symbol PRN_panadeine("Panadeine");
+const Symbol PRN_oxycodone("Oxycodone");
 
 
 
@@ -157,7 +164,7 @@ void TLD_device::create_Field(Device_base * dev_ptr, const Symbol& widget_name, 
     
 }
 
-void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label, bool should_present){
+void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label, bool should_present, bool is_dosageFields){
     Smart_Pointer<Labeled_field_widget> ptr = new Labeled_field_widget(dev_ptr, widget_name, location, label_size, field_size, label);
     
     // ptr->set_add_widget_type_property(true);
@@ -166,6 +173,9 @@ void TLD_device::create_labeledField(Device_base * dev_ptr, const Symbol& widget
     screen_ptr->add_widget(ptr);
     //  screen_ptr->present_property("Name", "Substances");
     //   Trace_out << " name is .......... " << ptr->get_name() << " .......... " << endl;
+    if(is_dosageFields == true) {
+        assign_initial_dosage(ptr);
+    }
     if(should_present == true){
         ptr->present();
     }
@@ -550,7 +560,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
   //      create_Field(this, "Medications_searchDrug", GU::Point(100, 200), GU::Size(50, 20), " ", Black_c, true);
         
 
-        create_labeledField(this, Medications_searchDrug_lF, GU::Point(10,200), GU::Size(50,20), GU::Size(50, 20), "Name", true);
+        create_labeledField(this, Medications_searchDrug_lF, GU::Point(10,200), GU::Size(50,20), GU::Size(50, 20), "Name", true, false);
         
         create_button(this, Medications_searchButton_b, GU::Point(200, 200), GU::Size(50, 20), "Search", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_searchButton_b]->set_property("Name", "Search");
@@ -588,7 +598,9 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         create_button(this, Medications_third_stat_b, GU::Point(500, 400), GU::Size(10, 10), "Stat", true, screen_ptr, true, Gray_c, Gray_c);
         
         
-        create_labeledField(this, Medications_third_dose_lF, GU::Point(200, 200), GU::Size(50, 10), GU::Size(50, 10), "Dose", true); 
+        create_labeledField(this, Medications_third_dose_lF, GU::Point(200, 200), GU::Size(50, 10), GU::Size(50, 10), "Dose", true, true);
+        
+
         
         
         create_button(this, Medications_continue_b, GU::Point(20, 130), GU::Size(80, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
@@ -599,7 +611,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
     }
     
     if( third_screen_PRN == true) {
-        create_labeledField(this, Medications_third_minInterval_lF, GU::Point(88, 500), GU::Size(180, 10), GU::Size(50, 10), "Minimum Dosage Interval", true);
+        create_labeledField(this, Medications_third_minInterval_lF, GU::Point(88, 500), GU::Size(180, 10), GU::Size(50, 10), "Minimum Dosage Interval", true, false);
         
         create_button(this, Medications_third_minInterval_options_b, GU::Point(360, 500), GU::Size(300,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
         buttons[Medications_third_minInterval_options_b]->set_property("Name", "MinIntervalOptions");
@@ -607,11 +619,11 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         
 
         
-        create_labeledField(this, Medications_third_maxOf_lF, GU::Point(195, 530), GU::Size(60, 10), GU::Size(50, 10), "Maximum of", true); 
+        create_labeledField(this, Medications_third_maxOf_lF, GU::Point(195, 530), GU::Size(60, 10), GU::Size(50, 10), "Maximum of", true, false);
         create_button(this, Medications_third_maxOf_options_b, GU::Point(360, 530), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
         
         
-        create_labeledField(this, Medications_third_maxOf_per_lF, GU::Point(410, 530), GU::Size(50, 10), GU::Size(50, 10), "per", true); 
+        create_labeledField(this, Medications_third_maxOf_per_lF, GU::Point(410, 530), GU::Size(50, 10), GU::Size(50, 10), "per", true, false);
         // create_label(this, "Medications_third_maxOf_per", , , "per", Black_c, true);
         // create_Field(this, "Medications_third_maxOfTime", GU::Point(450, 530), , "", Black_c, true);
         create_button(this, Medications_third_maxOf_TimeOptions_b, GU::Point(500, 530), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
@@ -677,6 +689,31 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
 }
 
 
+void TLD_device::assign_initial_dosage(Smart_Pointer<Labeled_field_widget> ptr){
+    
+    //labeledFields_t::iterator it_labeledFields = labeledFields.find(current_searched_medication);
+    
+    //Trace_out << "Changing value of the dosage" << " ... ... " << endl;
+    
+    if(iequals(current_searched_medication.str(), PRN_paracetamol.str())){
+        
+        ptr->set_string("500");
+        
+        Trace_out << " paracetamol: " << " " << current_searched_medication.str() << " " << PRN_paracetamol.str() << endl;
+
+    }
+    
+    if(iequals(current_searched_medication.str(), PRN_oxycodone.str())){
+        
+        ptr->set_string("5"); 
+        
+        Trace_out << " oxycodone " << endl;
+
+    }
+
+}
+
+
 void TLD_device::display_medications_FormStrength(std::string medication){
     
     int label_pointX, label_pointY;
@@ -684,6 +721,7 @@ void TLD_device::display_medications_FormStrength(std::string medication){
 
     Symbol label_label;
     Symbol button_label;
+
     
     // PRN medication chart 1 
     if(iequals(medication, "Paracetamol")){
@@ -735,10 +773,12 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     }
     
     
-    create_label(this, "Medications_form", GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
+    create_label(this, Medications_form_b, GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
     create_button(this, Medications_strength_b, GU::Point(button_pointX, button_pointY), GU::Size(30, 10), button_label, true, screen_ptr, true, White_c, White_c);
     
     buttons[Medications_strength_b]->set_property("Name", button_label);
+    buttons[Medications_strength_b]->set_property("RightOf", label_label);
+    
     
     
     

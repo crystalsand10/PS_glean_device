@@ -78,7 +78,7 @@ private:
     void create_Field(Device_base * dev_ptr, const Symbol& widget_name, GU::Point location, GU::Size size, Symbol new_string, Symbol color, bool should_present);
     
     
-    void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label, bool should_present);
+    void create_labeledField(Device_base * dev_ptr, const Symbol& widget_name,GU::Point location, GU::Size label_size, GU::Size field_size, const Symbol& label, bool should_present, bool is_dosageField);
     
     void create_polygon(Device_base * dev_ptr, const Symbol& widget_name, const GU::Polygon& polygon, const Symbol& color, bool should_present);
     
@@ -101,7 +101,7 @@ private:
     void display_medications_FormStrength(std::string medication);
     bool iequals(const std::string& a, const std::string& b);
     void display_prescribedMedications();
-
+    void assign_initial_dosage(Smart_Pointer<Labeled_field_widget>);
     
 };
 
