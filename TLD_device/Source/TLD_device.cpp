@@ -56,6 +56,8 @@ const Symbol Medications_third_minInterval_lF("Medications_third_minInterval");
 const Symbol Medications_third_maxOf_lF("Medications_third_maxOf");
 const Symbol Medications_third_maxOf_per_lF("Medications_third_maxOf_per"); 
 const Symbol Medications_form_b("Medications_form");
+const Symbol Medications_maxOf_options_1_mI("Medications_maxOf_menuOption1");
+const Symbol Medications_maxOf_options_2_mI("Medications_maxOf_menuOption2");
 
 
 /* Medication Names */
@@ -621,6 +623,8 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         
         create_labeledField(this, Medications_third_maxOf_lF, GU::Point(195, 530), GU::Size(60, 10), GU::Size(50, 10), "Maximum of", true, false);
         create_button(this, Medications_third_maxOf_options_b, GU::Point(360, 530), GU::Size(50,10), "  ", true, screen_ptr, true, Gray_c, Gray_c);
+        buttons[Medications_third_maxOf_options_b]->set_property("Name", "MaxOfOptions");
+        
         
         
         create_labeledField(this, Medications_third_maxOf_per_lF, GU::Point(410, 530), GU::Size(50, 10), GU::Size(50, 10), "per", true, false);
@@ -781,9 +785,6 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     
     
-    
-    
-    
 }
 
 
@@ -877,23 +878,47 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         Smart_Pointer<Button_widget> current_button_ptr = it_buttons->second;
         
         Symbol label = "";
+        
+        bool flag_minInterval = false;
+        bool flag_maxOf = false;
+        
         if(current_pointed_to_object_name == Medications_minInterval_options_1_mI) {
             deleteMenuItems();
             label = "minute(s)";
+            flag_minInterval = true;
             
         }
         if(current_pointed_to_object_name == Medications_minInterval_options_2_mI) {
             deleteMenuItems();
-            label = "hour(s)"; 
+            label = "hour(s)";
+            flag_minInterval = true;
         }
         if(current_pointed_to_object_name == Medications_minInterval_options_3_mI) {
             deleteMenuItems();
-            label = "day(s)"; 
+            label = "day(s)";
+            flag_minInterval = true;
         }
         
+        if(current_pointed_to_object_name == Medications_maxOf_options_1_mI) {
+            deleteMenuItems();
+            label = "doses";
+            flag_maxOf = true; 
+        }
         
-        create_button(this, Medications_third_minInterval_options_b, GU::Point(360, 500), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
+        if(current_pointed_to_object_name == Medications_maxOf_options_2_mI) {
+            deleteMenuItems();
+            label = "Tablet";
+            flag_maxOf = true; 
+        }
         
+        if(flag_minInterval == true) {
+            
+            create_button(this, Medications_third_minInterval_options_b, GU::Point(360, 500), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
+        }
+        else if (flag_maxOf == true) {
+            
+            create_button(this, Medications_third_maxOf_options_b, GU::Point(360, 530), GU::Size(50,10), label, true, screen_ptr, true, Purple_c, Yellow_c);
+        }
         
     }
     
@@ -1039,7 +1064,19 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         }
         
 
-        
+        if( current_pointed_to_object_name == Medications_third_maxOf_options_b) {
+            // Menu options for maximum of, used by oxycodone.
+            
+            
+            createMenuItems2();
+            
+            buttons[current_pointed_to_object_name]->depresent();
+            screen_ptr->remove_widget(buttons[current_pointed_to_object_name]);
+            buttons.erase(current_pointed_to_object_name);
+            
+            
+            
+        }
         
     }
     else if(it_fields != fields.end()){
@@ -1120,6 +1157,44 @@ void TLD_device::createMenuItems(){
     //   ptr->add_widget(button_ptr);
     screen_ptr->add_widget(ptr);
 
+}
+
+
+void TLD_device::createMenuItems2(){
+    
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(360, 530), GU::Size(65, 60), "  ");
+    
+    
+    windows["Menu"] = ptr;
+    
+    // menuItems["Test_container"] = ptr;
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_maxOf_options_1_mI, GU::Point(360, 540), GU::Size(50, 10), "doses", Gray_c, LightBlue_c, true);
+    
+    menuItems[Medications_maxOf_options_1_mI] = button_ptr;
+    
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, Medications_maxOf_options_2_mI, GU::Point(360, 560), GU::Size(50, 10), "Tablet", Gray_c, LightBlue_c, true);
+    
+    menuItems[Medications_maxOf_options_2_mI] = button_ptr2;
+    
+    
+    button_ptr->present_object();
+    button_ptr2->present_object();
+
+    ptr->present_object();
+    
+    //buttons["Test_button"] = button_ptr;
+    screen_ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(button_ptr2);
+
+    
+    
+    button_ptr->set_property("Name", "doses");
+    button_ptr2->set_property("Name", "Tablet");
+    
+    
+    //   ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(ptr);
+    
 }
 
 

@@ -102,7 +102,7 @@ private:
     bool iequals(const std::string& a, const std::string& b);
     void display_prescribedMedications();
     void assign_initial_dosage(Smart_Pointer<Labeled_field_widget>);
-    
+    void createMenuItems2(); // for maximum of doses/Tablet
 };
 
 #endif

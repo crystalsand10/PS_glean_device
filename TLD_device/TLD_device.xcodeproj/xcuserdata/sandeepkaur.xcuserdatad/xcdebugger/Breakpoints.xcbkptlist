@@ -25,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "71"
-         endingLineNumber = "71"
-         landmarkName = "TLD_device::TLD_device(const std::string&amp; id, Output_tee&amp; ot)"
-         landmarkType = "5">
+         endingLineNumber = "71">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -116,7 +114,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "765"
-         endingLineNumber = "765">
+         endingLineNumber = "765"
+         landmarkName = "TLD_device::display_medications_FormStrength(std::string medication)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -128,7 +128,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "835"
          endingLineNumber = "835"
-         landmarkName = "TLD_device::handle_Click_event(const Symbol&amp; button_name)"
+         landmarkName = "TLD_device::handle_Point_event(const Symbol&amp; target_name)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
