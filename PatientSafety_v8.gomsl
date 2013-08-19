@@ -89,10 +89,15 @@ Step 2. Look_for_object_whose Type is Label, and Text is "Dose" and_store_under 
 Step 3. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
 
 Step 4. Decide: 
-			If Medication of <current_task> is "Oxycodone", 
-				Then Goto 5;
-			Else 
-				Accomplish_goal: Fill_in Text using <current_field>, and Dosage of <current_task>. 
+			If Text of <current_field> is Dosage of <current_task>,
+				Then Goto 5;   
+			Else
+				Accomplish_goal: Replace Text using <current_field>, and Dosage of <current_task>. 
+
+
+			//	 Fill_in Text using <current_field>, and Dosage of <current_task>. 
+
+
 			
 Step 5. Look_for_object_whose Name is PRN and_store_under <current_button>. 
 Step a5. Accomplish_goal: Click_on Button using <current_button>. 
@@ -183,10 +188,21 @@ Step 202. Click B1.
 Step 203. Type_in <the_text>. 
 Step 204. Return_with_goal_accomplished. 
 
-Method_for_goal: Replace Text using <selection>, and <replace_to>, and <current_field>
+Method_for_goal: Replace Text using <current_field>, and <replace_to>
+Step 1. Accomplish_goal: Select Text using <current_field>.
+Step 2. Keystroke DELETE. 
+Step 3. Type_in <replace_to>. 
+Step 4. Return_with_goal_accomplished. 
 
 
 
-Step. Return_with_goal_accomplished. 
+// The task specifies the to-be-selected word
+Method_for_goal: Select Text using <current_field>
+  //	Step 1. Look_for_object_whose Name is <text> and_store_under <target>.
+  	Step 2. Point_to <current_field>. 
+  	Step 3. Double_click mouse_button.
+ // 	Step 4. Verify "correct text is selected".
+  	Step 5. Return_with_goal_accomplished.
+
 
 

@@ -536,21 +536,22 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
 
     if(first_screen == true) {
         
-        create_button(this, Medications_prescribe_b, GU::Point(100, 100), GU::Size(50, 20), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        create_button(this, Medications_prescribe_b, GU::Point(160, 150), GU::Size(80, 15), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_prescribe_b]->set_property("Name", "Prescribe");
         
         
-        create_label(this, Medications_label_ChartUpdates_l, GU::Point(30, 140), GU::Size(50, 20), "Chart Updates", Black_c, true);
+       // create_label(this, Medications_label_ChartUpdates_l, GU::Point(30, 140), GU::Size(50, 20), "Chart Updates", Black_c, true);
         
-        create_label(this, Medications_label_scheduled_l, GU::Point(150, 140), GU::Size
-                     (50, 20), "Scheduled", Black_c, true);
-        create_label(this, Medications_label_PRN_l, GU::Point(240, 140), GU::Size(50, 20), "PRN", Black_c, true);
+       // create_label(this, Medications_label_scheduled_l, GU::Point(150, 180), GU::Size
+       //              (50, 20), "Scheduled", Black_c, true);
+       // create_label(this, Medications_label_PRN_l, GU::Point(240, 180), GU::Size(50, 20), "PRN", Black_c, true);
        
         
-        create_button(this, Medications_update_b, GU::Point(30, 100), GU::Size(50, 20), "Update", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        create_button(this, Medications_update_b, GU::Point(30, 150), GU::Size(50, 15), "Update", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_update_b]->set_property("Name", "Update");
         
-        create_button(this, Medications_close_b, GU::Point(30, 60), GU::Size(50, 20), "Close", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        
+        create_button(this, Medications_close_b, GU::Point(30, 90), GU::Size(50, 15), "Close", true, screen_ptr, true, White_c, White_c);
         buttons[Medications_close_b]->set_property("Name", "Close");
         
     }
@@ -562,18 +563,25 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
   //      create_Field(this, "Medications_searchDrug", GU::Point(100, 200), GU::Size(50, 20), " ", Black_c, true);
         
 
-        create_labeledField(this, Medications_searchDrug_lF, GU::Point(10,200), GU::Size(50,20), GU::Size(50, 20), "Name", true, false);
+        create_labeledField(this, Medications_searchDrug_lF, GU::Point(10,200), GU::Size(38,20), GU::Size(150, 20), "Name", true, false);
         
-        create_button(this, Medications_searchButton_b, GU::Point(200, 200), GU::Size(50, 20), "Search", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        create_button(this, Medications_searchButton_b, GU::Point(208, 200), GU::Size(50, 15), "Search", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_searchButton_b]->set_property("Name", "Search");
+        buttons[Medications_searchButton_b]->set_property(Shape_c, Rectangle_c);
+        
+        
+        std::vector<GU::Point> in_vertices2 {GU::Point(262, 190), GU::Point( 262, 550)}; // vertical line
+        create_polygon(this, Symbol("Polygon1"), in_vertices2, DarkGray_c, true);
         
     }
     
     if (second_screen_searchResults == true) {
         
-           create_button(this, Medications_searchResults_b, GU::Point(100, 300), GU::Size(50, 20), current_searched_medication, true, screen_ptr, true, Blue_c, Red_c);
+           create_button(this, Medications_searchResults_b, GU::Point(25, 230), GU::Size(225, 20), current_searched_medication, true, screen_ptr, true, Yellow_c, Yellow_c);
         
         buttons[Medications_searchResults_b]->set_property("Name", current_searched_medication);
+        buttons[Medications_searchResults_b]->set_property(Shape_c, Rectangle_c);
+        
         
         scheduledMedications[current_searched_medication] = "";
         
@@ -586,27 +594,28 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
     if (third_screen == true) {
         clear_objects_on_screen();
         
-        create_label(this, Medications_third_frequency_l , GU::Point(200, 400), GU::Size(50, 10), "Frequency", Black_c, true);
-        
-        create_button(this, Medications_third_scheduled_b, GU::Point(300, 400), GU::Size(10, 10), "  Scheduled", true, screen_ptr, true, Black_c, Gray_c);
+        create_label(this, Medications_third_frequency_l , GU::Point(200, 240), GU::Size(50, 10), "Frequency", Black_c, true);
+    
+        create_button(this, Medications_third_scheduled_b, GU::Point(300, 240), GU::Size(10, 10), "  Scheduled", true, screen_ptr, true, Black_c, Gray_c);
        // buttons["medications_third_scheduled"]->set_property("Name", "Scheduled");
         
         
         
         
-        create_button(this, Medications_third_PRN_b, GU::Point(400, 400), GU::Size(10, 10), "  PRN", true, screen_ptr, true, Gray_c, Black_c);
+        create_button(this, Medications_third_PRN_b, GU::Point(400, 240), GU::Size(10, 10), "  PRN", true, screen_ptr, true, Gray_c, Black_c);
         buttons[Medications_third_PRN_b]->set_property("Name", "PRN");
         
-        create_button(this, Medications_third_stat_b, GU::Point(500, 400), GU::Size(10, 10), "Stat", true, screen_ptr, true, Gray_c, Gray_c);
+        create_button(this, Medications_third_stat_b, GU::Point(500, 240), GU::Size(10, 10), "Stat", true, screen_ptr, true, Gray_c, Gray_c);
         
         
-        create_labeledField(this, Medications_third_dose_lF, GU::Point(200, 200), GU::Size(50, 10), GU::Size(50, 10), "Dose", true, true);
+        create_labeledField(this, Medications_third_dose_lF, GU::Point(200, 180), GU::Size(50, 10), GU::Size(50, 10), "Dose", true, true);
         
 
         
         
-        create_button(this, Medications_continue_b, GU::Point(20, 130), GU::Size(80, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
+        create_button(this, Medications_continue_b, GU::Point(15, 90), GU::Size(75, 15), "Continue", true, screen_ptr, true, LightGray_c, LightGray_c);
         buttons[Medications_continue_b]->set_property("Name", "Continue");
+        buttons[Medications_continue_b]->set_property(Shape_c, Rectangle_c);
         
         
         
@@ -730,8 +739,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     // PRN medication chart 1 
     if(iequals(medication, "Paracetamol")){
         
-        label_pointX = 200; label_pointY = 500;
-        button_pointX = 300; button_pointY = 500;
+        label_pointX = 270; label_pointY = 520;
+        button_pointX = 420; button_pointY = 520;
         
         label_label = "Tablet";
         button_label = "500mg";
@@ -742,8 +751,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // PRN medication chart 4
     if(iequals(medication, "panadeine")){
-        label_pointX = 200; label_pointY = 500;
-        button_pointX = 300; button_pointY = 500;
+        label_pointX = 270; label_pointY = 550;
+        button_pointX = 420; button_pointY = 550;
         
         label_label = "Tablet";
         button_label = "30mg + 500mg";
@@ -753,8 +762,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // PRN medication chart 5 
     if(iequals(medication, "Oxycodone")){
-        label_pointX = 200; label_pointY = 500;
-        button_pointX = 300; button_pointY = 500;
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
         
         label_label = "Capsule";
         button_label = "5mg";
@@ -765,8 +774,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Scheduled medication chart 1
     if(iequals(medication, "Cephazolin")){
-        label_pointX = 200; label_pointY = 250;
-        button_pointX = 300; button_pointY = 250;
+        label_pointX = 270; label_pointY = 250;
+        button_pointX = 420; button_pointY = 250;
         
         label_label = "Injection";
         button_label = "1g";
@@ -1201,7 +1210,7 @@ void TLD_device::createMenuItems2(){
 void TLD_device::handle_Keystroke_event(const Symbol& key_name){
 
     if(key_name == "DELETE") {
-        Trace_out << " delete the selected text - " << endl;
+        Trace_out << "------ ===== ===== ======  delete the selected text - " << endl;
     }
     
 }
