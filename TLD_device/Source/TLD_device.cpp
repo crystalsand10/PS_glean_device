@@ -87,10 +87,13 @@ Device_base(id, ot)
 
 void TLD_device::initialize()
 {
+    clear_objects_on_screen();
+
+
 	Device_base::initialize();
-	clear_display();
-	
+	clear_display();	
 	current_pointed_to_object_name = Nil_c;
+    current_searched_medication = Nil_c;
 	// if  a blip was left up, get rid of it
 //	blip_ptr = 0;
 //	blip_counter = 0;
@@ -134,8 +137,11 @@ void TLD_device::handle_Start_event()
 void TLD_device::create_button(TLD_device * dev_ptr, const Symbol& name, GU::Point location, GU::Size size, const Symbol& label, bool state,  Smart_Pointer<Screen_widget> screenName, bool should_present,const Symbol& color_on, const Symbol& color_off)
 {
 	Smart_Pointer<Button_widget> ptr = new Button_widget(dev_ptr, name, location, size, label, color_on, color_off, state);
+    Trace_out<< " name of the button is " << name << " pppppppppppppppppppppppppppppppp " << endl; 
 	buttons[name] = ptr;
-	screenName->add_widget(ptr);
+	
+    
+    screen_ptr->add_widget(ptr);
     
     
     if(should_present == true){
@@ -218,14 +224,14 @@ void TLD_device::create_Object(Device_base * dev_ptr, const Symbol& widget_name,
 // Output the state of the buttons and the cursor as a text display
 void TLD_device::output_display() const
 {
-	device_out << "--------------------\n" << processor_info() << " Display: " << endl;
+/*	device_out << "--------------------\n" << processor_info() << " Display: " << endl;
 	for(buttons_t::const_iterator it = buttons.begin(); it != buttons.end(); ++it) {
 		device_out << (it->second)->get_name()
 		<< ' ' << (it->second)->get_location() << ' ' << (it->second)->get_state() << endl;
     }
     
 	device_out << "Cursor pointing at " << current_pointed_to_object_name << endl;
-	device_out << "--------------------" << endl;;	
+	device_out << "--------------------" << endl;;	*/ 
 }
 
 
@@ -234,20 +240,33 @@ void TLD_device::output_display() const
 /* This function clears everything including the screen and the cursor */
 void TLD_device::clear_display()
 {
-	buttons.clear();
-    fields.clear();
-	screen_ptr = 0;
+    clear_objects_on_screen();
+
+    screen_ptr = 0;
     cursor_ptr = 0;
+    
+    buttons.clear();
+    fields.clear();
+
     labels.clear();
     objects.clear();
     polygons.clear();
-    labeledFields.clear(); 
-    
+    labeledFields.clear();
+    menuItems.clear();
+    windows.clear();
+ 
+    scheduledMedications.clear();
+    prnMedications.clear();
+  //  current_searched_medication = nullptr;
+  //  current_pointed_to_object_name = nullptr;
+    Main_screen_string1.str(""); 
+    Main_screen_string1.clear();
+
 }
+    
 
 
-
-/* For each of the various objects on the screen, 
+/* For each of the various objects on the screen,
  * depresents them on the screen; 
  * removes them from the screen_ptr; 
  * finally clears them from its respective type array
@@ -296,12 +315,20 @@ void TLD_device::clear_objects_on_screen(){
         screen_ptr->remove_widget((it->second));
     }
 
+    
+    for(buttons_t::const_iterator it = menuItems.begin(); it != menuItems.end(); ++it) {
+        (it->second)->depresent();
+        screen_ptr->remove_widget((it->second));
+    }
+    
+    
     buttons.clear();
     fields.clear();
     polygons.clear();
     objects.clear();
     labels.clear();
     labeledFields.clear();
+    windows.clear();
 }
 
 
@@ -347,6 +374,8 @@ void TLD_device::create_homeScreen_display(bool first_display){
     create_button(this, ButtonAllergy_b, GU::Point(500, 200), GU::Size(35, 20),  "Add", true, screen_ptr, first_display, Gray_c, LightGray_c);
     buttons[ButtonAllergy_b]->set_property("Name", "Add");
     
+    Trace_out<< " name of the button is : v2  :: " << buttons[ButtonAllergy_b]->get_name().str() << " pppppppppppppppppppppppppppppppp " << endl;
+	
     
     create_button(this, Symbol("button2"),  GU::Point(10, 230), GU::Size(200, 20), "Medications on admission", false, screen_ptr , first_display, Gray_c, LightGray_c);
     
@@ -951,7 +980,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
             
             create_allergies_display(true, false, false);
-        }
+        } 
         if( current_pointed_to_object_name == Allergy_option3_b) {
             Main_screen_string1 << "Class allergy to";
             create_allergies_display(false, true, false);
