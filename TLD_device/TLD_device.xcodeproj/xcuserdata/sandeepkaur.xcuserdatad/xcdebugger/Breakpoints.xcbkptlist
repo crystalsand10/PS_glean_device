@@ -63,7 +63,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "416"
          endingLineNumber = "416"
-         landmarkName = "TLD_device::display_prescribedMedications()"
+         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -76,7 +76,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "408"
          endingLineNumber = "408"
-         landmarkName = "TLD_device::display_prescribedMedications()"
+         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -89,7 +89,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "418"
          endingLineNumber = "418"
-         landmarkName = "TLD_device::display_prescribedMedications()"
+         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -128,7 +128,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "835"
          endingLineNumber = "835"
-         landmarkName = "TLD_device::handle_Point_event(const Symbol&amp; target_name)"
+         landmarkName = "TLD_device::iequals(const std::string&amp; a, const std::string&amp; b)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

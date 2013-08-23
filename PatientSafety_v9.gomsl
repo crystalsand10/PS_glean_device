@@ -43,7 +43,7 @@ Next is None.
 Method_for_goal: Perform ClinicalTask
 Step 1. Store Item1 under <current_task_name>. 
 Step 2. Decide: 
-			If <current_task_name> is None, Then Delete <current_task>; Delete <current_task_name>; Return_with_goal_accomplished.
+			If <current_task_name> is None, Then Return_with_goal_accomplished.
 Step 3. Get_task_item_whose Name is <current_task_name> and_store_under <current_task>. 
 Step 4. Accomplish_goal: Perform Unit_Task. 
 Step 5. Store Next of <current_task> under <current_task_name>; Goto 2. 
@@ -99,25 +99,20 @@ Step 4. Decide:
 
 
 			
-Step 5. Look_for_object_whose Name is PRN and_store_under <current_button>. 
-Step a5. Accomplish_goal: Click_on Button using <current_button>. 
+Step 5. Look_for_object_whose Name is PRN and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 
 Step 6. Look_for_object_whose Type is Label, and Text is "Minimum Dosage Interval" and_store_under <current_label>.
-Step a6. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
-Step b6. Accomplish_goal: Fill_in Text using <current_field>, and Interval of <current_task>. 
+Step a6. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Interval of <current_task>. 
 
 
-Step 7. Look_for_object_whose Name is MinIntervalOptions and_store_under <current_button>. 
-Step a7. Accomplish_goal: Click_on Button using <current_button>. 
-Step b7. Look_for_object_whose Name is IntervalMenu of <current_task> and_store_under <current_button>. 
-Step c7. Accomplish_goal: Click_on Button using <current_button>. 
+Step 7. Look_for_object_whose Name is MinIntervalOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is IntervalMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 
 
 Step 8. Look_for_object_whose Type is Label, and Text is "Maximum of" and_store_under <current_label>.
-Step a8. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
-Step b8. Accomplish_goal: Fill_in Text using <current_field>, and MaximumOf of <current_task>. 
+Step a8. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and MaximumOf of <current_task>. 
 				
 Step 9. Decide: 
 			If Medication of <current_task> is "Oxycodone", 
@@ -127,19 +122,15 @@ Step 9. Decide:
 
 
 
-Step 10. Look_for_object_whose Name is MaxOfOptions and_store_under <current_button>. 
-Step a7. Accomplish_goal: Click_on Button using <current_button>. 
-Step b7. Look_for_object_whose Name is MaxOfMenu of <current_task> and_store_under <current_button>. 
-Step c7. Accomplish_goal: Click_on Button using <current_button>. 
+Step 10. Look_for_object_whose Name is MaxOfOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is MaxOfMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 
 
 Step 11. Look_for_object_whose Type is Label, and Text is "per" and_store_under <current_label>.
-Step a9. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
-Step b9. Accomplish_goal: Fill_in Text using <current_field>, and "1".  
+Step a9. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and "1".  
 
-Step 12. Look_for_object_whose Name is Continue and_store_under <current_button>. 
-Step a10. Accomplish_goal: Click_on Button using <current_button>. 
+Step 12. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 Step 13. Return_with_goal_accomplished. 
 
@@ -148,15 +139,12 @@ Step 13. Return_with_goal_accomplished.
 
 
 Method_for_goal: Enter MedicationName using <medication_name>
-Step 1. Look_for_object_whose Type is Label, and Text is "Name" and_store_under <current_label>.
-Step 2. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
-Step 3. Accomplish_goal: Fill_in Text using <current_field>, and Medication of <current_task>.  
+Step 1. Look_for_object_whose Type is Label, and Text is "Name" and_store_under <current_label>. 
+Step a1. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Medication of <current_task>.  
 
-Step 4. Look_for_object_whose Name is Search and_store_under <current_button>. 
-Step a4. Accomplish_goal: Click_on Button using <current_button>. 
+Step 4. Look_for_object_whose Name is Search and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 6. Look_for_object_whose Name is Medication of <current_task> and_store_under <current_button>. 
-Step 7. Accomplish_goal: Click_on Button using <current_button>. 
+Step 6. Look_for_object_whose Name is Medication of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 Step 8. Decide: 
 			If Medication of <current_task> is "Paracetamol", 
@@ -175,11 +163,11 @@ Step 9. Return_with_goal_accomplished.
 
 
 
-Method_for_goal: Click_on Button using <button_obj> 
-Step 101. Point_to <button_obj>. 
+Method_for_goal: Click_on Button using <current_button> 
+Step 101. Point_to <current_button>. 
 Step 102. Click B1. 
-Step 103. Log "processed: ", <button_obj>.
-Step 104. Delete <button_obj>; Return_with_goal_accomplished. 
+// Step 103. Log "processed: ", <button_obj>.
+Step 104. Delete <current_button>; Return_with_goal_accomplished. 
 
 
 Method_for_goal: Fill_in Text using <current_field>, and <the_text> 
