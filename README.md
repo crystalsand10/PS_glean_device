@@ -9,7 +9,10 @@ Model of the deivce and user of a GP system in order to study its usablity.
 * PatientSafety_v6.gomsl - model for testing various object shapes.
 * PatientSafety_v7.gomsl - model for testing of medications, but where fields are labeled. 
 * PatientSafety_v8.gomsl - leading towards a proper user model for PRN medications, which can be compared against the empirical results. 
-* PatientSafety_v9.gomsl - Trying to simplyfy the actions of the modelled user in version 8. 
+* PatientSafety_v9.gomsl - Trying to simplify the actions of the modelled user in version 8. 
+* PatientSafety_v10.gomsl - Models the entry of the PRN task 3 accurately, the previous models for PRN task 3 will not work with the currently updated device (due to addition of warning screen and qualifier fields). 
+
+
 
 
 

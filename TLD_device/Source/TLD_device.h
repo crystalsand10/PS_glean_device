@@ -103,6 +103,8 @@ private:
     void display_prescribedMedications();
     void assign_initial_dosage(Smart_Pointer<Labeled_field_widget>);
     void createMenuItems2(); // for maximum of doses/Tablet
+    
+    void create_warning_display(); 
 };
 
 #endif

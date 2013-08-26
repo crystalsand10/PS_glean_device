@@ -58,7 +58,11 @@ const Symbol Medications_third_maxOf_per_lF("Medications_third_maxOf_per");
 const Symbol Medications_form_b("Medications_form");
 const Symbol Medications_maxOf_options_1_mI("Medications_maxOf_menuOption1");
 const Symbol Medications_maxOf_options_2_mI("Medications_maxOf_menuOption2");
-
+const Symbol Medications_warning_override_b("Medications_warning_override");
+const Symbol Medications_third_qualifier_lf("Medications_third_qualifier"); 
+const Symbol Medications_warning_continue_b("Medications_warning_continue"); 
+const Symbol Medications_warning_heading_o("Medications_warning_heading");
+const Symbol Medications_warning_pregnancy_l("Medications_warning_pregnancy");
 
 /* Medication Names */
 const Symbol PRN_paracetamol("Paracetamol");
@@ -686,6 +690,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         buttons[Medications_third_maxOf_TimeOptions_b]->set_property(Shape_c, Rectangle_c); 
         
         
+        create_labeledField(this, Medications_third_qualifier_lf, GU::Point(172, 560), GU::Size(94, 15), GU::Size(300, 15), "Qualifier", true, false);
     }
     
     if(fourth_screen == true) {
@@ -1057,11 +1062,20 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         
         if( current_pointed_to_object_name == Medications_strength_b){
-            
-            create_medications_display(false, false, false, false, true, false, false);
-            
+           
+            if( current_searched_medication == PRN_oxycodone){
+                create_warning_display();
+            }
+            else {
+                create_medications_display(false, false, false, false, true, false, false);
+            }
             
         }
+        
+        if( current_pointed_to_object_name == Medications_warning_continue_b){
+            create_medications_display(false, false, false, false, true, false, false);
+        }
+        
         
         if( current_pointed_to_object_name == Medications_third_PRN_b ) {
             // TODO::Change part of the display
@@ -1165,6 +1179,33 @@ void TLD_device::deleteMenuItems(){
     
     
 }
+
+void TLD_device::create_warning_display(){
+    clear_objects_on_screen();
+    create_button(this, Medications_warning_override_b, GU::Point(290,500), GU::Size(10, 10), "  Override", true, screen_ptr, true, Gray_c, Black_c);
+    buttons[Medications_warning_override_b]->set_property("Name", "Override");
+    
+    // Trace_out << "Over riding :) " << endl;
+    
+    
+    std::vector<GU::Point> in_vertices2 {GU::Point(262, 190), GU::Point( 262, 550)}; // vertical line
+    create_polygon(this, Symbol("Polygon1"), in_vertices2, LightBlue_c, true);
+    
+    create_button(this, Medications_warning_continue_b, GU::Point(600,600), GU::Size(70, 10), "Continue", true, screen_ptr, true, DarkGray_c, DarkGray_c);
+    buttons[Medications_warning_continue_b]->set_property("Name", "Continue");
+    buttons[Medications_warning_continue_b]->set_property(Shape_c, Rectangle_c);
+    
+  /*  create_Field(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#Symbol new_string#>, <#Symbol color#>, <#bool should_present#>);
+    create_label(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#const Symbol &label#>, <#const Symbol &color#>, <#bool should_present#>);
+    */
+    
+    create_Object(this, Medications_warning_heading_o, GU::Point(268, 200), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, "Pregnancy Warnings", true);
+    
+    
+    //create_label(this, Medications_warning_pregnancy_l, GU::Point(318, 550), GU::Size(50, 15), "Pregnancy Warnings", Black_c, true);
+    
+}
+
 
 
 void TLD_device::createMenuItems(){
