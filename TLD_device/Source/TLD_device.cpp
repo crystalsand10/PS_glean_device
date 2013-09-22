@@ -375,26 +375,37 @@ void TLD_device::create_homeScreen_display(bool first_display){
 
     
     
-    create_button(this, ButtonAllergy_b, GU::Point(500, 200), GU::Size(35, 20),  "Add", true, screen_ptr, first_display, Gray_c, LightGray_c);
+    create_button(this, ButtonAllergy_b, GU::Point(500, 200), GU::Size(35, 20),  "Add", true, screen_ptr, first_display, LightGray_c, LightGray_c);
     buttons[ButtonAllergy_b]->set_property("Name", "Add");
+    buttons[ButtonAllergy_b]->set_property(Shape_c, Rectangle_c);
     
     Trace_out<< " name of the button is : v2  :: " << buttons[ButtonAllergy_b]->get_name().str() << " pppppppppppppppppppppppppppppppp " << endl;
 	
     
-    create_button(this, Symbol("button2"),  GU::Point(10, 230), GU::Size(200, 20), "Medications on admission", false, screen_ptr , first_display, Gray_c, LightGray_c);
-    
-    create_button(this, Symbol("button3"),  GU::Point(10, 270), GU::Size(120, 20), "Chart history", false, screen_ptr , first_display, Gray_c, LightGray_c);
-    
-    create_button(this, Symbol("button4"),  GU::Point(10, 300), GU::Size(120, 20), "Script history", false, screen_ptr , first_display, Gray_c, LightGray_c);
-    
-    create_button(this, Symbol("button5"),  GU::Point(10, 330), GU::Size(140, 20), "Patient history", false, screen_ptr , first_display, Gray_c, LightGray_c);
+    create_button(this, Symbol("button2"),  GU::Point(10, 230), GU::Size(230, 20), "Medications on admission", false, screen_ptr , first_display, Gray_c, LightGray_c);
+    buttons["button2"]->set_property("Shape", Rectangle_c);
     
     
-    create_button(this, ButtonMedications_d, GU::Point(10, 200), GU::Size(100, 20),  "Medications", true, screen_ptr, first_display, Gray_c, LightGray_c);
+    create_button(this, Symbol("button3"),  GU::Point(10, 270), GU::Size(230, 20), "Chart history", false, screen_ptr , first_display, Gray_c, LightGray_c);
+    buttons["button3"]->set_property("Shape", Rectangle_c);
+    
+    
+    create_button(this, Symbol("button4"),  GU::Point(10, 300), GU::Size(230, 20), "Script history", false, screen_ptr , first_display, Gray_c, LightGray_c);
+    buttons["button4"]->set_property("Shape", Rectangle_c);
+    
+    
+    create_button(this, Symbol("button5"),  GU::Point(10, 330), GU::Size(230, 20), "Patient history", false, screen_ptr , first_display, Gray_c, LightGray_c);
+    buttons["button5"]->set_property("Shape", Rectangle_c);
+    
+    
+    
+    create_button(this, ButtonMedications_d, GU::Point(10, 200), GU::Size(230, 20),  "Medications", true, screen_ptr, first_display, LightGray_c, LightGray_c);
     buttons[ButtonMedications_d]->set_property("Name", "Medications");
+    buttons[ButtonMedications_d]->set_property("Shape", Rectangle_c);
     
     create_Object(this, "Object1", GU::Point(255, 200), GU::Size(240, 20), RoyalBlue_c, Filled_Rectangle_c, "Allergies and Intolerances", first_display);
     // screen_ptr->get_size().v ;
+    
     
     std::vector<GU::Point> in_vertices1 {GU::Point(1, 190), GU::Point(650 , 190)}; // horizontal line
     create_polygon(this, Symbol("Polygon1"), in_vertices1, DarkGray_c, first_display);
