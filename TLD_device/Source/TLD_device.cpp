@@ -64,11 +64,34 @@ const Symbol Medications_warning_continue_b("Medications_warning_continue");
 const Symbol Medications_warning_heading_o("Medications_warning_heading");
 const Symbol Medications_warning_pregnancy_l("Medications_warning_pregnancy");
 
+const Symbol Medications_scheduled_for_lf("Medications_scheduled_for");
+const Symbol Medications_scheduled_route_l("Medications_scheduled_route");
+const Symbol Medications_scheduled_schedule_l("Medications_scheduled_schedule");
+const Symbol Medications_sch_routeOptions_b("Medications_sch_routeOptions");
+const Symbol Medications_sch_schedOptions_b("Medications_sch_schedOptions");
+const Symbol Medications_sch_forOptions_b("Medication_sch_forOptions");
+
+const Symbol Medications_schedule_options_1_mI("Medications_schedule_1");
+const Symbol Medications_schedule_options_2_mI("Medications_schedule_2");
+const Symbol Medications_schedule_options_3_mI("Medications_schedule_3");
+const Symbol Medications_schedule_options_4_mI("Medications_schedule_4");
+const Symbol Medications_schedule_options_5_mI("Medications_schedule_5");
+const Symbol Medications_schedule_options_6_mI("Medications_schedule_6");
+const Symbol Medications_schedule_options_7_mI("Medications_schedule_7");
+const Symbol Medications_schedule_options_8_mI("Medications_schedule_8");
+const Symbol Medications_schedule_options_9_mI("Medications_schedule_9");
+const Symbol Medications_schedule_options_10_mI("Medications_schedule_10");
+const Symbol Medications_schedule_options_11_mI("Medications_schedule_11");
+
+
 /* Medication Names */
 const Symbol PRN_paracetamol("Paracetamol");
 const Symbol PRN_panadeine("Panadeine");
 const Symbol PRN_oxycodone("Oxycodone");
 
+const Symbol Scheduled_norfloxacin("Norfloxacin");
+const Symbol Scheduled_thiamine("Thiamine");
+const Symbol Scheduled_chloramphenicol("Chloramphenicol");
 
 
 
@@ -666,10 +689,35 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         
         create_labeledField(this, Medications_third_dose_lF, GU::Point(220, 180), GU::Size(50, 12), GU::Size(50, 10), "Dose", true, true);
         
-
+        create_labeledField(this, Medications_scheduled_for_lf, GU::Point(220, 580), GU::Size(50, 12), GU::Size(50, 10), "For", true, false);
+        
+        create_label(this, Medications_scheduled_route_l, GU::Point(220, 290), GU::Size(50, 12), "Route", Black_c, true);
+        
+        create_label(this, Medications_scheduled_schedule_l, GU::Point(220, 350), GU::Size(50, 12), "Schedule", Black_c, true);
+        
+        
+        create_button(this, Medications_sch_routeOptions_b, GU::Point(280 ,290), GU::Size(50, 12), "", true, screen_ptr, true, Yellow_c, Yellow_c);
+        buttons[Medications_sch_routeOptions_b]->set_property("Name", "RouteOptions"); 
+        buttons[Medications_sch_routeOptions_b]->set_property(Shape_c, Rectangle_c);
+        
+        
+        create_button(this, Medications_sch_schedOptions_b, GU::Point(280, 350), GU::Size(50, 12), "", true, screen_ptr, true, Gray_c, Gray_c);
+        buttons[Medications_sch_schedOptions_b]->set_property("Name", "ScheduleOptions");
+        buttons[Medications_sch_schedOptions_b]->set_property(Shape_c, Rectangle_c);
+        
+        
+        create_button(this, Medications_sch_forOptions_b, GU::Point(350, 580), GU::Size(10, 10), "", true, screen_ptr, true, Gray_c, Gray_c);
+        buttons[Medications_sch_forOptions_b]->set_property("Name", "ForOptions");
+        buttons[Medications_sch_forOptions_b]->set_property(Shape_c, Rectangle_c);
+        
+        
+        
+        
         
         
         create_button(this, Medications_continue_b, GU::Point(12, 90), GU::Size(75, 12), "Continue", true, screen_ptr, true, LightGray_c, LightGray_c);
+        
+        
         buttons[Medications_continue_b]->set_property("Name", "Continue");
         buttons[Medications_continue_b]->set_property(Shape_c, Rectangle_c);
         
@@ -784,6 +832,23 @@ void TLD_device::assign_initial_dosage(Smart_Pointer<Labeled_field_widget> ptr){
 
     }
 
+    
+    if(iequals(current_searched_medication.str(), Scheduled_norfloxacin.str())){
+        
+        ptr->set_string("400");
+        
+        Trace_out << " setting norfloxacin dosage " << endl;
+        
+    }
+
+    
+    if(iequals(current_searched_medication.str(), Scheduled_thiamine.str())){
+        
+        ptr->set_string("100");
+        
+        Trace_out << " setting thiamine dosage " << endl;
+        
+    }
 }
 
 
@@ -844,6 +909,49 @@ void TLD_device::display_medications_FormStrength(std::string medication){
         
         
     }
+    
+    // Scheduled medication chart 2
+    if(iequals(medication, "Norfloxacin")){
+        
+        label_pointX = 270; label_pointY = 250;
+        button_pointX = 420; button_pointY = 250;
+        
+        label_label = "Tablet";
+        button_label = "400mg";
+        
+        scheduledMedications[medication] = " (400 mg) Tablet";
+        
+    }
+    
+    
+    // Scheduled medication chart 3
+    if(iequals(medication, "Thiamine")){
+        
+        label_pointX = 270; label_pointY = 280;
+        button_pointX = 420; button_pointY = 280;
+        
+        label_label = "Tablet";
+        button_label = "100mg";
+        
+        scheduledMedications[medication] = " (100 mg) Tablet";
+        
+    }
+    
+    // Scheduled medication chart 6
+    
+    if(iequals(medication, "Chloramphenicol")){
+        
+        label_pointX = 270; label_pointY = 280;
+        button_pointX = 420; button_pointY = 280;
+        
+        label_label = "Eye Drop";
+        button_label = "0.5%";
+        
+        scheduledMedications[medication] = " (0.5%) Eye Drop";
+        
+    }
+    
+    
     
     
     create_label(this, Medications_form_b, GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
@@ -1143,6 +1251,10 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
         }
         
+      //  if(current_pointed_to_object_name == Medications_sch_routeOptions_b) {
+      //      createMenuItems3();
+     //   }
+        
 
         if( current_pointed_to_object_name == Medications_third_maxOf_options_b) {
             // Menu options for maximum of, used by oxycodone.
@@ -1308,6 +1420,95 @@ void TLD_device::createMenuItems2(){
     //   ptr->add_widget(button_ptr);
     screen_ptr->add_widget(ptr);
     
+}
+
+void TLD_device::createMenuItems3(){
+    
+    
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(327, 530), GU::Size(65, 60), "  ");
+    
+    
+    windows["Menu"] = ptr;
+    
+    // menuItems["Test_container"] = ptr;
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schedule_options_1_mI, GU::Point(327, 540), GU::Size(50, 15), "In the Morning", White_c, White_c, true);
+    
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, Medications_schedule_options_2_mI, GU::Point(327, 550), GU::Size(50, 15), "Once Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, Medications_schedule_options_3_mI, GU::Point(327, 560), GU::Size(50, 15), "Twice Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr4 = new Button_widget(this, Medications_schedule_options_4_mI, GU::Point(327, 570), GU::Size(50, 15), "Three Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr5 = new Button_widget(this, Medications_schedule_options_5_mI, GU::Point(327, 580), GU::Size(50, 15), "Four Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr6 = new Button_widget(this, Medications_schedule_options_6_mI, GU::Point(327, 590), GU::Size(50, 15), "Five Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr7 = new Button_widget(this, Medications_schedule_options_7_mI, GU::Point(327, 600), GU::Size(50, 15), "Six Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr8 = new Button_widget(this, Medications_schedule_options_8_mI, GU::Point(327, 610), GU::Size(50, 15), "One Hourly", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr9 = new Button_widget(this, Medications_schedule_options_9_mI, GU::Point(327, 620), GU::Size(50, 15), "Two Hourly", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr10 = new Button_widget(this, Medications_schedule_options_10_mI, GU::Point(327, 630), GU::Size(50, 15), "Three Hourly", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr11 = new Button_widget(this, Medications_schedule_options_11_mI, GU::Point(327, 640), GU::Size(50, 15), "Four Hourly", White_c, White_c, true);
+    
+    
+    
+    
+    
+    
+    
+    menuItems[Medications_schedule_options_1_mI] = button_ptr;
+    menuItems[Medications_schedule_options_2_mI] = button_ptr2;
+    menuItems[Medications_schedule_options_3_mI] = button_ptr3;
+    menuItems[Medications_schedule_options_4_mI] = button_ptr4;
+    menuItems[Medications_schedule_options_5_mI] = button_ptr5;
+    menuItems[Medications_schedule_options_6_mI] = button_ptr6;
+    menuItems[Medications_schedule_options_7_mI] = button_ptr7;
+    menuItems[Medications_schedule_options_8_mI] = button_ptr8;
+    menuItems[Medications_schedule_options_9_mI] = button_ptr9;
+    menuItems[Medications_schedule_options_10_mI] = button_ptr10;
+    menuItems[Medications_schedule_options_11_mI] = button_ptr11;
+    
+    
+    button_ptr->present_object();
+    button_ptr2->present_object();
+    button_ptr3->present_object();
+    button_ptr4->present_object();
+    button_ptr5->present_object();
+    button_ptr6->present_object();
+    button_ptr7->present_object();
+    button_ptr8->present_object();
+    button_ptr9->present_object();
+    button_ptr10->present_object();
+    button_ptr11->present_object();
+    
+    ptr->present_object();
+    
+    //buttons["Test_button"] = button_ptr;
+    screen_ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(button_ptr2);
+    screen_ptr->add_widget(button_ptr3);
+    screen_ptr->add_widget(button_ptr4);
+    screen_ptr->add_widget(button_ptr5);
+    screen_ptr->add_widget(button_ptr6);
+    screen_ptr->add_widget(button_ptr7);
+    screen_ptr->add_widget(button_ptr8);
+    screen_ptr->add_widget(button_ptr9);
+    screen_ptr->add_widget(button_ptr10);
+    screen_ptr->add_widget(button_ptr11);
+    
+    
+    
+    button_ptr->set_property("Name", "In the Morning");
+    button_ptr2->set_property("Name", "Once Daily");
+    button_ptr3->set_property("Name", "Twice Daily");
+    button_ptr4->set_property("Name", "Three Times Daily");
+    button_ptr5->set_property("Name", "Four Times Daily");
+    button_ptr6->set_property("Name", "Five Times Daily");
+    button_ptr7->set_property("Name", "Six Times Daily");
+    button_ptr8->set_property("Name", "One Hourly");
+    button_ptr9->set_property("Name", "Two Hourly");
+    button_ptr10->set_property("Name", "Three Hourly");
+    button_ptr11->set_property("Name", "Four Hourly");
+    
+    
+    
+    
+    //   ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(ptr);
 }
 
 

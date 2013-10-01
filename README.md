@@ -1,6 +1,11 @@
 Model of the deivce and user of a GP system in order to study its usablity.
 
 
+------------
+PRN task files 
+
+(All of these have been renamed to PRN_v*.gomsl, subtask files have not been renamed). 
+
 * PatientSafety_v1.gomsl - basic model for initial device testing. 
 * PatientSafety_v2.gomsl - model for testing of Non - drug allergy option
 * PatientSafety_v3.gomsl - model for testing of Class allergy. (Can be substituted with Drug allergy for its testing)
@@ -14,8 +19,15 @@ Model of the deivce and user of a GP system in order to study its usablity.
 	** This file has been further split into 3 files, in order to get the run times of each of the PRN tasks individually. Each of the file contains just one medication. Apart from that, the implemented methods are the same. 
 
 	 
+--------------
+Scheduled task file(s) 
+
+* Scheduled_v1.gomsl - to develop methods for scheduled medications. 
 
 
+--------------
+TODO: 
 
+	* Clear medications display when the user clicks on "PRN". 
 
 

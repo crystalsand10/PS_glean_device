@@ -101,9 +101,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "443"
-         endingLineNumber = "443"
-         landmarkName = "TLD_device::display_prescribedMedications()"
-         landmarkType = "5">
+         endingLineNumber = "443">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -114,22 +112,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "765"
-         endingLineNumber = "765"
-         landmarkName = "TLD_device::assign_initial_dosage(Smart_Pointer&lt;Labeled_field_widget&gt; ptr)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Source/TLD_device.cpp"
-         timestampString = "397444020.027707"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "835"
-         endingLineNumber = "835"
-         landmarkName = "TLD_device::display_medications_FormStrength(std::string medication)"
-         landmarkType = "5">
+         endingLineNumber = "765">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
