@@ -2,9 +2,9 @@ TTLD_device
 v5
 r1
 cCheck dependencies
-cCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cLd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib" normal i386
+cCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib" normal i386
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 c000000005130312F00000000000000AA
@@ -267,13 +267,13 @@ t2
 s0
 
 N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.cpp
-c0000000052365B00000000000000D60B
-t1379293952
+c00000000524F4AB8000000000000D60B
+t1380928184
 s54795
 
 N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.h
-c00000000521AF4F500000000000011A1
-t1377498357
+c00000000524F4AB800000000000011A1
+t1380928184
 s4513
 
 N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/create_TLD_device.cpp
@@ -287,6 +287,140 @@ N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_
 c0000000051AC49590000000000000066
 t1370245465
 s102
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Assert_throw.h
+c00000000515FBBD500000000000002B9
+t1365228501
+s697
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Device_base.h
+c00000000515FBBD50000000000001DBB
+t1365228501
+s7611
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Device_exception.h
+c00000000515FBBD5000000000000024A
+t1365228501
+s586
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Exception.h
+c00000000515FBBD500000000000002D8
+t1365228501
+s728
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Geometry.h
+c00000000515FBBD50000000000003607
+t1365228501
+s13831
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Glean_exceptions.h
+c00000000515FBBD5000000000000054F
+t1365228501
+s1359
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Glean_standard_symbols.h
+c00000000515FBBD50000000000000657
+t1365228501
+s1623
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Numeric_utilities.h
+c00000000515FBBD5000000000000052B
+t1365228501
+s1323
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Output_tee.h
+c00000000515FBBD50000000000001AEA
+t1365228501
+s6890
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Output_tee_globals.h
+c00000000515FBBD500000000000000EE
+t1365228501
+s238
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Point.h
+c00000000515FBBD50000000000000339
+t1365228501
+s825
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Smart_Pointer.h
+c00000000515FBBD50000000000000CFE
+t1365228501
+s3326
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Standard_symbols.h
+c00000000515FBBD50000000000001E9F
+t1365228501
+s7839
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Standard_utility_symbols.h
+c00000000515FBBD500000000000002D1
+t1365228501
+s721
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Symbol.h
+c00000000515FBBD5000000000000207C
+t1365228501
+s8316
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Symbol_memory.h
+c00000000515FBBD50000000000000D43
+t1365228501
+s3395
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Symbol_utilities.h
+c00000000515FBBD50000000000000614
+t1365228501
+s1556
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Utility_templates.h
+c00000000515FBBD500000000000001AC
+t1365228501
+s428
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/View_base.h
+c00000000515FBBD50000000000000BF9
+t1365228501
+s3065
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Widgets.h
+c0000000051ADAD2100000000000031BC
+t1370336545
+s12732
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.LinkFileList
+c00000000524FCA83000000000000019B
+t1380960899
+s411
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o
+t1381025150
+s2956056
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o
+t1381022202
+s121920
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib
+t2
+s0
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp
+c000000005250C603000000000000F634
+t1381025283
+s63028
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.h
+c000000005250B8B8000000000000123C
+t1381021880
+s4668
+
+N/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp
+c00000000524FCA1E0000000000000195
+t1380960798
+s405
+i"GLEANKernel/Output_tee_globals.h"
+i"TLD_device.h"
 
 N/Users/sandeepkaur/Library/Frameworks/GLEANKernel.framework/GLEANKernel
 c00000000515FBBD5000000000027C30C
@@ -313,9 +447,15 @@ r0
 CBuild AST from "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/trial.cpp"
 r0
 
+CBuild AST from "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp"
+r0
+
+CBuild AST from "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp"
+r0
+
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesa0c5168292e6b741^f705188292e6b741^---0#1#0#--18"Check dependencies36"B7C6511F-CB8E-4885-8E15-D182D5884023-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies994b0a86fd00b841^8d461686fd00b841^---0#1#0#--18"Check dependencies36"B01A4869-23F6-4366-8EDD-A027429253FF-
 
 CCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s389175984.072765
@@ -343,6 +483,19 @@ xc++
 xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection115"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.cpp6ff2178292e6b741^6a34418692e6b741^---0#0#0#-19%DVTDocumentLocation2@125"file://localhost/Users/sandeepkaur/Desktop/SandeepKaur%20delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.cpp0000000000000000^3338"CompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o Source/TLD_device.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device"    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -std=c++11 -stdlib=libc++ -fno-asm -Wno-trigraphs -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -pedantic -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wnewline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fstrict-aliasing -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility-inlines-hidden -Wno-sign-conversion "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -MMD -MT dependencies -MF "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.d" --serialize-diagnostics "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.dia" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o"36"01C29891-6E12-4624-BC56-6C10F2AC2EE7-
 
+CCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s402718086.089391
+e402718092.097082
+r1
+xCompileC
+xDerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection115"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp8d0b1786fd00b841^05db188cfd00b841^---0#0#0#-19%DVTDocumentLocation2@125"file://localhost/Users/sandeepkaur/Desktop/SandeepKaur%20delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp0000000000000000^3338"CompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o Source/TLD_device.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device"    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -std=c++11 -stdlib=libc++ -fno-asm -Wno-trigraphs -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -pedantic -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wnewline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fstrict-aliasing -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility-inlines-hidden -Wno-sign-conversion "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -MMD -MT dependencies -MF "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.d" --serialize-diagnostics "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.dia" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.o"36"9C674EAB-A7A0-4D1E-8415-C4F5C3A9D714-
+
 CCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/SandeepKaur delivery/TLD_model/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s387172218.915770
 e387172219.912675
@@ -369,6 +522,19 @@ xc++
 xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/create_TLD_device.cppbc5dcbb02dcbb741^070a14b32dcbb741^---0#0#0#-19%DVTDocumentLocation2@132"file://localhost/Users/sandeepkaur/Desktop/SandeepKaur%20delivery_3/version1/PS_glean_device/TLD_device/Source/create_TLD_device.cpp0000000000000000^3380"CompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o Source/create_TLD_device.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device"    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -std=c++11 -stdlib=libc++ -fno-asm -Wno-trigraphs -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -pedantic -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wnewline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fstrict-aliasing -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility-inlines-hidden -Wno-sign-conversion "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -MMD -MT dependencies -MF "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.d" --serialize-diagnostics "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.dia" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/create_TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o"36"99F726D7-FC42-4441-8122-AB9F2C090AC6-
 
+CCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s402715000.978554
+e402715002.091459
+r1
+xCompileC
+xDerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp
+xnormal
+xi386
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Compile /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp15abfa78f100b841^6a68177af100b841^---0#0#0#-19%DVTDocumentLocation2@132"file://localhost/Users/sandeepkaur/Desktop/SandeepKaur%20delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp0000000000000000^3380"CompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o Source/create_TLD_device.cpp normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device"    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch i386 -fmessage-length=0 -std=c++11 -stdlib=libc++ -fno-asm -Wno-trigraphs -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -pedantic -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wnewline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fstrict-aliasing -Wno-deprecated-declarations -Wno-invalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility-inlines-hidden -Wno-sign-conversion "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/TLD_device.hmap" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/include" -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources/i386" "-I/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/DerivedSources" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -MMD -MT dependencies -MF "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.d" --serialize-diagnostics "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.dia" -c "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/Source/create_TLD_device.cpp" -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/create_TLD_device.o"36"2E038A97-5B0C-4C25-BC9A-EC57645B304E-
+
 CCompileC DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/trial.o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/Source/trial.cpp" normal i386 c++ com.apple.compilers.llvm.clang.1_0.compiler
 r0
 
@@ -391,4 +557,14 @@ x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_
 xnormal
 xi386
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection154"Link /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib7f16438692e6b741^3bfd508692e6b741^---0#0#0#--1390"Ld DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib normal i386    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device"    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk "-L/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -filelist "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.LinkFileList" -install_name /usr/local/lib/libTLD_device.dylib -mmacosx-version-min=10.8 -stdlib=libc++ -framework GLEANKernel -single_module -compatibility_version 1 -current_version 1 -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version1/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib"36"74658C07-EDDF-485E-B7BB-3353C8D642BD-
+
+CLd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib" normal i386
+s402718092.104044
+e402718092.449302
+r1
+xLd
+x/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib
+xnormal
+xi386
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection154"Link /Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylibdec61a8cfd00b841^5704738cfd00b841^---0#0#0#--1390"Ld DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib normal i386    cd "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device"    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch i386 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk "-L/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug" "-F/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/../../../../../Library/Frameworks" -filelist "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Intermediates/TLD_device.build/Debug/TLD_device.build/Objects-normal/i386/TLD_device.LinkFileList" -install_name /usr/local/lib/libTLD_device.dylib -mmacosx-version-min=10.8 -stdlib=libc++ -framework GLEANKernel -single_module -compatibility_version 1 -current_version 1 -o "/Users/sandeepkaur/Desktop/SandeepKaur delivery_3/version3/PS_glean_device/TLD_device/DerivedData/TLD_device/Build/Products/Debug/libTLD_device.dylib"36"D3F4ECE2-A404-4A94-B5A6-CEE01DACCCCF-
 

@@ -20,17 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Source/TLD_device.cpp"
-         timestampString = "392026251.645967"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "71"
-         endingLineNumber = "71">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../../../../Library/Frameworks/GLEANKernel.framework/Headers/Widgets.h"
          timestampString = "395120786.713659"
          startingColumnNumber = "9223372036854775807"
@@ -102,7 +91,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "443"
          endingLineNumber = "443"
-         landmarkName = "TLD_device::display_prescribedMedications()"
+         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -115,7 +104,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "765"
          endingLineNumber = "765"
-         landmarkName = "TLD_device::assign_initial_dosage(Smart_Pointer&lt;Labeled_field_widget&gt; ptr)"
+         landmarkName = "TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -140,9 +129,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
-         endingLineNumber = "127"
-         landmarkName = "TLD_device::handle_Start_event()"
-         landmarkType = "5">
+         endingLineNumber = "127">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

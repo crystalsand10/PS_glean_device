@@ -103,6 +103,10 @@ private:
     void display_prescribedMedications();
     void assign_initial_dosage(Smart_Pointer<Labeled_field_widget>);
     void createMenuItems2(); // for maximum of doses/Tablet
+    void createMenuItems3(); // for "for" options in the scheduled medications window
+    void createMenuItems4(); //
+    void createMenuItems5(); //
+    
     
     void create_warning_display(); 
 };
