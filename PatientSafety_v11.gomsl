@@ -4,7 +4,7 @@ Starting_goal is Perform ClinicalTask.
 Task_item: Item1
 Name is Item1. 
 TaskType is Medication. 
-Medication is Paracetamol. 
+Medication is Prednisolone. 
 MedicationType is Scheduled. 
 Dosage is "1000". 
 DosageType is Any. 
@@ -26,7 +26,7 @@ Selection_rules_for_goal: Perform Unit_Task
 	If TaskType of <current_task> is Allergy, 
 		Then Accomplish_goal: Add Allergy. 
 	If TaskType of <current_task> is Medication, 
-		Then Accomplish_goal: Prescribe Medication. 
+		Then Accomplish_goal: Prescribe Medication.
 	Return_with_goal_accomplished. 
 
 Method_for_goal: Prescribe Medication
@@ -54,7 +54,6 @@ Selection_rules_for_goal: Perform Unit_Task2
 	If MedicationType of <current_task> is Scheduled, 
 		Then Accomplish_goal: Prescribe Scheduled. 
 	Return_with_goal_accomplished. 
-
 
 
 
@@ -161,7 +160,13 @@ Step a1. Look_for_object_whose Type is Field, and Right_of is <current_label> an
 
 Step 4. Look_for_object_whose Name is Search and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 6. Look_for_object_whose Name is Medication of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step. Decide: 
+			If Medication of <current_task> is "Heparin", 
+				Then Look_for_object_whose Name is "Heparin Sodium" and_store_under <current_button>; 
+			Else 
+				Look_for_object_whose Name is Medication of <current_task> and_store_under <current_button>.
+
+Step. Accomplish_goal: Click_on Button using <current_button>. 
 
 Step 8. Decide: 
 			If Medication of <current_task> is "Paracetamol", 
@@ -171,7 +176,27 @@ Step 8. Decide:
 				Then Look_for_object_whose Name is "30mg + 500mg", and RightOf is "Tablet" and_store_under <current_button>;
 
 			If Medication of <current_task> is "Oxycodone", 
-				Then Look_for_object_whose Name is "5mg", and RightOf is "Capsule" and_store_under <current_button>.
+				Then Look_for_object_whose Name is "5mg", and RightOf is "Capsule" and_store_under <current_button>;
+
+			If Medication of <current_task> is "Prednisolone", 
+				Then Look_for_object_whose Name is "25mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Heparin", 
+				Then Look_for_object_whose Name is "5000units/0.2mL", and RightOf is "Injection" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Sotalol", 
+				Then Look_for_object_whose Name is "80mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Chloramphenicol", 
+				Then Look_for_object_whose Name is "0.5%", and RightOf is "Eye Drop" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Thiamine", 
+				Then Look_for_object_whose Name is "100mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Norfloxacin", 
+				Then Look_for_object_whose Name is "400mg", and RightOf is "Tablet" and_store_under <current_button>.
+			
+			
 
 Step a8. Accomplish_goal: Click_on Button using <current_button>. 
 

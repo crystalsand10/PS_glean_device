@@ -13,7 +13,8 @@ Model of the deivce and user of a GP system in order to study its usablity.
 * PatientSafety_v10.gomsl - Models the entry of the PRN task 3 accurately, the previous models for PRN task 3 will not work with the currently updated device (due to addition of warning screen and qualifier fields). 
 	** This file has been further split into 3 files, in order to get the run times of each of the PRN tasks individually. Each of the file contains just one medication. Apart from that, the implemented methods are the same. 
 
-	 
+* PatientSafety_v11.gomsl - Model to test the features (specifically menu Items) of scheduled medications 
+
 
 
 

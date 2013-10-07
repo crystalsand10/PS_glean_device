@@ -108,7 +108,8 @@ private:
     void createMenuItems5(); //
     
     
-    void create_warning_display(); 
+    void create_warning_display();
+    void create_cease_med(std::string medication);
 };
 
 #endif

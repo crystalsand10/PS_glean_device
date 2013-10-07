@@ -64,6 +64,10 @@ const Symbol Medications_warning_continue_b("Medications_warning_continue");
 const Symbol Medications_warning_heading_o("Medications_warning_heading");
 const Symbol Medications_warning_pregnancy_l("Medications_warning_pregnancy");
 
+const Symbol Medications_cease_scheduled_b("Medications_cease_scheduled");
+// const Symbol Medications_toCeaseMed_l("Medications_toCeaseMed");
+const Symbol Medications_toCeaseMed_b("Medications_toCeaseMed");
+
 
 const Symbol Medications_sch_for_lf("Medications_sch_for");
 const Symbol Medications_sch_route_l("Medications_sch_route");
@@ -88,6 +92,20 @@ const Symbol Medications_schRoute_options1_mI("Medications_schRoute_options1");
 const Symbol PRN_paracetamol("Paracetamol");
 const Symbol PRN_panadeine("Panadeine");
 const Symbol PRN_oxycodone("Oxycodone");
+
+const Symbol Scheduled_norfloxacin("Norfloxacin");
+const Symbol Scheduled_thiamine("Thiamine");
+const Symbol Scheduled_chloramphenicol("Chloramphenicol");
+
+const Symbol Replace_P_prednisolone("Prednisolone");
+const Symbol Replace_P_heparin("Heparin Sodium"); // Check this works ;; changed from Heparin ;; 
+const Symbol Replace_P_sotalol("Sotalol");
+
+const Symbol Replace_C_hydrocortisone("Hydrocortisone"); 
+const Symbol Replace_C_benzylpenicillin("Benzylpenicillin"); 
+const Symbol Replace_C_amiodarone("Amiodarone");
+
+
 
 
 
@@ -654,6 +672,11 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
     
     if (second_screen_searchResults == true) {
         
+        
+        if(iequals(current_searched_medication.str(), "Heparin")){
+            current_searched_medication = "Heparin Sodium"; 
+        }
+        
            create_button(this, Medications_searchResults_b, GU::Point(25, 230), GU::Size(225, 20), current_searched_medication, true, screen_ptr, true, Yellow_c, Yellow_c);
         
         buttons[Medications_searchResults_b]->set_property("Name", current_searched_medication);
@@ -761,8 +784,17 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
                 
                 
                 Trace_out << "Scheduled medication to be updated : " << (it->first) << endl;
+           
+                
+                
             }
 
+            
+            if ( iequals(current_searched_medication.str(), "Predisolone") || iequals(current_searched_medication.str(), "Heparin Sodium") || iequals(current_searched_medication.str(), "Sotalol") ){
+                
+                
+                create_button(this, "Medications_Scheduled", GU::Point(100, 100), GU::Size(50, 10), "Scheduled", true, screen_ptr, true, Blue_c, Green_c);
+            }
             
             
             
@@ -873,6 +905,75 @@ void TLD_device::display_medications_FormStrength(std::string medication){
         
         scheduledMedications[medication] = " (5 mg) Capsule";
     }
+    
+
+    // Scheduled med 1
+    if(iequals(medication, "Norfloxacin")){
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "400mg";
+        
+        scheduledMedications[medication] = " (400mg) Tablet";
+    }
+    
+    // Scheduled med 2
+    if(iequals(medication, "Thiamine")){
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "100mg";
+        
+        scheduledMedications[medication] = " (100mg) Tablet";
+    }
+    
+    // Scheduled med 3
+    if(iequals(medication, "Chloramphenicol")){
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Eye Drop";
+        button_label = "0.5%";
+        
+        scheduledMedications[medication] = " (0.5%) Eye Drop";
+    }
+    
+    
+    // Replace P med 1
+    if(iequals(medication, "Prednisolone")){
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "25mg";
+        
+        scheduledMedications[medication] = " (25mg) Tablet";
+    }
+    
+    // Replace P med 2
+    if(iequals(medication, "Heparin Sodium")){ // Heparin Sodium 
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Injection";
+        button_label = "5000units/0.2mL";
+        
+        scheduledMedications[medication] = " (5000units/0.2mL) Injection";
+    }
+    
+    // Replace P med 3
+    if(iequals(medication, "Sotalol")){
+        label_pointX = 270; label_pointY = 500;
+        button_pointX = 420; button_pointY = 500;
+        
+        label_label = "Tablet";
+        button_label = "80mg";
+        
+        scheduledMedications[medication] = " (80mg) Tablet";
+    }
+    
     
     
     // Scheduled medication chart 1
@@ -1154,6 +1255,11 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_allergies_display(false, true, true);
             
         }
+        if ( current_pointed_to_object_name == Medications_cease_scheduled_b) {
+        
+            create_cease_med(current_searched_medication.str());
+        }
+        
         
         if(current_pointed_to_object_name == ButtonMedications_d){
             clear_objects_on_screen();
@@ -1280,6 +1386,50 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
 	
     
 	output_display();
+}
+
+void TLD_device::create_cease_med(string medication){
+ //   int label_pointX, label_pointY;
+    int button_pointX, button_pointY;
+    
+    Symbol label_label;
+    Symbol button_label;
+    
+    
+    // PRN medication chart 1
+    if(iequals(medication, "Prednisolone")){
+        
+  //      label_pointX = 270; label_pointY = 520;
+        button_pointX = 420; button_pointY = 520;
+        
+  //      label_label = "Tablet";
+        button_label = Replace_C_amiodarone;
+        
+    }
+    else if ( iequals(medication, "Heparin Sodium")){
+        button_pointX = 420; button_pointY = 520;
+        
+        //      label_label = "Tablet";
+        button_label = Replace_C_amiodarone;
+    }
+    else if ( iequals(medication, "Sotalol")) {
+        button_pointX = 420; button_pointY = 520;
+        
+        //      label_label = "Tablet";
+        button_label = Replace_C_amiodarone;
+    }
+    
+    
+//    create_label(this, Medications_form_b, GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
+    create_button(this, Medications_toCeaseMed_b, GU::Point(button_pointX, button_pointY), GU::Size(30, 10), button_label, true, screen_ptr, true, White_c, White_c);
+    
+    buttons[Medications_strength_b]->set_property("Name", button_label);
+  //  buttons[Medications_strength_b]->set_property("RightOf", label_label);
+    
+    
+    
+    
+    
 }
 
 void TLD_device::deleteMenuItems(){
