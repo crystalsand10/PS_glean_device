@@ -65,8 +65,9 @@ const Symbol Medications_warning_heading_o("Medications_warning_heading");
 const Symbol Medications_warning_pregnancy_l("Medications_warning_pregnancy");
 
 const Symbol Medications_cease_scheduled_b("Medications_cease_scheduled");
-// const Symbol Medications_toCeaseMed_l("Medications_toCeaseMed");
-const Symbol Medications_toCeaseMed_b("Medications_toCeaseMed");
+const Symbol Medications_cease_medName_l("Medications_cease_medName");
+const Symbol Medications_cease_medCheckBox_b("Medications_cease_medCheckBox");
+const Symbol Medications_cease_b("Medications_cease");
 
 
 const Symbol Medications_sch_for_lf("Medications_sch_for");
@@ -101,7 +102,7 @@ const Symbol Replace_P_prednisolone("Prednisolone");
 const Symbol Replace_P_heparin("Heparin Sodium"); // Check this works ;; changed from Heparin ;; 
 const Symbol Replace_P_sotalol("Sotalol");
 
-const Symbol Replace_C_hydrocortisone("Hydrocortisone"); 
+const Symbol Replace_C_hydrocortisone("Hydrocortisone");
 const Symbol Replace_C_benzylpenicillin("Benzylpenicillin"); 
 const Symbol Replace_C_amiodarone("Amiodarone");
 
@@ -306,7 +307,30 @@ void TLD_device::clear_display()
 
 }
     
-
+void TLD_device::clear_cease_medications(){
+    
+    buttons_t::iterator it_buttons = buttons.find(Medications_cease_medCheckBox_b.str());
+    labels_t::iterator it_labels = labels.find(Medications_cease_medName_l.str());
+    
+    if(it_buttons != buttons.end()){
+        Trace_out << "Unpresented object is:- " << it_buttons->first << endl;
+        
+        
+        (it_buttons->second)->depresent();
+        screen_ptr->remove_widget((it_buttons->second));
+        
+        buttons.erase(it_buttons); 
+    }
+     if(it_labels != labels.end()){
+         Trace_out << "Unpresented object is:- " << it_labels->first << endl;
+         
+        (it_labels->second)->depresent();
+        screen_ptr->remove_widget((it_labels->second));
+         
+         labels.erase(it_labels); 
+    }
+    
+}
 
 /* For each of the various objects on the screen,
  * depresents them on the screen; 
@@ -612,14 +636,14 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
 
 
 
-void TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen){
+void TLD_device::create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen, bool fourth_screen_ceaseMed){
     
     
     Trace_out << " Medications_display."<< current_pointed_to_object_name <<  endl;
 
     if(first_screen == true) {
         
-        create_button(this, Medications_prescribe_b, GU::Point(160, 150), GU::Size(80, 15), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        create_button(this, Medications_prescribe_b, GU::Point(200, 150), GU::Size(80, 15), "Prescribe", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_prescribe_b]->set_property("Name", "Prescribe");
         buttons[Medications_prescribe_b]->set_property(Shape_c, Rectangle_c);
         
@@ -634,6 +658,12 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         create_button(this, Medications_update_b, GU::Point(15, 150), GU::Size(50, 15), "Update", true, screen_ptr, true, DarkGray_c, LightGray_c);
         buttons[Medications_update_b]->set_property("Name", "Update");
         buttons[Medications_update_b]->set_property(Shape_c, Rectangle_c);
+        
+        
+        create_button(this, Medications_cease_b, GU::Point(80, 150), GU::Size(50, 15), "Cease", true, screen_ptr, true, DarkGray_c, LightGray_c);
+        buttons[Medications_cease_b]->set_property("Name", "Cease");
+        buttons[Medications_cease_b]->set_property(Shape_c, Rectangle_c);
+        
         
         
         create_button(this, Medications_close_b, GU::Point(10, 90), GU::Size(50, 15), "Close", true, screen_ptr, true, White_c, White_c);
@@ -711,25 +741,25 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         create_labeledField(this, Medications_third_dose_lF, GU::Point(220, 180), GU::Size(50, 12), GU::Size(50, 10), "Dose", true, true);
         
         
-        create_label(this, Medications_sch_route_l, GU::Point(300, 300), GU::Size(50, 12), "Route", Black_c, true);
+        create_label(this, Medications_sch_route_l, GU::Point(210, 216), GU::Size(50, 12), "Route", Black_c, true);
         
-        create_label(this, Medications_sch_schedule_l, GU::Point(280, 400) , GU::Size(50, 12), "Schedule", Black_c, true);
+        create_label(this, Medications_sch_schedule_l, GU::Point(183, 263) , GU::Size(50, 12), "Schedule", Black_c, true);
         
  
-        create_button(this, Medications_sch_routeOptions_b, GU::Point(327, 300), GU::Size(74,15), "", true, screen_ptr, true, Gray_c, Gray_c);
+        create_button(this, Medications_sch_routeOptions_b, GU::Point(268, 216), GU::Size(100,12), "", true, screen_ptr, true, Gray_c, Gray_c);
         buttons[Medications_sch_routeOptions_b]->set_property("Name", "RouteOptions");
         buttons[Medications_sch_routeOptions_b]->set_property(Shape_c, Rectangle_c);
         
-        create_button(this, Medications_sch_schOptions_b, GU::Point(327, 400), GU::Size(74,15), "", true, screen_ptr, true, Gray_c, Gray_c);
+        create_button(this, Medications_sch_schOptions_b, GU::Point(268, 263), GU::Size(145,12), "", true, screen_ptr, true, Gray_c, Gray_c);
         buttons[Medications_sch_schOptions_b]->set_property("Name", "ScheduleOptions");
         buttons[Medications_sch_schOptions_b]->set_property(Shape_c, Rectangle_c); 
         
         
         
-        create_labeledField(this, Medications_sch_for_lf, GU::Point(59, 500), GU::Size(210, 15), GU::Size(50, 15), "For", true, false);
+        create_labeledField(this, Medications_sch_for_lf, GU::Point(224, 360), GU::Size(40, 12), GU::Size(50, 12), "For", true, false);
         
         
-        create_button(this, Medications_sch_forOptions_b, GU::Point(327, 500), GU::Size(74,15), "", true, screen_ptr, true, Gray_c, Gray_c);
+        create_button(this, Medications_sch_forOptions_b, GU::Point(320, 360), GU::Size(74,12), "", true, screen_ptr, true, Gray_c, Gray_c);
         buttons[Medications_sch_forOptions_b]->set_property("Name", "ForOptions");
         buttons[Medications_sch_forOptions_b]->set_property(Shape_c, Rectangle_c);
         
@@ -739,9 +769,8 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         buttons[Medications_continue_b]->set_property("Name", "Continue");
         buttons[Medications_continue_b]->set_property(Shape_c, Rectangle_c);
         
-        
-        
     }
+    
     
     if( third_screen_PRN == true) {
         create_labeledField(this, Medications_third_minInterval_lF, GU::Point(59, 500), GU::Size(210, 15), GU::Size(50, 15), "Minimum Dosage Interval", true, false);
@@ -779,21 +808,25 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
                 
                 std::string medication_display = (it->first).str() + (it->second).str();
                 
-                create_Object(this, widget_name, GU::Point(55, 180), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+                create_Object(this, widget_name, GU::Point(55, 240), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
                 
                 
                 
                 Trace_out << "Scheduled medication to be updated : " << (it->first) << endl;
            
                 
+                 
                 
             }
 
             
-            if ( iequals(current_searched_medication.str(), "Predisolone") || iequals(current_searched_medication.str(), "Heparin Sodium") || iequals(current_searched_medication.str(), "Sotalol") ){
+            if ( iequals(current_searched_medication.str(), Replace_P_prednisolone.str()) || iequals(current_searched_medication.str(), Replace_P_heparin.str()) || iequals(current_searched_medication.str(), Replace_P_sotalol.str()) ){
                 
+               create_button(this, Medications_cease_scheduled_b, GU::Point(140, 180), GU::Size(90, 10), "Scheduled", true, screen_ptr, true, White_c, Yellow_c);
+                buttons[Medications_cease_scheduled_b]->set_property("Name", "Scheduled");
+                buttons[Medications_cease_scheduled_b]->set_property(Shape_c, Rectangle_c);
                 
-                create_button(this, "Medications_Scheduled", GU::Point(100, 100), GU::Size(50, 10), "Scheduled", true, screen_ptr, true, Blue_c, Green_c);
+               
             }
             
             
@@ -809,7 +842,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
                 
                 std::string medication_display = (it->first).str() + (it->second).str();
                 
-                create_Object(this, widget_name, GU::Point(55, 180), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
+                create_Object(this, widget_name, GU::Point(200, 250), GU::Size(200, 10), White_c, Rectangle_c, medication_display, true);
                 
                 
                 
@@ -817,23 +850,40 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
                 Trace_out << "PRN medication to be updated : " << (it->first) << endl;
                 
             }
-            
-
-            
-            
-            
-            
           //  std::string medication_display = (it->first).str() + (it->second).str();
-            
-            
         }
         
         
-        
+      
         
         
 
     }
+    
+    if (fourth_screen_ceaseMed == true) {
+        
+        std::string ceaseMedName;
+        
+        if(iequals(current_searched_medication.str(), Replace_P_prednisolone.str())){
+            ceaseMedName = Replace_C_hydrocortisone.str();
+        }
+        else if ( iequals(current_searched_medication.str(), Replace_P_heparin.str())) {
+            ceaseMedName = Replace_C_benzylpenicillin.str();
+        }
+        else if ( iequals(current_searched_medication.str(), Replace_P_sotalol.str())) {
+            ceaseMedName = Replace_C_amiodarone.str();
+        } 
+        
+       
+        // std::string medication_display = (it->first).str() + (it->second).str();
+        
+        create_Object(this, ceaseMedName, GU::Point(55, 500), GU::Size(200, 12), White_c, Text_c, ceaseMedName, true);
+       
+        
+    }
+    
+    
+    
 }
 
 
@@ -909,8 +959,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
 
     // Scheduled med 1
     if(iequals(medication, "Norfloxacin")){
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 250;
+        button_pointX = 420; button_pointY = 250;
         
         label_label = "Tablet";
         button_label = "400mg";
@@ -920,8 +970,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Scheduled med 2
     if(iequals(medication, "Thiamine")){
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 280;
+        button_pointX = 420; button_pointY = 280;
         
         label_label = "Tablet";
         button_label = "100mg";
@@ -931,8 +981,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Scheduled med 3
     if(iequals(medication, "Chloramphenicol")){
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 290;
+        button_pointX = 420; button_pointY = 290;
         
         label_label = "Eye Drop";
         button_label = "0.5%";
@@ -943,8 +993,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Replace P med 1
     if(iequals(medication, "Prednisolone")){
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 280;
+        button_pointX = 420; button_pointY = 315;
         
         label_label = "Tablet";
         button_label = "25mg";
@@ -954,8 +1004,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Replace P med 2
     if(iequals(medication, "Heparin Sodium")){ // Heparin Sodium 
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 250;
+        button_pointX = 420; button_pointY = 250;
         
         label_label = "Injection";
         button_label = "5000units/0.2mL";
@@ -965,8 +1015,8 @@ void TLD_device::display_medications_FormStrength(std::string medication){
     
     // Replace P med 3
     if(iequals(medication, "Sotalol")){
-        label_pointX = 270; label_pointY = 500;
-        button_pointX = 420; button_pointY = 500;
+        label_pointX = 270; label_pointY = 280;
+        button_pointX = 420; button_pointY = 300;
         
         label_label = "Tablet";
         button_label = "80mg";
@@ -1172,13 +1222,16 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_button(this, Medications_third_maxOf_options_b, GU::Point(327, 530), GU::Size(50,10), label, true, screen_ptr, true, White_c, White_c);
         }
         else if (flag_forOption == true) {
-            create_button(this, Medications_sch_forOptions_b, GU::Point(327, 530), GU::Size(50, 10), label, true, screen_ptr, true, Gray_c, Gray_c);
+            create_button(this, Medications_sch_forOptions_b, GU::Point(320, 360), GU::Size(74, 12), label, true, screen_ptr, true, Gray_c, Gray_c);
+            buttons[Medications_sch_forOptions_b]->set_property(Shape_c, Rectangle_c);
         }
         else if (flag_routeOption == true) {
-            create_button(this, Medications_sch_routeOptions_b, GU::Point(327, 300), GU::Size(50, 10), label, true, screen_ptr, true, Gray_c, Gray_c);
+            create_button(this, Medications_sch_routeOptions_b, GU::Point(268, 216), GU::Size(100, 12), label, true, screen_ptr, true, Gray_c, Gray_c);
+            buttons[Medications_sch_routeOptions_b]->set_property(Shape_c, Rectangle_c); 
         }
         else if (flag_schOption == true) {
-            create_button(this, Medications_sch_schOptions_b, GU::Point(327, 400), GU::Size(50, 10), label, true, screen_ptr, true, Gray_c, Gray_c);
+            create_button(this, Medications_sch_schOptions_b, GU::Point(268, 263), GU::Size(145, 12), label, true, screen_ptr, true, Gray_c, Gray_c);
+            buttons[Medications_sch_schOptions_b]->set_property(Shape_c, Rectangle_c);
         } 
         
     }
@@ -1193,6 +1246,11 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         current_button_ptr->set_state(false);
         
+        if (current_pointed_to_object_name == Medications_cease_b) {
+            clear_cease_medications();
+            create_medications_display(false, false, false, false, false, false, true, true);
+            
+        }
         
         if (current_pointed_to_object_name == Medications_sch_forOptions_b){
             createMenuItems3();
@@ -1256,25 +1314,27 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
         }
         if ( current_pointed_to_object_name == Medications_cease_scheduled_b) {
-        
+            clear_objects_on_screen();
+            
+            create_medications_display(true, false, false, false, false, false, false, false);
             create_cease_med(current_searched_medication.str());
         }
         
         
         if(current_pointed_to_object_name == ButtonMedications_d){
             clear_objects_on_screen();
-            create_medications_display(true, false, false, false, false, false, false);
+            create_medications_display(true, false, false, false, false, false, false, false);
         }
         
         if(current_pointed_to_object_name == Medications_prescribe_b){
             clear_objects_on_screen();
-            create_medications_display(false, true, false, false, false, false, false);
+            create_medications_display(false, true, false, false, false, false, false, false);
             
         }
         
         if(current_pointed_to_object_name == Medications_searchButton_b) {
             
-            create_medications_display(false, false, true, false, false, false, false);
+            create_medications_display(false, false, true, false, false, false, false, false);
             
         
         }
@@ -1282,7 +1342,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         if(current_pointed_to_object_name == Medications_searchResults_b){
             Trace_out << " Time to create scheduled medications entery form !!! " << endl;
             
-            create_medications_display(false, false, false, true, false, false, false);
+            create_medications_display(false, false, false, true, false, false, false, false);
             
             
             
@@ -1291,17 +1351,20 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         
         if( current_pointed_to_object_name == Medications_strength_b){
            
-            if( current_searched_medication == PRN_oxycodone){
+            if( current_searched_medication == PRN_oxycodone) {
                 create_warning_display();
             }
+            else if(current_searched_medication == Replace_P_heparin){
+                create_warning_display2();
+            }
             else {
-                create_medications_display(false, false, false, false, true, false, false);
+                create_medications_display(false, false, false, false, true, false, false, false);
             }
             
         }
         
         if( current_pointed_to_object_name == Medications_warning_continue_b){
-            create_medications_display(false, false, false, false, true, false, false);
+            create_medications_display(false, false, false, false, true, false, false, false);
         }
         
         
@@ -1320,12 +1383,12 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             scheduledMedications.erase(current_searched_medication);
             
             
-            create_medications_display(false, false, false, false, false, true, false);
+            create_medications_display(false, false, false, false, false, true, false, false);
         }
         
         if( current_pointed_to_object_name == Medications_continue_b) {
             clear_objects_on_screen();
-            create_medications_display(true, false, false, false, false, false, true);
+            create_medications_display(true, false, false, false, false, false, true, false);
         }
         
         
@@ -1389,7 +1452,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
 }
 
 void TLD_device::create_cease_med(string medication){
- //   int label_pointX, label_pointY;
+    int label_pointX, label_pointY;
     int button_pointX, button_pointY;
     
     Symbol label_label;
@@ -1397,34 +1460,37 @@ void TLD_device::create_cease_med(string medication){
     
     
     // PRN medication chart 1
-    if(iequals(medication, "Prednisolone")){
+    if(iequals(medication, Replace_P_prednisolone.str())){
         
-  //      label_pointX = 270; label_pointY = 520;
-        button_pointX = 420; button_pointY = 520;
+        label_pointX = 50; label_pointY = 400;
+        button_pointX = 10; button_pointY = 400;
         
-  //      label_label = "Tablet";
-        button_label = Replace_C_amiodarone;
+        label_label = Replace_C_hydrocortisone;
+        // button_label = Replace_C_hydrocortisone;
         
     }
-    else if ( iequals(medication, "Heparin Sodium")){
-        button_pointX = 420; button_pointY = 520;
+    else if ( iequals(medication, Replace_P_heparin.str() ) ){
+        label_pointX = 50; label_pointY = 300;
+        button_pointX = 10; button_pointY = 300;
         
-        //      label_label = "Tablet";
-        button_label = Replace_C_amiodarone;
+        label_label = Replace_C_benzylpenicillin;
+        // button_label = Replace_C_benzylpenicillin;
     }
-    else if ( iequals(medication, "Sotalol")) {
-        button_pointX = 420; button_pointY = 520;
+    else if ( iequals(medication, Replace_P_sotalol.str())) {
+        label_pointX = 50; label_pointY = 220;
+        button_pointX = 10; button_pointY = 220;
         
-        //      label_label = "Tablet";
-        button_label = Replace_C_amiodarone;
+        label_label = Replace_C_amiodarone;
+        // button_label = Replace_C_amiodarone;
     }
     
     
-//    create_label(this, Medications_form_b, GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
-    create_button(this, Medications_toCeaseMed_b, GU::Point(button_pointX, button_pointY), GU::Size(30, 10), button_label, true, screen_ptr, true, White_c, White_c);
+    create_label(this, Medications_cease_medName_l, GU::Point(label_pointX, label_pointY) , GU::Size(30, 10), label_label, Black_c, true);
     
-    buttons[Medications_strength_b]->set_property("Name", button_label);
-  //  buttons[Medications_strength_b]->set_property("RightOf", label_label);
+    create_button(this, Medications_cease_medCheckBox_b, GU::Point(button_pointX, button_pointY), GU::Size(10, 10), " ", true, screen_ptr, true, Yellow_c, Black_c);
+    
+  //  buttons[Medications_cease_medCheckBox_b]->set_property("Name", button_label);
+    buttons[Medications_cease_medCheckBox_b]->set_property("RightOf", label_label);
     
     
     
@@ -1463,7 +1529,7 @@ void TLD_device::create_warning_display(){
     std::vector<GU::Point> in_vertices2 {GU::Point(262, 190), GU::Point( 262, 550)}; // vertical line
     create_polygon(this, Symbol("Polygon1"), in_vertices2, LightBlue_c, true);
     
-    create_button(this, Medications_warning_continue_b, GU::Point(600,600), GU::Size(70, 10), "Continue", true, screen_ptr, true, DarkGray_c, DarkGray_c);
+    create_button(this, Medications_warning_continue_b, GU::Point(600,600), GU::Size(70, 12), "Continue", true, screen_ptr, true, DarkGray_c, DarkGray_c);
     buttons[Medications_warning_continue_b]->set_property("Name", "Continue");
     buttons[Medications_warning_continue_b]->set_property(Shape_c, Rectangle_c);
     
@@ -1478,6 +1544,32 @@ void TLD_device::create_warning_display(){
     
 }
 
+
+void TLD_device::create_warning_display2(){
+    clear_objects_on_screen();
+  /*  create_button(this, Medications_warning_override_b, GU::Point(290,500), GU::Size(10, 10), "  Override", true, screen_ptr, true, Gray_c, Black_c);
+    buttons[Medications_warning_override_b]->set_property("Name", "Override");
+    
+    // Trace_out << "Over riding :) " << endl;
+    
+  */  
+    std::vector<GU::Point> in_vertices2 {GU::Point(262, 190), GU::Point( 262, 550)}; // vertical line
+    create_polygon(this, Symbol("Polygon1"), in_vertices2, LightBlue_c, true);
+    
+    create_button(this, Medications_warning_continue_b, GU::Point(600,600), GU::Size(70, 12), "Continue", true, screen_ptr, true, DarkGray_c, DarkGray_c);
+    buttons[Medications_warning_continue_b]->set_property("Name", "Continue");
+    buttons[Medications_warning_continue_b]->set_property(Shape_c, Rectangle_c);
+    
+    /*  create_Field(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#Symbol new_string#>, <#Symbol color#>, <#bool should_present#>);
+     create_label(<#Device_base *dev_ptr#>, <#const Symbol &widget_name#>, <#GU::Point location#>, <#GU::Size size#>, <#const Symbol &label#>, <#const Symbol &color#>, <#bool should_present#>);
+     */
+    
+    create_Object(this, Medications_warning_heading_o, GU::Point(268, 200), GU::Size(300, 20), RoyalBlue_c, Filled_Rectangle_c, Replace_P_heparin, true);
+    
+    
+    //create_label(this, Medications_warning_pregnancy_l, GU::Point(318, 550), GU::Size(50, 15), "Pregnancy Warnings", Black_c, true);
+    
+}
 
 
 void TLD_device::createMenuItems(){
@@ -1574,13 +1666,13 @@ void TLD_device::createMenuItems2(){
 
 void TLD_device::createMenuItems3(){
     
-    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(327, 530), GU::Size(65, 60), "  ");
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(320, 360), GU::Size(74,65), "  ");
     
     
     windows["Menu"] = ptr;  
     
     // menuItems["Test_container"] = ptr;
-    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schFor_options1_mI, GU::Point(327, 540), GU::Size(50, 15), "day(s)", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schFor_options1_mI, GU::Point(320, 390), GU::Size(50, 10), "day(s)", White_c, White_c, true);
     
     menuItems[Medications_schFor_options1_mI] = button_ptr;
         
@@ -1604,13 +1696,13 @@ void TLD_device::createMenuItems3(){
 
 void TLD_device::createMenuItems4(){
     
-    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(327, 300), GU::Size(65, 60), "  ");
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(268, 216), GU::Size(100, 120), "  ");
     
     
     windows["Menu"] = ptr;
     
     // menuItems["Test_container"] = ptr;
-    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schRoute_options1_mI, GU::Point(327, 300), GU::Size(50, 15), "Left Eye", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schRoute_options1_mI, GU::Point(268, 266), GU::Size(50, 10), "Left Eye", White_c, White_c, true);
     
     menuItems[Medications_schRoute_options1_mI] = button_ptr;
     
@@ -1634,23 +1726,23 @@ void TLD_device::createMenuItems4(){
 
 void TLD_device::createMenuItems5(){
     
-    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(327, 400), GU::Size(65, 60), "  ");
+    Smart_Pointer<Window_widget> ptr = new Window_widget(this, "Menu", GU::Point(268, 263), GU::Size(145, 80), "  ");
     
     
     windows["Menu"] = ptr;
     
     // menuItems["Test_container"] = ptr;
-    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schSch_options1_mI, GU::Point(327, 400), GU::Size(50, 15), "Twice Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schSch_options1_mI, GU::Point(268, 293), GU::Size(50, 15), "Twice Daily", White_c, White_c, true);
     
     menuItems[Medications_schSch_options1_mI] = button_ptr;
     
     
-    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, Medications_schSch_options2_mI, GU::Point(327, 420), GU::Size(50, 15), "Three Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, Medications_schSch_options2_mI, GU::Point(268, 303), GU::Size(50, 15), "Three Times Daily", White_c, White_c, true);
     
     menuItems[Medications_schSch_options2_mI] = button_ptr2;
     
     
-    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, Medications_schSch_options3_mI, GU::Point(327, 430), GU::Size(50, 15), "Four Times Daily", White_c, White_c, true);
+    Smart_Pointer<Button_widget> button_ptr3 = new Button_widget(this, Medications_schSch_options3_mI, GU::Point(268, 313), GU::Size(50, 15), "Four Times Daily", White_c, White_c, true);
     
     menuItems[Medications_schSch_options3_mI] = button_ptr3;
     

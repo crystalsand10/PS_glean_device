@@ -4,7 +4,7 @@ Starting_goal is Perform ClinicalTask.
 Task_item: Item1
 Name is Item1. 
 TaskType is Medication. 
-Medication is Prednisolone. 
+Medication is Sotalol. 
 MedicationType is Scheduled. 
 Dosage is "1000". 
 DosageType is Any. 
@@ -39,11 +39,21 @@ Step a2. Accomplish_goal: Click_on Button using <current_button>.
 
 Step 3. Accomplish_goal: Perform Unit_Task2.
 
+//Step 14. Look_for_object_whose Name is Scheduled and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+//Step 2. Look_for_object_whose RightOf is Benzylpenicillin and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+//Step b7. Look_for_object_whose Name is "day(s)" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+//Step 16. Look_for_object_whose Name is Cease and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
 Step 4. Look_for_object_whose Name is Update, and Type is Button and_store_under <current_button>. 
 Step a4. Accomplish_goal: Click_on Button using <current_button>. 
 
 Step 5. Look_for_object_whose Name is Close, and Type is Button and_store_under <current_button>. 
 Step a5. Accomplish_goal: Click_on Button using <current_button>. 
+
 
 Step 4. Return_with_goal_accomplished. 
 
@@ -60,6 +70,23 @@ Selection_rules_for_goal: Perform Unit_Task2
 Method_for_goal: Prescribe Scheduled
 Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>. 
 
+Step a1. Decide: 
+			If Medication of <current_task> is "Oxycodone", 
+				Then Goto a11;
+			If Medication of <current_task> is "Heparin", 
+				Then Goto a11; 
+			Else 
+				Goto 2. 
+
+
+Step a11. Think_of readingPage.
+// Step a12. Look_for_object_whose Name is Override and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step a13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 2. Look_for_object_whose Name is "ForOptions" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is "day(s)" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
 Step 20. Look_for_object_whose Name is "RouteOptions" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 Step b20. Look_for_object_whose Name is "Left Eye" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
@@ -67,8 +94,6 @@ Step 30. Look_for_object_whose Name is "ScheduleOptions" and_store_under <curren
 Step b30. Look_for_object_whose Name is "Four Times Daily" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 
-Step 2. Look_for_object_whose Name is "ForOptions" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
-Step b7. Look_for_object_whose Name is "day(s)" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
 Step 13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
@@ -86,6 +111,8 @@ Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>
 Step a1. Decide: 
 			If Medication of <current_task> is "Oxycodone", 
 				Then Goto a11;
+			If Medication of <current_task> is "Heparin", 
+				Then Goto a11; 
 			Else 
 				Goto 2. 
 

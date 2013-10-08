@@ -97,7 +97,7 @@ private:
     void create_homeScreen_display(bool first_display);
     void clear_objects_on_screen();
     void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
-    void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen);
+    void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen, bool fourth_screen_ceaseMed);
     void display_medications_FormStrength(std::string medication);
     bool iequals(const std::string& a, const std::string& b);
     void display_prescribedMedications();
@@ -109,7 +109,10 @@ private:
     
     
     void create_warning_display();
+    void create_warning_display2();
     void create_cease_med(std::string medication);
+    void clear_cease_medications();
+    
 };
 
 #endif
