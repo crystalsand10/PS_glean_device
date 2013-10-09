@@ -14,7 +14,9 @@ Model of the deivce and user of a GP system in order to study its usablity.
 	** This file has been further split into 3 files, in order to get the run times of each of the PRN tasks individually. Each of the file contains just one medication. Apart from that, the implemented methods are the same. 
 
 * PatientSafety_v11.gomsl - Model to test the features (specifically menu Items) of scheduled medications 
-PatientSafety_v11.gomsl - Model to test the features (specifically menu Items) of replace medications 
+* PatientSafety_v12.gomsl - Model to test the features (specifically menu Items) of replace medications 
+
+* PatientSafety_v13.gomsl - leading towards proper methods to carry out replace and scheduled medication prescribing tasks. 
 
 
 
