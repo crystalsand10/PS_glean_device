@@ -664,6 +664,9 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         buttons[Medications_cease_b]->set_property("Name", "Cease");
         buttons[Medications_cease_b]->set_property(Shape_c, Rectangle_c);
         
+        create_button(this, Medications_cease_scheduled_b, GU::Point(140, 180), GU::Size(90, 10), "Scheduled", true, screen_ptr, true, White_c, Yellow_c);
+        buttons[Medications_cease_scheduled_b]->set_property("Name", "Scheduled");
+        buttons[Medications_cease_scheduled_b]->set_property(Shape_c, Rectangle_c);
         
         
         create_button(this, Medications_close_b, GU::Point(10, 90), GU::Size(50, 15), "Close", true, screen_ptr, true, White_c, White_c);
@@ -752,7 +755,8 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         
         create_button(this, Medications_sch_schOptions_b, GU::Point(268, 263), GU::Size(145,12), "", true, screen_ptr, true, Gray_c, Gray_c);
         buttons[Medications_sch_schOptions_b]->set_property("Name", "ScheduleOptions");
-        buttons[Medications_sch_schOptions_b]->set_property(Shape_c, Rectangle_c); 
+        buttons[Medications_sch_schOptions_b]->set_property(Shape_c, Rectangle_c);
+        buttons[Medications_sch_schOptions_b]->set_property("RightOf", "Schedule");
         
         
         
@@ -820,14 +824,11 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
             }
 
             
-            if ( iequals(current_searched_medication.str(), Replace_P_prednisolone.str()) || iequals(current_searched_medication.str(), Replace_P_heparin.str()) || iequals(current_searched_medication.str(), Replace_P_sotalol.str()) ){
+      //      if ( iequals(current_searched_medication.str(), Replace_P_prednisolone.str()) || iequals(current_searched_medication.str(), Replace_P_heparin.str()) || iequals(current_searched_medication.str(), Replace_P_sotalol.str()) ){
                 
-               create_button(this, Medications_cease_scheduled_b, GU::Point(140, 180), GU::Size(90, 10), "Scheduled", true, screen_ptr, true, White_c, Yellow_c);
-                buttons[Medications_cease_scheduled_b]->set_property("Name", "Scheduled");
-                buttons[Medications_cease_scheduled_b]->set_property(Shape_c, Rectangle_c);
-                
+           
                
-            }
+      //      }
             
             
             
@@ -908,6 +909,47 @@ void TLD_device::assign_initial_dosage(Smart_Pointer<Labeled_field_widget> ptr){
         Trace_out << " oxycodone " << endl;
 
     }
+    
+    if(iequals(current_searched_medication.str(), Scheduled_thiamine.str())){
+        
+        ptr->set_string("100");
+        
+        Trace_out << " thiamine " << endl;
+        
+    }
+    
+    if(iequals(current_searched_medication.str(), Scheduled_norfloxacin.str())){
+        
+        ptr->set_string("400");
+        
+        Trace_out << " norfloxacin " << endl;
+        
+    }
+    
+    if(iequals(current_searched_medication.str(), Replace_P_prednisolone.str())){
+        
+        ptr->set_string("25");
+        
+        Trace_out << " prednisolone " << endl;
+        
+    }
+    
+    if(iequals(current_searched_medication.str(), Replace_P_heparin.str())){
+        
+        ptr->set_string("5000");
+        
+        Trace_out << " heparin " << endl;
+        
+    }
+    
+    if(iequals(current_searched_medication.str(), Replace_P_sotalol.str())){
+        
+        ptr->set_string("80");
+        
+        Trace_out << " sotalol " << endl;
+        
+    }
+    
 
 }
 
@@ -1364,7 +1406,9 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
         }
         
         if( current_pointed_to_object_name == Medications_warning_continue_b){
+            clear_objects_on_screen();
             create_medications_display(false, false, false, false, true, false, false, false);
+           // buttons[Medications_continue_b]->set_property("Label", "Continue");
         }
         
         
@@ -1386,7 +1430,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             create_medications_display(false, false, false, false, false, true, false, false);
         }
         
-        if( current_pointed_to_object_name == Medications_continue_b) {
+        if( iequals(current_pointed_to_object_name.str(), Medications_continue_b.str())) {
             clear_objects_on_screen();
             create_medications_display(true, false, false, false, false, false, true, false);
         }

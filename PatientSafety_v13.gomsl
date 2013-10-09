@@ -6,12 +6,14 @@ Task_item: Item1
 Name is Item1. 
 TaskType is Medication. 
 Medication is Heparin. 
-MedicationType is Replace. 
+MedicationType is Replace.
+CeaseMedicationName is "Benzylpenicillin".  
 Dosage is "1000". 
 DosageType is Any. 
 MaximumOf is "4000". 
 IntervalMenu is "hour(s)". 
-Interval is "5". 
+For is "5". 
+ForUnit is "day(s)". 
 Next is None.
 
 
@@ -68,15 +70,8 @@ Step 1. Accomplish_goal: Prescribe Scheduled.
 
 Step 2. Look_for_object_whose Name is Scheduled and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 3. Decide: 
-			If Medication of <current_task> is "Prednisolone", 
-				Then Look_for_object_whose RightOf is Hydrocortisone and_store_under <current_button>;
+Step. Look_for_object_whose RightOf is CeaseMedicationName of <current_task> and_store_under <current_button>.
 
-			If Medication of <current_task> is "Heparin", 
-				Then Look_for_object_whose RightOf is Benzylpenicillin and_store_under <current_button>;
-
-			If Medication of <current_task> is "Sotalol", 
-				Then Look_for_object_whose RightOf is Amiodarone and_store_under <current_button>.
 
 Step a3. Accomplish_goal: Click_on Button using <current_button>. 
 
@@ -94,7 +89,7 @@ Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>
 
 Step a1. Decide: 
 			If Medication of <current_task> is "Heparin", 
-				Then Goto a11; 
+				Then Goto a2; 
 			Else 
 				Goto 2. 
 
