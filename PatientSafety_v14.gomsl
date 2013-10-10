@@ -106,7 +106,7 @@ Next is None.
 
 
 Method_for_goal: Perform ClinicalTask
-Step 1. Store Item7 under <current_task_name>. 
+Step 1. Store Item1 under <current_task_name>. 
 Step 2. Decide: 
 			If <current_task_name> is None, Then Return_with_goal_accomplished.
 Step 3. Get_task_item_whose Name is <current_task_name> and_store_under <current_task>. 
@@ -175,12 +175,17 @@ Step 4. Decide:
 
 Step 5. Look_for_object_whose Name is "Continue" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
 
+Step 6. Look_for_object_whose Type is Button, and Name is Scheduled and_store_under <current_button>. 
+Step a6. Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 6. Look_for_object_whose Name is Scheduled and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step a7. Think_of searchCeaseMedication.
+Step 8. Look_for_object_whose Type is Label, and Text is CeaseMedicationName of <current_task> and_store_under <current_label>. 
+Step 7. Look_for_object_whose RightOf is CeaseMedicationName of <current_task> and_store_under <current_button>. 
+Step b7. Accomplish_goal: Click_on Button using <current_button>. 
 
-Step 7. Look_for_object_whose RightOf is CeaseMedicationName of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
-
-Step 8. Look_for_object_whose Name is Cease and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b8. Think_of ceasingMedication.
+Step 8. Look_for_object_whose Type is Button, and Name is Cease and_store_under <current_button>. 
+Step a8. Accomplish_goal: Click_on Button using <current_button>. 
 
 Step. Return_with_goal_accomplished. 
 

@@ -18,7 +18,7 @@ Model of the deivce and user of a GP system in order to study its usablity.
 
 * PatientSafety_v13.gomsl - leading towards proper methods to carry out replace and scheduled medication prescribing tasks. 
 
+* PatientSafety_v14.gomsl - Complete user model, incorportates all prescribing tasks (not including updating/adding allergy tasks), and methods to carry out prescribing and replacing.
 
-
-
+* PatientSafety_v15.gomsl - Model similar to PS_v14, but with additions to the replace medication method, and tasks particular to its testing. 
 

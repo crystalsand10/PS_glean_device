@@ -86,6 +86,7 @@ const Symbol Medications_schSch_options2_mI("Medications_schSch_options2");
 const Symbol Medications_schSch_options3_mI("Medications_schSch_options3");
 
 const Symbol Medications_schRoute_options1_mI("Medications_schRoute_options1"); 
+const Symbol Medications_schRoute_options2_mI("Medications_schRoute_options2");
 
 
 
@@ -767,7 +768,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         buttons[Medications_sch_forOptions_b]->set_property("Name", "ForOptions");
         buttons[Medications_sch_forOptions_b]->set_property(Shape_c, Rectangle_c);
         
-        
+         create_labeledField(this, Medications_third_qualifier_lf, GU::Point(172, 560), GU::Size(94, 15), GU::Size(300, 15), "Qualifier", true, false);
         
         create_button(this, Medications_continue_b, GU::Point(12, 90), GU::Size(75, 12), "Continue", true, screen_ptr, true, LightGray_c, LightGray_c);
         buttons[Medications_continue_b]->set_property("Name", "Continue");
@@ -800,7 +801,7 @@ void TLD_device::create_medications_display(bool first_screen, bool second_scree
         buttons[Medications_third_maxOf_TimeOptions_b]->set_property(Shape_c, Rectangle_c); 
         
         
-        create_labeledField(this, Medications_third_qualifier_lf, GU::Point(172, 560), GU::Size(94, 15), GU::Size(300, 15), "Qualifier", true, false);
+       
     }
     
     if(fourth_screen == true) {
@@ -1213,6 +1214,12 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             deleteMenuItems();
             flag_routeOption = true;
             label = "Left Eye";
+        }
+        
+        if ( current_pointed_to_object_name == Medications_schRoute_options2_mI) {
+            deleteMenuItems();
+            flag_routeOption = true;
+            label = "Subcutaneous";
         }
         
         
@@ -1748,18 +1755,25 @@ void TLD_device::createMenuItems4(){
     // menuItems["Test_container"] = ptr;
     Smart_Pointer<Button_widget> button_ptr = new Button_widget(this, Medications_schRoute_options1_mI, GU::Point(268, 266), GU::Size(50, 10), "Left Eye", White_c, White_c, true);
     
+    Smart_Pointer<Button_widget> button_ptr2 = new Button_widget(this, Medications_schRoute_options2_mI, GU::Point(268, 276), GU::Size(50, 10), "Subcutaneous", White_c, White_c, true);
+    
     menuItems[Medications_schRoute_options1_mI] = button_ptr;
+    menuItems[Medications_schRoute_options2_mI] = button_ptr2;
     
     button_ptr->present_object();
+    button_ptr2->present_object();
     
     ptr->present_object();
     
     //buttons["Test_button"] = button_ptr;
     screen_ptr->add_widget(button_ptr);
+    screen_ptr->add_widget(button_ptr2);
     
     
     
     button_ptr->set_property("Name", "Left Eye");
+    button_ptr2->set_property("Name", "Subcutaneous");
+    
     
     //   ptr->add_widget(button_ptr);
     screen_ptr->add_widget(ptr);
