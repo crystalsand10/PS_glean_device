@@ -485,7 +485,7 @@ Step 4. Return_with_goal_accomplished.
 Method_for_goal: Select Text using <current_field>
   	Step 2. Point_to <current_field>. 
   	Step 3. Double_click mouse_button.
-ß  	Step 5. Return_with_goal_accomplished.
+  	Step 5. Return_with_goal_accomplished.
 
 
 
