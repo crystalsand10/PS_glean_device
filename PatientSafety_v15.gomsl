@@ -109,7 +109,7 @@ Next is None.
 
 
 Method_for_goal: Perform ClinicalTask
-Step 1. Store Item7 under <current_task_name>. 
+Step 1. Store Item1 under <current_task_name>. 
 Step 2. Decide: 
 			If <current_task_name> is None, Then Return_with_goal_accomplished.
 Step 3. Get_task_item_whose Name is <current_task_name> and_store_under <current_task>. 

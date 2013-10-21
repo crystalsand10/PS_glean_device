@@ -67,7 +67,7 @@ private:
     
 	Symbol current_pointed_to_object_name;	// holds name of current button pointed to
     Symbol current_searched_medication; // holds name of current medication searched for, will be used for creating button later;
-    
+    Symbol current_searched_allergy; 
     
     
     
@@ -96,7 +96,7 @@ private:
     void deleteMenuItems(); 
     void create_homeScreen_display(bool first_display);
     void clear_objects_on_screen();
-    void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3);
+    void create_allergies_display(bool second_screen,  bool isOption6, bool isOption3, const std::string& option3name);
     void create_medications_display(bool first_screen, bool second_screen, bool second_screen_searchResults, bool second_screen_formSelection, bool third_screen, bool third_screen_PRN, bool fourth_screen, bool fourth_screen_ceaseMed);
     void display_medications_FormStrength(std::string medication);
     bool iequals(const std::string& a, const std::string& b);

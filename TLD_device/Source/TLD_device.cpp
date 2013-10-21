@@ -22,12 +22,23 @@ const Symbol Allergy_Polygon2_d("Allergy_polygon2");
 const Symbol Allergy_continue_b("Allergy_continue");
 const Symbol Allergy_cancel_d("Allergy_cancel");
 const Symbol Allergy_Polygon3_d("Allergy_Polygon3");
+const Symbol Allergy_Polygon4_d("Allergy_Polygon4");
+
 const Symbol Allergy_option1_b("Allergy_option1_d");
 const Symbol Allergy_option2_b("Allergy_option2_d");
 const Symbol Allergy_option3_b("Allergy_option3_d");
 const Symbol Allergy_option4_b("Allergy_option4_d");
 const Symbol Allergy_option5_b("Allergy_option5_d");
 const Symbol Allergy_option6_b("Allergy_option6_d");
+const Symbol Allergy_search_b("Allergy_search");
+const Symbol Allergy_searchAllergy_lF("Allergy_searchAllergy");
+
+
+const Symbol Allergy_searchResult_b("Allergy_searchResult");
+const Symbol Allergy_searchLabel_l("Allergy_searchLabel");
+const Symbol Allergy_searchField_f("Allergy_searchField");
+
+
 
 /* In the display of the medications screens */
 const Symbol Medications_prescribe_b("Medications_prescribe");
@@ -138,6 +149,8 @@ void TLD_device::initialize()
 	clear_display();	
 	current_pointed_to_object_name = Nil_c;
     current_searched_medication = Nil_c;
+    current_searched_allergy = Nil_c;
+    
 	// if  a blip was left up, get rid of it
 //	blip_ptr = 0;
 //	blip_counter = 0;
@@ -565,7 +578,7 @@ void TLD_device::display_prescribedMedications(){
 
 
 /* Creates the display when user clicks on Add. Second screen appears when the user clicks on a selection, in this case - non-drug allergy */
-void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bool isOption6){
+void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bool isOption6, const std::string& option3name){
 
     
     if( isFirstScreen == true) {
@@ -576,33 +589,46 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
         std::vector<GU::Point> in_vertices2 {GU::Point(318, 190), GU::Point( 318, 550)}; // vertical line
         create_polygon(this, Allergy_Polygon2_d, in_vertices2, DarkGray_c, true);
     
-        create_button(this, Allergy_continue_b, GU::Point(20, 130), GU::Size(50, 15), "Continue", true, screen_ptr, true, Gray_c, LightGray_c);
+        create_button(this, Allergy_continue_b, GU::Point(12, 130), GU::Size(75, 12), "Continue", true, screen_ptr, true, LightGray_c, LightGray_c);
         buttons[Allergy_continue_b]->set_property("Name", "Continue");
+        buttons[Allergy_continue_b]->set_property(Shape_c, Rectangle_c); 
         
-        create_button(this, Allergy_cancel_d, GU::Point(100, 130), GU::Size(50, 15), "Cancel", false, screen_ptr, true, Gray_c, LightGray_c);
+        create_button(this, Allergy_cancel_d, GU::Point(100, 130), GU::Size(50, 12), "Cancel", false, screen_ptr, true, Gray_c, LightGray_c);
+        buttons[Allergy_cancel_d]->set_property(Shape_c, Rectangle_c);
+        
         
         std::vector<GU::Point> in_vertices3 {GU::Point(1, 150), GU::Point(650 , 150)}; // horizontal line
         create_polygon(this, Allergy_Polygon3_d, in_vertices3, DarkGray_c, true);
         
         
-        create_button(this, Allergy_option1_b, GU::Point(10, 200), GU::Size(10, 10), "  Patients Allergy Status", true, screen_ptr, true, LightGray_c, Black_c);
-        create_button(this, Allergy_option2_b, GU::Point(10, 220), GU::Size(10, 10), "  No known allergies or intolerances", true, screen_ptr, true, LightGray_c, Black_c);
-        create_button(this, Allergy_option3_b, GU::Point(10, 240), GU::Size(10, 10), "  Class allergy", true, screen_ptr, true, LightGray_c, Black_c);
-        create_button(this, Allergy_option4_b, GU::Point(10, 260), GU::Size(10, 10), "  Drug allergy", true, screen_ptr, true, LightGray_c, Black_c);
-        create_button(this, Allergy_option5_b, GU::Point(10, 280), GU::Size(10, 10), "  Drug intolerances", true, screen_ptr, true, LightGray_c, Black_c);
-        create_button(this, Allergy_option6_b, GU::Point(10, 300), GU::Size(10, 10), "  Non drug allergy", true, screen_ptr, true, LightGray_c, Black_c);
+        create_button(this, Allergy_option1_b, GU::Point(10, 220), GU::Size(10, 10), "  Allergy Status Unknown", true, screen_ptr, true, LightGray_c, Black_c);
+        create_button(this, Allergy_option2_b, GU::Point(10, 240), GU::Size(10, 10), "  No known allergies or intolerances", true, screen_ptr, true, LightGray_c, Black_c);
         
-        buttons[Allergy_option3_b]->set_property("Name", "ClassAllergy");
-        buttons[Allergy_option4_b]->set_property("Name", "DrugAllergy");
-        buttons[Allergy_option6_b]->set_property("Name", "NonDrug");
+        
+        std::vector<GU::Point> in_vertices4 {GU::Point(1, 253), GU::Point(318, 253)}; // horizontal line
+        create_polygon(this, Allergy_Polygon4_d, in_vertices4, DarkGray_c, true);
+        
+      
+        
+        create_button(this, Allergy_option3_b, GU::Point(10, 290), GU::Size(10, 10), "  Class Allergy", true, screen_ptr, true, LightGray_c, Black_c);
+        create_button(this, Allergy_option4_b, GU::Point(10, 310), GU::Size(10, 10), "  Drug Allergy", true, screen_ptr, true, LightGray_c, Black_c);
+        create_button(this, Allergy_option5_b, GU::Point(10, 330), GU::Size(10, 10), "  Drug intolerances", true, screen_ptr, true, LightGray_c, Black_c);
+        create_button(this, Allergy_option6_b, GU::Point(10, 350), GU::Size(10, 10), "  Non-Drug Allergy", true, screen_ptr, true, LightGray_c, Black_c);
+        
+        buttons[Allergy_option3_b]->set_property("Name", "Class Allergy");
+        buttons[Allergy_option4_b]->set_property("Name", "Drug Allergy");
+        buttons[Allergy_option6_b]->set_property("Name", "Non-Drug Allergy");
     }
 
     if( isOption6 == true && isOption3 == true) {
     
-        create_label(this, "Allergy_label_Comments", GU::Point(350, 400), GU::Size(100, 20), "Comments", Green_c, true);
+    
+      /*  create_label(this, "Allergy_label_Comments", GU::Point(350, 400), GU::Size(100, 20), "Comments", Green_c, true);
         
         create_Field(this, Field_AllergyComments_d, GU::Point(420, 400), GU::Size(100, 50), " ", Black_c, true);
+      */
         
+        create_labeledField(this, Field_AllergyComments_d, GU::Point(352, 400),  GU::Size(78, 12), GU::Size(300, 60), "Comments", true, false);
         
         return; 
     }
@@ -612,10 +638,17 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
         
         Trace_out << processor_info() << " Now new screen for entering allergy information 2.1 " << endl;
         
+         create_labeledField(this, Field_AllergySubstance_d , GU::Point(350, 240), GU::Size(84, 12), GU::Size(250, 12), "Substance", true, false);
+        
+         create_labeledField(this, Field_AllergyComments_d, GU::Point(352, 400),  GU::Size(78, 12), GU::Size(300, 60), "Comments", true, false);
+        /*
+        
         create_label(this, "Allergy_label_Substance", GU::Point(340, 230), GU::Size(100, 20), "Substance", Red_c, true);
         create_label(this, "Allergy_label_Comments", GU::Point(350, 400), GU::Size(100, 20), "Comments", Green_c, true);
         create_Field(this, Field_AllergySubstance_d, GU::Point(420, 230),  GU::Size(100, 20)," ", Black_c, true);
         create_Field(this, Field_AllergyComments_d, GU::Point(420, 400), GU::Size(100, 50), "", Black_c, true);
+         
+         */ 
         
     }
     
@@ -623,10 +656,16 @@ void TLD_device::create_allergies_display(bool isFirstScreen, bool isOption3, bo
         /* label, field, button
             clicks on search, choses, enters comments rash.
         */
-        create_label(this, "Allergy_class_name", GU::Point(10, 320), GU::Size(30, 30), "Class name", Black_c, true);
-        create_Field(this, "Allergy_class_name_field", GU::Point(10,340), GU::Size(100,20), " ", Black_c, true);
-        create_button(this, "Allergy_search", GU::Point(120, 340), GU::Size(50,20), Symbol("Search"), true, screen_ptr, true, Gray_c, LightGray_c);
-        buttons[Symbol("Allergy_search")]->set_property("Name", "Search");
+      //   create_labeledField(this, Allergy_searchAllergy_lF, GU::Point(10,390), GU::Size(38,12), GU::Size(150, 12), "Name", true, false);
+       
+        create_label(this, Allergy_searchLabel_l, GU::Point(10,370), GU::Size(38,12), option3name, White_c, true);
+        
+        create_Field(this, Allergy_searchField_f, GU::Point(10,390) ,GU::Size(150, 12) , "", Black_c, true);
+        
+        create_button(this, Allergy_search_b, GU::Point(170, 390), GU::Size(50,12), Symbol("Search"), true, screen_ptr, true, Gray_c, Gray_c);
+        buttons[Allergy_search_b]->set_property("Name", "Search");
+        buttons[Allergy_search_b]->set_property(Shape_c, Rectangle_c);
+        
         
     }
 
@@ -1331,16 +1370,16 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             clear_objects_on_screen();
             
             
-            create_allergies_display(true, false, false);
+            create_allergies_display(true, false, false, "");
         } 
         if( current_pointed_to_object_name == Allergy_option3_b) {
             Main_screen_string1 << "Class allergy to";
-            create_allergies_display(false, true, false);
+            create_allergies_display(false, true, false, "Medication name");
         } 
 
         if( current_pointed_to_object_name == Allergy_option4_b) {
             Main_screen_string1 << "Drug allergy to";
-            create_allergies_display(false, true, false);
+            create_allergies_display(false, true, false, "Class name");
         }
         
         
@@ -1348,7 +1387,7 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
             Main_screen_string1 << "Non-drug allergy to"; 
             
-            create_allergies_display(false, false, true);
+            create_allergies_display(false, false, true, "");
             
         }
         
@@ -1358,10 +1397,21 @@ void TLD_device::handle_Click_event(const Symbol& button_name)
             
         }
         
-        if(current_pointed_to_object_name == "Allergy_search"){
-            create_allergies_display(false, true, true);
+        if(current_pointed_to_object_name == Allergy_search_b){
+           //  create_allergies_display(false, true, true);
+            if(iequals(current_searched_allergy.str(), "Suxamethonium")){
+                current_searched_allergy = "Suxamethonium chloride";
+            }
+            create_button(this, Allergy_searchResult_b, GU::Point(10, 410), GU::Size(225, 20), current_searched_allergy, true, screen_ptr, true, Gray_c, Gray_c);
+            
+            buttons[Allergy_searchResult_b]->set_property("Name", current_searched_allergy);
+            buttons[Allergy_searchResult_b]->set_property(Shape_c, Rectangle_c);
             
         }
+        
+        if (current_pointed_to_object_name == Allergy_searchResult_b) {
+            create_allergies_display(false, true, true, "");
+        } 
         if ( current_pointed_to_object_name == Medications_cease_scheduled_b) {
             clear_objects_on_screen();
             
@@ -1856,23 +1906,28 @@ void TLD_device::handle_Type_In_event(const Symbol& type_in_string){
     }
     
     
-    if(current_pointed_to_object_name == Field_AllergySubstance_d) {
+    if(current_pointed_to_object_name == Field_AllergySubstance_d || current_pointed_to_object_name == Allergy_searchField_f) {
         Main_screen_string1 << " " << type_in_string;
         
-        it_fields = fields.find(Field_AllergyComments_d);
-        (it_fields->second)->set_string(" ");
+       // it_fields = fields.find(Field_AllergyComments_d);
+       // (it_fields->second)->set_string(" ");
         
         
         // change color or next fields here;  maybe update it in the screen_ptr
     }
     
     if ( current_pointed_to_object_name == Field_AllergyComments_d){
-        Main_screen_string1 << " " << type_in_string;
+      //  Main_screen_string1 << " " << type_in_string;
 
     }
     
     if( current_pointed_to_object_name == Medications_searchDrug_lF){
         current_searched_medication = type_in_string;
+        // Trace_out << " ... test ... " << " ...... "  << " ... test ... " << endl;
+    }
+   
+    if( current_pointed_to_object_name == Allergy_searchField_f){
+        current_searched_allergy = type_in_string;
         // Trace_out << " ... test ... " << " ...... "  << " ... test ... " << endl;
     }
     

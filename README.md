@@ -22,3 +22,5 @@ Model of the deivce and user of a GP system in order to study its usablity.
 
 * PatientSafety_v15.gomsl - Model similar to PS_v14, but with additions to the replace medication method, and tasks particular to its testing. 
 
+* PatientSafety_v16.gomsl - Model to test the task of updating a patients allergy status. 
+

@@ -1,0 +1,542 @@
+Define_model: "Model for a user prescribing tasks"
+Starting_goal is Perform ClinicalTask. 
+
+Task_item: Item1
+Name is Item1. 
+TaskType is Medication. 
+Medication is Paracetamol. 
+MedicationType is PRN. 
+Dosage is "1000". 
+DosageType is Any. 
+MaximumOf is "4000". 
+IntervalMenu is "hour(s)". 
+Interval is "5". 
+Next is Item2.
+
+Task_item: Item2
+Name is Item2. 
+TaskType is Medication. 
+Medication is Panadeine. 
+MedicationType is PRN. 
+Dosage is "2". 
+DosageType is Any. 
+MaximumOf is "8". 
+IntervalMenu is "hour(s)". 
+Interval is "4". 
+Next is Item3.
+
+
+Task_item: Item3
+Name is Item3. 
+TaskType is Medication. 
+Medication is Oxycodone. 
+MedicationType is PRN. 
+Dosage is "5". 
+DosageType is Any. 
+MaximumOf is "20". 
+Interval is "4". 
+IntervalMenu is "hour(s)". 
+MaxOfMenu is "Tablet".
+Next is Item4.
+
+
+Task_item: Item4
+Name is Item4. 
+TaskType is Medication. 
+Medication is Thiamine. 
+MedicationType is Scheduled. 
+Dosage is "100". 
+DosageType is Any. 
+ScheduleMenu is "Three Times Daily". 
+ForMenu is "day(s)". 
+For is "5". 
+Next is Item5.
+
+Task_item: Item5
+Name is Item5. 
+TaskType is Medication. 
+Medication is Norfloxacin. 
+MedicationType is Scheduled. 
+Dosage is "400". 
+DosageType is Any. 
+ScheduleMenu is "Twice Daily". 
+ForMenu is "day(s)". 
+For is "3". 
+Next is Item6.
+
+Task_item: Item6
+Name is Item6. 
+TaskType is Medication. 
+Medication is Chloramphenicol. 
+MedicationType is Scheduled. 
+Dosage is "2". 
+DosageType is Any. 
+ScheduleMenu is "Four Times Daily". 
+ForMenu is "day(s)". 
+For is "3". 
+RouteMenu is "Left Eye". 
+Next is Item7.
+
+Task_item: Item7
+Name is Item7. 
+TaskType is Medication. 
+Medication is Prednisolone. 
+MedicationType is Replace. 
+Dosage is "50". 
+CeaseMedicationName is Hydrocortisone.
+Next is Item8.
+
+Task_item: Item8
+Name is Item8. 
+TaskType is Medication. 
+Medication is Heparin. 
+MedicationType is Replace. 
+Dosage is "5000". 
+ScheduleMenu is "Twice Daily". 
+Qualifier is "DVT Proflaxis". 
+CeaseMedicationName is Benzylpenicillin.
+Next is Item9.
+
+Task_item: Item9
+Name is Item9. 
+TaskType is Medication. 
+Medication is Sotalol. 
+MedicationType is Replace. 
+Dosage is "80". 
+ScheduleMenu is "Twice Daily". 
+CeaseMedicationName is Amiodarone.
+Next is None.
+
+
+Task_item: Item10
+Name is Item10. 
+TaskType is Allergy. 
+AllergyTo is Suxamethonium. 
+AllergyType is "Drug Allergy". 
+Comment is "Malignant Hypothermia".
+Next is Item11.
+
+Task_item: Item11
+Name is Item11. 
+TaskType is Allergy. 
+AllergyTo is Sulfonamide. 
+AllergyType is "Class Allergy". 
+Comment is "rash".
+Next is Item12.
+
+Task_item: Item12
+Name is Item12. 
+TaskType is Allergy. 
+AllergyTo is Elastoplast. 
+AllergyType is "Non-Drug Allergy". 
+Comment is "rash".
+Next is None.
+
+
+
+
+Method_for_goal: Perform ClinicalTask
+Step 1. Store Item10 under <current_task_name>. 
+Step 2. Decide: 
+			If <current_task_name> is None, Then Return_with_goal_accomplished.
+Step 3. Get_task_item_whose Name is <current_task_name> and_store_under <current_task>. 
+Step 4. Accomplish_goal: Perform Unit_Task. 
+Step 5. Store Next of <current_task> under <current_task_name>; Goto 2. 
+
+Selection_rules_for_goal: Perform Unit_Task
+	If TaskType of <current_task> is Allergy, 
+		Then Accomplish_goal: Update Allergy. 
+	If TaskType of <current_task> is Medication, 
+		Then Accomplish_goal: Prescribe Medication. 
+	Return_with_goal_accomplished. 
+
+Method_for_goal: Update Allergy
+Step 1. Look_for_object_whose Name is Add, and Type is Button and_store_under <current_button>. 
+Step a1. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 2. Look_for_object_whose Name is AllergyType of <current_task>, and Type is Button and_store_under <current_button>. 
+Step a2. Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+Step 3. Accomplish_goal: Enter AllergyName using AllergyTo of <current_task>. 
+
+
+Step 12. Look_for_object_whose Type is Label, and Text is "Comments" and_store_under <current_label>.
+Step a12. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Comment of <current_task>.  
+
+Step 13. Look_for_object_whose Name is Continue and_store_under <current_button>. 
+Step a13. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step. Return_with_goal_accomplished. 
+
+
+
+
+
+
+
+
+
+
+Method_for_goal: Prescribe Medication
+
+Step 1. Look_for_object_whose Name is Medications, and Type is Button and_store_under <current_button>. 
+Step a1. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 2. Look_for_object_whose Name is Prescribe, and Type is Button and_store_under <current_button>. 
+Step a2. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 3. Accomplish_goal: Perform Unit_Task2.
+
+Step 4. Look_for_object_whose Name is Update, and Type is Button and_store_under <current_button>. 
+Step a4. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 5. Look_for_object_whose Name is Close, and Type is Button and_store_under <current_button>. 
+Step a5. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 4. Return_with_goal_accomplished. 
+
+
+Selection_rules_for_goal: Perform Unit_Task2
+	If MedicationType of <current_task> is PRN, 
+		Then Accomplish_goal: Prescribe PRN. 
+	If MedicationType of <current_task> is Scheduled, 
+		Then Accomplish_goal: Prescribe Scheduled. 
+	If MedicationType of <current_task> is Replace, 
+		Then Accomplish_goal: Replace Medication. 
+	Return_with_goal_accomplished. 
+
+
+Method_for_goal: Replace Medication
+Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>. 
+
+Step a1. Decide: 
+			If Medication of <current_task> is "Heparin", 
+				Then Goto a11;
+			Else 
+				Goto 2. 
+
+				
+Step a11. Think_of readingPage.
+Step a13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+Step 2. Look_for_object_whose Type is Label, and Text is "Dose" and_store_under <current_label>.
+Step 3. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
+
+Step 4. Decide: 
+			If Text of <current_field> is Dosage of <current_task>,
+				Then Goto 9;   
+			Else
+				Accomplish_goal: Replace Text using <current_field>, and Dosage of <current_task>. 
+
+
+Step 9. Decide: 
+			If Medication of <current_task> is "Heparin", 
+				Then Goto 50;
+			If Medication of <current_task> is "Sotalol",
+				Then Goto 100; 
+			Else 
+				Goto 5. 
+
+Step 50. Look_for_object_whose Name is RouteOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step 51. Look_for_object_whose Name is "Subcutaneous" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 60. Look_for_object_whose Type is Label, and Text is "Qualifier" and_store_under <current_label>.
+Step 61. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Qualifier of <current_task>.  
+
+
+Step 100. Look_for_object_whose Name is ScheduleOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step 101. Look_for_object_whose Name is ScheduleMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+
+
+
+Step 5. Look_for_object_whose Name is "Continue" and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 6. Look_for_object_whose Type is Button, and Name is Scheduled and_store_under <current_button>. 
+Step a6. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 8. Look_for_object_whose Type is Label, and Text is CeaseMedicationName of <current_task> and_store_under <current_label>. 
+Step 7. Look_for_object_whose RightOf is CeaseMedicationName of <current_task> and_store_under <current_button>. 
+Step b7. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 8. Look_for_object_whose Type is Button, and Name is Cease and_store_under <current_button>. 
+Step a8. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step. Return_with_goal_accomplished. 
+
+
+
+Method_for_goal: Prescribe Scheduled
+Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>. 
+
+
+//Step a1. Decide: 
+//			If Medication of <current_task> is "Oxycodone", 
+//				Then Goto a11;
+//			Else 
+//				Goto 2. 
+
+				
+//Step a11. Think_of readingPage.
+//Step a12. Look_for_object_whose Name is Override and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+//Step a13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+Step 2. Look_for_object_whose Type is Label, and Text is "Dose" and_store_under <current_label>.
+Step 3. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
+
+Step 4. Decide: 
+			If Text of <current_field> is Dosage of <current_task>,
+				Then Goto 5;   
+			Else
+				Accomplish_goal: Fill_in Text using <current_field>, and Dosage of <current_task>. 
+
+
+			//	 Fill_in Text using <current_field>, and Dosage of <current_task>. 
+
+
+			
+// Step 5. Look_for_object_whose Name is PRN and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+Step 5. Look_for_object_whose Type is Label, and Text is "For" and_store_under <current_label>.
+Step a5. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and For of <current_task>. 
+
+
+Step 7. Look_for_object_whose Name is ForOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is ForMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 8. Look_for_object_whose Type is Label, and Text is "Schedule" and_store_under <current_label>. 
+Step a8. Look_for_object_whose Name is ScheduleOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b8. Look_for_object_whose Name is ScheduleMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+//Step 8. Look_for_object_whose Type is Label, and Text is "Schedule" and_store_under <current_label>.
+//Step a8. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and MaximumOf of <current_task>. 
+				
+Step 9. Decide: 
+			If Medication of <current_task> is "Chloramphenicol", 
+				Then Goto 10;
+			Else 
+				Goto 11.
+
+
+
+Step 10. Look_for_object_whose Name is RouteOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b10. Look_for_object_whose Name is RouteMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+//Step 11. Look_for_object_whose Type is Label, and Text is "per" and_store_under <current_label>.
+//Step a9. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and "1".  
+
+
+//Step 12. Look_for_object_whose Type is Label, and Text is "Qualifier" and_store_under <current_label>.
+// Step a12. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and "Pain".  
+
+
+Step 11. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 14. Return_with_goal_accomplished. 
+
+
+
+Method_for_goal: Prescribe PRN
+Step 1. Accomplish_goal: Enter MedicationName using Medication of <current_task>. 
+
+
+Step a1. Decide: 
+			If Medication of <current_task> is "Oxycodone", 
+				Then Goto a11;
+			Else 
+				Goto 2. 
+
+				
+Step a11. Think_of readingPage.
+Step a12. Look_for_object_whose Name is Override and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step a13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+Step 2. Look_for_object_whose Type is Label, and Text is "Dose" and_store_under <current_label>.
+Step 3. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>.  
+
+Step 4. Decide: 
+			If Text of <current_field> is Dosage of <current_task>,
+				Then Goto 5;   
+			Else
+				Accomplish_goal: Replace Text using <current_field>, and Dosage of <current_task>. 
+
+
+			//	 Fill_in Text using <current_field>, and Dosage of <current_task>. 
+
+
+			
+Step 5. Look_for_object_whose Name is PRN and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+Step 6. Look_for_object_whose Type is Label, and Text is "Minimum Dosage Interval" and_store_under <current_label>.
+Step a6. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Interval of <current_task>. 
+
+
+Step 7. Look_for_object_whose Name is MinIntervalOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is IntervalMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+Step 8. Look_for_object_whose Type is Label, and Text is "Maximum of" and_store_under <current_label>.
+Step a8. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and MaximumOf of <current_task>. 
+				
+Step 9. Decide: 
+			If Medication of <current_task> is "Oxycodone", 
+				Then Goto 10;
+			Else 
+				Goto 11.
+
+
+
+Step 10. Look_for_object_whose Name is MaxOfOptions and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+Step b7. Look_for_object_whose Name is MaxOfMenu of <current_task> and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+
+Step 11. Look_for_object_whose Type is Label, and Text is "per" and_store_under <current_label>.
+Step a9. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and "1".  
+
+
+Step 12. Look_for_object_whose Type is Label, and Text is "Qualifier" and_store_under <current_label>.
+Step a12. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and "Pain".  
+
+
+Step 13. Look_for_object_whose Name is Continue and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 14. Return_with_goal_accomplished. 
+
+Method_for_goal: Enter AllergyName using <allergy_name>
+
+Step 5. Decide: 
+			If AllergyType of <current_task> is "Non-Drug Allergy", 
+				Then Goto 100; 
+			Else 
+				Goto 6. 
+
+// Step 1. Look_for_object_whose Type is Label, and Text is "Name" and_store_under <current_label>. 
+// Step a1. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and AllergyTo of <current_task>.  
+
+//Step 6. Decide: 
+//			If AllergyType of <current_task> is "Drug allergy", 
+//				Then Look_for_object_whose Name is "Medication name" and_store_under <current_label>; 
+//			If AllergyType of <current_task> is "Class allergy", 
+//				Then Look_for_object_whose Name is "Class name" and_store_under <current_label>. 
+
+Step 6. Look_for_object_whose Type is Field and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and AllergyTo of <current_task>.  
+
+
+Step 4. Look_for_object_whose Name is Search and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+
+Step 5. Decide: 
+			If AllergyTo of <current_task> is "Suxamethonium", 
+				Then Look_for_object_whose Name is "Suxamethonium chloride" and_store_under <current_button>; 
+			Else 
+				Look_for_object_whose Name is AllergyTo of <current_task> and_store_under <current_button>.
+
+//Step 5. Look_for_object_whose Name is AllergyTo of <current_task> and_store_under <current_button>. 
+Step a5. Accomplish_goal: Click_on Button using <current_button>. 
+Step b5. Return_with_goal_accomplished.  
+
+
+
+Step 100. Look_for_object_whose Type is Label, and Text is "Substance" and_store_under <current_label>. 
+Step a100. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and AllergyTo of <current_task>. 
+
+Step 8. Return_with_goal_accomplished. 
+
+
+Method_for_goal: Enter MedicationName using <medication_name>
+Step 1. Look_for_object_whose Type is Label, and Text is "Name" and_store_under <current_label>. 
+Step a1. Look_for_object_whose Type is Field, and Right_of is <current_label> and_store_under <current_field>; Accomplish_goal: Fill_in Text using <current_field>, and Medication of <current_task>.  
+
+Step 4. Look_for_object_whose Name is Search and_store_under <current_button>; Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 5. Decide: 
+			If Medication of <current_task> is "Heparin", 
+				Then Look_for_object_whose Name is "Heparin Sodium" and_store_under <current_button>; 
+			Else 
+				Look_for_object_whose Name is Medication of <current_task> and_store_under <current_button>.
+
+Step 6. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 8. Decide: 
+			If Medication of <current_task> is "Paracetamol", 
+				Then Look_for_object_whose Name is "500mg", and RightOf is "Tablet" and_store_under <current_button>;
+
+			If Medication of <current_task> is "Panadeine", 
+				Then Look_for_object_whose Name is "30mg + 500mg", and RightOf is "Tablet" and_store_under <current_button>;
+
+			If Medication of <current_task> is "Oxycodone", 
+				Then Look_for_object_whose Name is "5mg", and RightOf is "Capsule" and_store_under <current_button>; 
+
+			If Medication of <current_task> is "Prednisolone", 
+				Then Look_for_object_whose Name is "25mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Heparin", 
+				Then Look_for_object_whose Name is "5000units/0.2mL", and RightOf is "Injection" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Sotalol", 
+				Then Look_for_object_whose Name is "80mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Chloramphenicol", 
+				Then Look_for_object_whose Name is "0.5%", and RightOf is "Eye Drop" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Thiamine", 
+				Then Look_for_object_whose Name is "100mg", and RightOf is "Tablet" and_store_under <current_button>;
+			
+			If Medication of <current_task> is "Norfloxacin", 
+				Then Look_for_object_whose Name is "400mg", and RightOf is "Tablet" and_store_under <current_button>.
+			
+
+Step a8. Accomplish_goal: Click_on Button using <current_button>. 
+
+Step 9. Return_with_goal_accomplished. 
+
+
+
+
+Method_for_goal: Click_on Button using <current_button> 
+Step 101. Point_to <current_button>. 
+Step 102. Click B1. 
+// Step 103. Log "processed: ", <button_obj>.
+Step 104. Delete <current_button>; Return_with_goal_accomplished. 
+
+
+Method_for_goal: Fill_in Text using <current_field>, and <the_text> 
+Step 201. Point_to <current_field>. 
+Step 202. Click B1. 
+Step 203. Type_in <the_text>. 
+Step 204. Return_with_goal_accomplished. 
+
+Method_for_goal: Replace Text using <current_field>, and <replace_to>
+Step 1. Accomplish_goal: Select Text using <current_field>.
+Step 2. Keystroke DELETE. 
+Step 3. Type_in <replace_to>. 
+Step 4. Return_with_goal_accomplished. 
+
+
+
+// The task specifies the to-be-selected word
+Method_for_goal: Select Text using <current_field>
+  //	Step 1. Look_for_object_whose Name is <text> and_store_under <target>.
+  	Step 2. Point_to <current_field>. 
+  	Step 3. Double_click mouse_button.
+ // 	Step 4. Verify "correct text is selected".
+  	Step 5. Return_with_goal_accomplished.
+
+
+

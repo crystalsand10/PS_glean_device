@@ -51,9 +51,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "416"
-         endingLineNumber = "416"
-         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
-         landmarkType = "5">
+         endingLineNumber = "416">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -65,7 +63,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "408"
          endingLineNumber = "408"
-         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
+         landmarkName = "TLD_device::clear_objects_on_screen()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -77,9 +75,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "418"
-         endingLineNumber = "418"
-         landmarkName = "TLD_device::create_homeScreen_display(bool first_display)"
-         landmarkType = "5">
+         endingLineNumber = "418">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -129,9 +125,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "127"
-         endingLineNumber = "127"
-         landmarkName = "TLD_device::TLD_device(const std::string&amp; id, Output_tee&amp; ot)"
-         landmarkType = "5">
+         endingLineNumber = "127">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
